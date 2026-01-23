@@ -1,0 +1,87 @@
+{% extends 'base_dashboard.html' %}
+
+{% block dashboard_title %}{{ title }}{% endblock %}
+{% block page_header %}{{ title }}{% endblock %}
+
+{% block dashboard_content %}
+<div class="max-w-2xl mx-auto">
+    <!-- Breadcrumbs -->
+    <nav class="flex mb-6" aria-label="Breadcrumb">
+        <ol class="inline-flex items-center space-x-1 md:space-x-3">
+            <li class="inline-flex items-center">
+                <a href="{% url 'users:dashboard' %}" class="text-sm font-medium text-gray-400 hover:text-white">Dashboard</a>
+            </li>
+            <li>
+                <div class="flex items-center">
+                    <svg class="w-4 h-4 text-gray-500" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
+                    </svg>
+                    <a href="{% url 'accounts:list' %}" class="ml-1 text-sm font-medium text-gray-400 hover:text-white md:ml-2">Contas</a>
+                </div>
+            </li>
+            <li aria-current="page">
+                <div class="flex items-center">
+                    <svg class="w-4 h-4 text-gray-500" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
+                    </svg>
+                    <span class="ml-1 text-sm font-medium text-gray-300 md:ml-2">{{ title }}</span>
+                </div>
+            </li>
+        </ol>
+    </nav>
+
+    <div class="bg-gray-800 rounded-xl p-6 shadow-lg">
+        <form method="post">
+            {% csrf_token %}
+
+            <div class="mb-6">
+                <label for="{{ form.name.id_for_label }}" class="block text-sm font-medium text-gray-300 mb-2">
+                    Nome *
+                </label>
+                {{ form.name }}
+                {% if form.name.errors %}
+                    <p class="mt-2 text-sm text-red-400">{{ form.name.errors }}</p>
+                {% endif %}
+                <p class="mt-2 text-sm text-gray-400">Nome da conta (ex: Banco do Brasil, Carteira)</p>
+            </div>
+
+            <div class="mb-6">
+                <label for="{{ form.description.id_for_label }}" class="block text-sm font-medium text-gray-300 mb-2">
+                    Descrição
+                </label>
+                {{ form.description }}
+                {% if form.description.errors %}
+                    <p class="mt-2 text-sm text-red-400">{{ form.description.errors }}</p>
+                {% endif %}
+                <p class="mt-2 text-sm text-gray-400">Descrição opcional da conta</p>
+            </div>
+
+            <div class="mb-6">
+                <label for="{{ form.balance.id_for_label }}" class="block text-sm font-medium text-gray-300 mb-2">
+                    Saldo Inicial
+                </label>
+                {{ form.balance }}
+                {% if form.balance.errors %}
+                    <p class="mt-2 text-sm text-red-400">{{ form.balance.errors }}</p>
+                {% endif %}
+                <p class="mt-2 text-sm text-gray-400">Saldo inicial da conta (será calculado automaticamente com transações futuras)</p>
+            </div>
+
+            {% if form.non_field_errors %}
+                <div class="mb-4 p-4 bg-red-900/30 text-red-200 rounded-lg">
+                    {{ form.non_field_errors }}
+                </div>
+            {% endif %}
+
+            <div class="flex items-center justify-between pt-6">
+                <a href="{% url 'accounts:list' %}" class="px-6 py-2 border border-gray-600 text-white rounded-lg hover:bg-gray-700 transition-colors duration-200">
+                    Cancelar
+                </a>
+                <button type="submit" class="px-6 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors duration-200">
+                    {{ button_text }}
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
