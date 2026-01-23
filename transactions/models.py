@@ -1,3 +1,65 @@
 from django.db import models
+from django.core.exceptions import ValidationError
+from django.utils import timezone
+from django.core.validators import MinValueValidator
+from accounts.models import Account
+from categories.models import Category
 
-# Create your models here.
+
+class Transaction(models.Model):
+    INCOME = 'INCOME'
+    EXPENSE = 'EXPENSE'
+
+    TYPE_CHOICES = [
+        (INCOME, 'Receita'),
+        (EXPENSE, 'Despesa'),
+    ]
+
+    account = models.ForeignKey(Account, on_delete=models.PROTECT, related_name='transactions')
+    category = models.ForeignKey(Category, on_delete=models.PROTECT, related_name='transactions')
+    type = models.CharField(max_length=10, choices=TYPE_CHOICES)
+    amount = models.DecimalField(
+        max_digits=12,
+        decimal_places=2,
+        validators=[MinValueValidator(0.01)]  # amount > 0
+    )
+    date = models.DateField(default=timezone.now)
+    description = models.TextField(blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def clean(self):
+        super().clean()
+
+        # Validate amount > 0
+        if self.amount <= 0:
+            raise ValidationError({'amount': 'Amount must be greater than 0.'})
+
+        # Validate date is not in the future
+        if self.date and self.date > timezone.now().date():
+            raise ValidationError({'date': 'Date cannot be in the future.'})
+
+        # Validate category.type matches transaction.type
+        if self.category and self.type != self.category.type:
+            raise ValidationError({
+                'category': f'Category type ({self.category.get_type_display()}) must match transaction type ({self.get_type_display()}).'
+            })
+
+    def save(self, *args, **kwargs):
+        self.full_clean()
+        super().save(*args, **kwargs)
+
+    def __str__(self):
+        return f"{self.get_type_display()} - {self.amount} - {self.date}"
+
+    class Meta:
+        verbose_name = 'Transaction'
+        verbose_name_plural = 'Transactions'
+        ordering = ['-date', '-created_at']
+        indexes = [
+            models.Index(fields=['date']),
+            models.Index(fields=['account']),
+            models.Index(fields=['category']),
+            models.Index(fields=['date', 'account']),
+            models.Index(fields=['date', 'category']),
+        ]

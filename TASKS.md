@@ -92,20 +92,20 @@
 ### Sprint 2: Modelos e Banco de Dados (1 semana)
 
 #### 2.1 Model User Customizado
-- [ ] **2.1.1** Criar CustomUser model
+- [x] **2.1.1** Criar CustomUser model
   - Criar classe CustomUser em users/models.py
   - Herdar de AbstractBaseUser e PermissionsMixin
   - Adicionar campo email como USERNAME_FIELD
   - Adicionar campos: is_active, is_staff, is_superuser
   - Adicionar campos created_at e updated_at
 
-- [ ] **2.1.2** Criar CustomUserManager
+- [x] **2.1.2** Criar CustomUserManager
   - Criar classe CustomUserManager
   - Implementar create_user()
   - Implementar create_superuser()
   - Validação de email obrigatório
 
-- [ ] **2.1.3** Configurar admin do User
+- [x] **2.1.3** Configurar admin do User
   - Criar UserAdmin em users/admin.py
   - Configurar list_display
   - Configurar search_fields
@@ -113,27 +113,27 @@
   - Configurar fieldsets
 
 #### 2.2 Model Profile
-- [ ] **2.2.1** Criar Profile model
+- [x] **2.2.1** Criar Profile model
   - Criar classe Profile em profiles/models.py
   - Relacionamento OneToOne com User
   - Adicionar campos: first_name, last_name, phone
   - Adicionar campos created_at e updated_at
   - Adicionar __str__ method
 
-- [ ] **2.2.2** Criar signal para Profile
+- [x] **2.2.2** Criar signal para Profile
   - Criar arquivo profiles/signals.py
   - Implementar signal post_save do User
   - Criar Profile automaticamente ao criar User
   - Registrar signal em profiles/apps.py
 
-- [ ] **2.2.3** Configurar admin do Profile
+- [x] **2.2.3** Configurar admin do Profile
   - Criar ProfileAdmin em profiles/admin.py
   - Configurar list_display
   - Configurar search_fields
   - Inline no UserAdmin (opcional)
 
 #### 2.3 Model Account
-- [ ] **2.3.1** Criar Account model
+- [x] **2.3.1** Criar Account model
   - Criar classe Account em accounts/models.py
   - Relacionamento ForeignKey com User
   - Adicionar campos: name, description, balance
@@ -141,13 +141,13 @@
   - Adicionar campos created_at e updated_at
   - Adicionar __str__ method
 
-- [ ] **2.3.2** Adicionar validações no model
+- [x] **2.3.2** Adicionar validações no model
   - Validar balance >= 0
   - Validar name não vazio
   - Meta class com ordering
   - Meta class com unique_together (user, name)
 
-- [ ] **2.3.3** Configurar admin do Account
+- [x] **2.3.3** Configurar admin do Account
   - Criar AccountAdmin em accounts/admin.py
   - Configurar list_display
   - Configurar list_filter (user, is_active)
@@ -155,7 +155,7 @@
   - Adicionar readonly_fields (balance, created_at, updated_at)
 
 #### 2.4 Model Category
-- [ ] **2.4.1** Criar Category model
+- [x] **2.4.1** Criar Category model
   - Criar classe Category em categories/models.py
   - Relacionamento ForeignKey com User (null=True para defaults)
   - Adicionar campos: name, color, type
@@ -164,13 +164,13 @@
   - Adicionar choices para type (INCOME, EXPENSE)
   - Adicionar __str__ method
 
-- [ ] **2.4.2** Criar categorias padrão
+- [x] **2.4.2** Criar categorias padrão
   - Criar data migration para categorias default
   - Categorias de receita: Salário, Freelance, Investimentos, Outros
   - Categorias de despesa: Alimentação, Transporte, Moradia, Saúde, Lazer, Educação, Outros
   - Associar cores para cada categoria
 
-- [ ] **2.4.3** Configurar admin do Category
+- [x] **2.4.3** Configurar admin do Category
   - Criar CategoryAdmin em categories/admin.py
   - Configurar list_display (name, type, color, is_default, user)
   - Configurar list_filter (type, is_default, is_active)
@@ -178,7 +178,7 @@
   - Adicionar color picker visual (opcional)
 
 #### 2.5 Model Transaction
-- [ ] **2.5.1** Criar Transaction model
+- [x] **2.5.1** Criar Transaction model
   - Criar classe Transaction em transactions/models.py
   - ForeignKey com Account (on_delete=PROTECT)
   - ForeignKey com Category (on_delete=PROTECT)
@@ -187,21 +187,21 @@
   - Adicionar choices para type (INCOME, EXPENSE)
   - Adicionar __str__ method
 
-- [ ] **2.5.2** Adicionar validações
+- [x] **2.5.2** Adicionar validações
   - Validar amount > 0
   - Validar date não pode ser futura
   - Validar category.type == transaction.type
   - Meta class com ordering ('-date', '-created_at')
   - Meta class com indexes (date, account, category)
 
-- [ ] **2.5.3** Criar signals para Transaction
+- [x] **2.5.3** Criar signals para Transaction
   - Criar arquivo transactions/signals.py
   - Signal post_save: atualizar balance do Account
   - Signal post_delete: atualizar balance do Account
   - Registrar signals em transactions/apps.py
   - Usar F() expressions para evitar race conditions
 
-- [ ] **2.5.4** Configurar admin do Transaction
+- [x] **2.5.4** Configurar admin do Transaction
   - Criar TransactionAdmin em transactions/admin.py
   - Configurar list_display
   - Configurar list_filter (type, date, account, category)
@@ -210,17 +210,17 @@
   - Adicionar readonly_fields (created_at, updated_at)
 
 #### 2.6 Migrações
-- [ ] **2.6.1** Criar migrations iniciais
+- [x] **2.6.1** Criar migrations iniciais
   - Executar makemigrations para cada app
   - Revisar arquivos de migration gerados
   - Verificar dependências entre migrations
 
-- [ ] **2.6.2** Aplicar migrations
+- [x] **2.6.2** Aplicar migrations
   - Executar migrate
   - Verificar tabelas criadas no SQLite
   - Testar constraints e indexes
 
-- [ ] **2.6.3** Criar superuser
+- [x] **2.6.3** Criar superuser
   - Executar createsuperuser
   - Testar login no admin
   - Verificar models no admin
