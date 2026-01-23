@@ -1,12 +1,46 @@
-<aside class="bg-white shadow-md w-64 min-h-screen">
-    <div class="p-4">
-        <h2 class="text-lg font-semibold mb-4">Navegação</h2>
-        <ul class="space-y-2">
-            <li><a href="/" class="block py-2 px-4 rounded hover:bg-gray-100">Dashboard</a></li>
-            <li><a href="/transactions/" class="block py-2 px-4 rounded hover:bg-gray-100">Transações</a></li>
-            <li><a href="/accounts/" class="block py-2 px-4 rounded hover:bg-gray-100">Contas</a></li>
-            <li><a href="/categories/" class="block py-2 px-4 rounded hover:bg-gray-100">Categorias</a></li>
-            <li><a href="/profile/" class="block py-2 px-4 rounded hover:bg-gray-100">Perfil</a></li>
-        </ul>
+<nav class="flex-1 p-4">
+    <div class="mb-8">
+        <h2 class="text-xl font-bold text-indigo-400">FinanPy</h2>
     </div>
-</aside>
+    
+    <ul class="space-y-2">
+        <li>
+            <a href="{% url 'users:dashboard' %}" class="flex items-center p-3 rounded-lg bg-indigo-900 text-white hover:bg-indigo-700 transition-colors duration-200">
+                <span class="mr-3">📊</span>
+                <span>Dashboard</span>
+            </a>
+        </li>
+        <li>
+            <a href="/transactions/" class="flex items-center p-3 rounded-lg text-gray-300 hover:bg-gray-700 hover:text-white transition-colors duration-200">
+                <span class="mr-3">💼</span>
+                <span>Transações</span>
+            </a>
+        </li>
+        <li>
+            <a href="/categories/" class="flex items-center p-3 rounded-lg text-gray-300 hover:bg-gray-700 hover:text-white transition-colors duration-200">
+                <span class="mr-3">🏷️</span>
+                <span>Categorias</span>
+            </a>
+        </li>
+        <li>
+            <a href="/accounts/" class="flex items-center p-3 rounded-lg text-gray-300 hover:bg-gray-700 hover:text-white transition-colors duration-200">
+                <span class="mr-3">🏦</span>
+                <span>Contas</span>
+            </a>
+        </li>
+        <li>
+            <a href="/profiles/" class="flex items-center p-3 rounded-lg text-gray-300 hover:bg-gray-700 hover:text-white transition-colors duration-200">
+                <span class="mr-3">👤</span>
+                <span>Perfil</span>
+            </a>
+        </li>
+    </ul>
+</nav>
+
+<!-- Mobile Menu Button -->
+<div class="p-4 border-t border-gray-700 md:hidden">
+    <button id="mobile-menu-button" class="w-full flex justify-center items-center p-2 rounded-md bg-gray-700 hover:bg-gray-600">
+        <span class="mr-2">☰</span>
+        <span>Menu</span>
+    </button>
+</div>
