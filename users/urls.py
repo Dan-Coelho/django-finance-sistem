@@ -18,4 +18,7 @@ urlpatterns = [
 
     # Landing page
     path('', views.landing_page, name='landing_page'),
+
+    # Dashboard
+    path('dashboard/', views.dashboard, name='dashboard'),
 ]

@@ -347,20 +347,20 @@
 ### Sprint 4: Dashboard e Navegação (1 semana)
 
 #### 4.1 Estrutura Base do Dashboard
-- [ ] **4.1.1** Criar app dashboard (opcional) ou usar transactions
+- [x] **4.1.1** Criar app dashboard (opcional) ou usar transactions
   - Criar DashboardView em views.py
   - Template dashboard.html
   - Apenas usuários autenticados
   - Usar @login_required decorator
 
-- [ ] **4.1.2** Layout do dashboard
+- [x] **4.1.2** Layout do dashboard
   - Criar base_dashboard.html (herda de base.html)
   - Sidebar com navegação
   - Topbar com nome do usuário e logout
   - Content area principal
   - Mobile: hamburger menu
 
-- [ ] **4.1.3** Sidebar de navegação
+- [x] **4.1.3** Sidebar de navegação
   - Links: Dashboard, Transações, Categorias, Contas, Perfil
   - Ícones para cada item (usando emoji ou biblioteca)
   - Indicador de página ativa
@@ -368,82 +368,82 @@
   - Collapse em mobile
 
 #### 4.2 Cards de Resumo
-- [ ] **4.2.1** Card Saldo Total
+- [x] **4.2.1** Card Saldo Total
   - Calcular soma de todas as contas ativas do usuário
   - Exibir valor formatado em BRL
   - Gradiente verde se positivo, vermelho se negativo
   - Ícone representativo
 
-- [ ] **4.2.2** Card Receitas do Mês
+- [x] **4.2.2** Card Receitas do Mês
   - Filtrar transações tipo INCOME do mês atual
   - Somar valores
   - Exibir formatado
   - Gradiente verde
   - Comparativo com mês anterior (%, arrow up/down)
 
-- [ ] **4.2.3** Card Despesas do Mês
+- [x] **4.2.3** Card Despesas do Mês
   - Filtrar transações tipo EXPENSE do mês atual
   - Somar valores
   - Exibir formatado
   - Gradiente vermelho
   - Comparativo com mês anterior
 
-- [ ] **4.2.4** Card Balanço do Mês
+- [x] **4.2.4** Card Balanço do Mês
   - Receitas - Despesas do mês
   - Exibir formatado
   - Gradiente baseado em positivo/negativo
   - Percentual em relação às receitas
 
 #### 4.3 Lista de Transações Recentes
-- [ ] **4.3.1** Query de transações
+- [x] **4.3.1** Query de transações
   - Buscar últimas 5-10 transações do usuário
   - Ordenar por data decrescente
   - select_related para Account e Category
   - Filtrar apenas contas ativas
 
-- [ ] **4.3.2** Tabela de transações
+- [x] **4.3.2** Tabela de transações
   - Colunas: Data, Descrição, Categoria, Conta, Valor
   - Badge colorido para tipo (receita/despesa)
   - Formatação de moeda
   - Responsivo: stack em mobile
 
-- [ ] **4.3.3** Link para página completa
+- [x] **4.3.3** Link para página completa
   - Botão "Ver todas" redirecionando para /transactions/
   - Manter consistência visual
 
 #### 4.4 Gráfico de Despesas
-- [ ] **4.4.1** Processar dados para gráfico
+- [x] **4.4.1** Processar dados para gráfico
   - Agrupar despesas do mês por categoria
   - Calcular total e percentual de cada
   - Ordenar por valor (maior primeiro)
   - Limitar às top 5 categorias
 
-- [ ] **4.4.2** Implementar gráfico
+- [x] **4.4.2** Implementar gráfico
   - Usar Chart.js via CDN
   - Gráfico de pizza (donut) ou barras
   - Cores das categorias
   - Labels com valores e percentuais
   - Responsivo
 
-- [ ] **4.4.3** Fallback sem dados
+- [x] **4.4.3** Fallback sem dados
   - Exibir mensagem se não houver despesas
   - Sugerir registrar primeira transação
   - Design consistente
 
 #### 4.5 Seletor de Período
-- [ ] **4.5.1** Criar componente de filtro
+- [x] **4.5.1** Criar componente de filtro
   - Dropdown ou tabs para períodos
   - Opções: Esta semana, Este mês, Mês passado, Este ano, Personalizado
   - Para personalizado: dois campos de data
 
-- [ ] **4.5.2** Implementar lógica de filtro
+- [x] **4.5.2** Implementar lógica de filtro
   - Query params na URL (?period=month)
   - Recalcular todos os cards
   - Atualizar gráfico
   - Atualizar lista de transações
   - Manter seleção ao navegar
 
-- [ ] **4.5.3** JavaScript para interatividade
+- [x] **4.5.3** JavaScript para interatividade
   - Form submit ao selecionar período
   - AJAX para atualizar sem reload (opcional)
   - Loading state durante filtro
