@@ -451,14 +451,14 @@
 ### Sprint 5: CRUD de Contas (1 semana)
 
 #### 5.1 Listagem de Contas
-- [ ] **5.1.1** Criar AccountListView
+- [x] **5.1.1** Criar AccountListView
   - ListView baseada em Account model
   - Filtrar por usuário logado
   - Ordenar por nome ou saldo
   - Template accounts/account_list.html
   - Paginação (se necessário)
 
-- [ ] **5.1.2** Template de listagem
+- [x] **5.1.2** Template de listagem
   - Grid de cards, uma para cada conta
   - Exibir: nome, saldo, descrição
   - Badge ativa/inativa
@@ -466,28 +466,28 @@
   - Botão flutuante "Nova Conta"
   - Responsivo
 
-- [ ] **5.1.3** Card de resumo geral
+- [x] **5.1.3** Card de resumo geral
   - Total de todas as contas
   - Número de contas ativas
   - Conta com maior saldo
   - Design destacado
 
 #### 5.2 Criação de Conta
-- [ ] **5.2.1** Criar AccountCreateView
+- [x] **5.2.1** Criar AccountCreateView
   - CreateView para Account model
   - Form fields: name, description, balance
   - Associar user automaticamente (request.user)
   - Redirect para lista após sucesso
   - Mensagem de sucesso
 
-- [ ] **5.2.2** Criar AccountForm
+- [x] **5.2.2** Criar AccountForm
   - ModelForm em accounts/forms.py
   - Fields: name, description, balance
   - Validação: balance >= 0
   - Validação: name não vazio
   - Widgets customizados com classes Tailwind
 
-- [ ] **5.2.3** Template de criação
+- [x] **5.2.3** Template de criação
   - Formulário estilizado
   - Labels claros em português
   - Help text quando necessário
@@ -496,54 +496,54 @@
   - Responsivo
 
 #### 5.3 Edição de Conta
-- [ ] **5.3.1** Criar AccountUpdateView
+- [x] **5.3.1** Criar AccountUpdateView
   - UpdateView para Account model
   - Verificar que account.user == request.user
   - Form pré-preenchido
   - Campos editáveis: name, description, is_active
   - Balance readonly (calculado via transações)
 
-- [ ] **5.3.2** Template de edição
+- [x] **5.3.2** Template de edição
   - Mesma estrutura do create
   - Título diferenciado
   - Campo balance readonly mas visível
   - Indicador visual de campo readonly
 
-- [ ] **5.3.3** Validação de permissões
+- [x] **5.3.3** Validação de permissões
   - Apenas dono pode editar
   - Retornar 403 ou 404 se não autorizado
   - Mensagem clara de erro
 
 #### 5.4 Exclusão de Conta
-- [ ] **5.4.1** Criar AccountDeleteView
+- [x] **5.4.1** Criar AccountDeleteView
   - DeleteView para Account model
   - Verificar ownership
   - Verificar se não há transações associadas
   - Redirect para lista
   - Mensagem de sucesso/erro
 
-- [ ] **5.4.2** Modal de confirmação
+- [x] **5.4.2** Modal de confirmação
   - Template com modal (ou página de confirmação)
   - Mensagem clara: "Tem certeza?"
   - Listar informações da conta
   - Avisar sobre transações se houver
   - Botões: Confirmar (vermelho), Cancelar
 
-- [ ] **5.4.3** Validação de integridade
+- [x] **5.4.3** Validação de integridade
   - Verificar relacionamento com Transaction
   - Bloquear exclusão se houver transações
   - Mensagem explicativa
   - Sugestão: desativar ao invés de excluir
 
 #### 5.5 URLs e Navegação
-- [ ] **5.5.1** Configurar URLs de accounts
+- [x] **5.5.1** Configurar URLs de accounts
   - /accounts/ - lista
   - /accounts/create/ - criar
   - /accounts/<pk>/edit/ - editar
   - /accounts/<pk>/delete/ - excluir
   - /accounts/<pk>/ - detalhes (opcional)
 
-- [ ] **5.5.2** Adicionar links na navegação
+- [x] **5.5.2** Adicionar links na navegação
   - Sidebar: item "Contas"
   - Dashboard: link para contas
   - Breadcrumbs nas páginas internas

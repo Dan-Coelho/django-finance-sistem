@@ -66,3 +66,1687 @@ INFO 2026-01-22 22:11:01,020 log 9068 18236 "GET /static/admin/js/calendar.js HT
 INFO 2026-01-22 22:11:01,022 log 9068 1012 "GET /static/admin/js/admin/DateTimeShortcuts.js HTTP/1.1" 200 19698
 INFO 2026-01-22 22:11:01,110 log 9068 1012 "GET /static/admin/img/icon-deletelink.svg HTTP/1.1" 200 689
 INFO 2026-01-22 22:11:01,184 log 9068 1012 "GET /static/admin/img/icon-calendar.svg HTTP/1.1" 200 1112
+INFO 2026-01-23 09:55:43,471 autoreload 21092 20092 Watching for file changes with StatReloader
+INFO 2026-01-23 09:58:48,043 autoreload 21092 20092 C:\Users\danpo\Desktop\Projetos\python\finanpy\users\urls.py changed, reloading.
+INFO 2026-01-23 09:58:49,410 autoreload 22232 18752 Watching for file changes with StatReloader
+INFO 2026-01-23 09:59:28,253 autoreload 22232 18752 C:\Users\danpo\Desktop\Projetos\python\finanpy\app\settings.py changed, reloading.
+INFO 2026-01-23 09:59:29,646 autoreload 27720 26772 Watching for file changes with StatReloader
+INFO 2026-01-23 10:00:54,436 autoreload 27720 26772 C:\Users\danpo\Desktop\Projetos\python\finanpy\transactions\urls.py changed, reloading.
+INFO 2026-01-23 10:00:56,924 autoreload 27080 25456 Watching for file changes with StatReloader
+INFO 2026-01-23 10:01:37,318 log 27080 26748 "GET /admin/transactions/transaction/add/ HTTP/1.1" 200 21257
+INFO 2026-01-23 10:01:37,490 log 27080 26748 "GET /static/admin/css/base.css HTTP/1.1" 304 0
+INFO 2026-01-23 10:01:37,524 log 27080 26748 "GET /static/admin/css/dark_mode.css HTTP/1.1" 304 0
+INFO 2026-01-23 10:01:37,530 log 27080 6920 "GET /static/admin/js/theme.js HTTP/1.1" 304 0
+INFO 2026-01-23 10:01:37,541 log 27080 1412 "GET /static/admin/css/nav_sidebar.css HTTP/1.1" 304 0
+INFO 2026-01-23 10:01:37,551 log 27080 21076 "GET /static/admin/css/forms.css HTTP/1.1" 304 0
+INFO 2026-01-23 10:01:37,552 log 27080 6920 "GET /static/admin/js/calendar.js HTTP/1.1" 304 0
+INFO 2026-01-23 10:01:37,555 log 27080 21408 "GET /static/admin/js/vendor/jquery/jquery.js HTTP/1.1" 304 0
+INFO 2026-01-23 10:01:37,562 log 27080 26748 "GET /static/admin/js/jquery.init.js HTTP/1.1" 304 0
+INFO 2026-01-23 10:01:37,581 log 27080 21408 "GET /static/admin/js/actions.js HTTP/1.1" 304 0
+INFO 2026-01-23 10:01:37,582 log 27080 1412 "GET /static/admin/js/admin/DateTimeShortcuts.js HTTP/1.1" 304 0
+INFO 2026-01-23 10:01:37,585 log 27080 6920 "GET /static/admin/js/admin/RelatedObjectLookups.js HTTP/1.1" 304 0
+INFO 2026-01-23 10:01:37,588 log 27080 21076 "GET /static/admin/js/core.js HTTP/1.1" 304 0
+INFO 2026-01-23 10:01:37,589 log 27080 26748 "GET /static/admin/js/urlify.js HTTP/1.1" 304 0
+INFO 2026-01-23 10:01:37,604 log 27080 6920 "GET /static/admin/js/vendor/xregexp/xregexp.js HTTP/1.1" 304 0
+INFO 2026-01-23 10:01:37,604 log 27080 1412 "GET /static/admin/css/responsive.css HTTP/1.1" 304 0
+INFO 2026-01-23 10:01:37,605 log 27080 21408 "GET /static/admin/js/prepopulate.js HTTP/1.1" 304 0
+INFO 2026-01-23 10:01:37,615 log 27080 26748 "GET /static/admin/js/prepopulate_init.js HTTP/1.1" 304 0
+INFO 2026-01-23 10:01:37,630 log 27080 28088 "GET /admin/jsi18n/ HTTP/1.1" 200 8498
+INFO 2026-01-23 10:01:38,017 log 27080 26748 "GET /static/admin/img/icon-changelink.svg HTTP/1.1" 304 0
+INFO 2026-01-23 10:01:38,018 log 27080 21408 "GET /static/admin/css/widgets.css HTTP/1.1" 304 0
+INFO 2026-01-23 10:01:38,018 log 27080 28088 "GET /static/admin/js/nav_sidebar.js HTTP/1.1" 304 0
+INFO 2026-01-23 10:01:38,031 log 27080 28088 "GET /static/admin/img/icon-addlink.svg HTTP/1.1" 304 0
+INFO 2026-01-23 10:01:38,031 log 27080 21408 "GET /static/admin/img/icon-deletelink.svg HTTP/1.1" 304 0
+INFO 2026-01-23 10:01:38,108 log 27080 28088 "GET /static/admin/js/change_form.js HTTP/1.1" 304 0
+INFO 2026-01-23 10:01:38,109 log 27080 21408 "GET /static/admin/img/icon-viewlink.svg HTTP/1.1" 304 0
+INFO 2026-01-23 10:01:38,349 log 27080 21408 "GET /static/admin/img/icon-calendar.svg HTTP/1.1" 304 0
+ERROR 2026-01-23 10:01:46,852 log 27080 15552 Internal Server Error: /
+Traceback (most recent call last):
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\core\handlers\base.py", line 198, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\users\views.py", line 88, in landing_page
+    return redirect('dashboard')
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\shortcuts.py", line 51, in redirect
+    resolve_url(to, *args, **kwargs),
+    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\shortcuts.py", line 184, in resolve_url
+    return reverse(to, args=args, kwargs=kwargs)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\urls\base.py", line 98, in reverse
+    resolved_url = resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\urls\resolvers.py", line 842, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'dashboard' not found. 'dashboard' is not a valid view function or pattern name.
+ERROR 2026-01-23 10:01:46,860 log 27080 15552 "GET / HTTP/1.1" 500 97956
+ERROR 2026-01-23 10:01:55,745 log 27080 15552 Internal Server Error: /login/
+Traceback (most recent call last):
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\core\handlers\base.py", line 221, in _get_response
+    response = response.render()
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\response.py", line 114, in render
+    self.content = self.rendered_content
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\response.py", line 92, in rendered_content
+    return template.render(context, self._request)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\backends\django.py", line 107, in render
+    return self.template.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\base.py", line 174, in render
+    return self._render(context)
+           ~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\base.py", line 166, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\base.py", line 1091, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\base.py", line 1052, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\defaulttags.py", line 511, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\urls\base.py", line 98, in reverse
+    resolved_url = resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\urls\resolvers.py", line 842, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'password_reset' not found. 'password_reset' is not a valid view function or pattern name.
+ERROR 2026-01-23 10:01:55,755 log 27080 15552 "GET /login/ HTTP/1.1" 500 130099
+ERROR 2026-01-23 10:02:46,199 log 27080 15552 Internal Server Error: /signup/
+Traceback (most recent call last):
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\core\handlers\base.py", line 221, in _get_response
+    response = response.render()
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\response.py", line 114, in render
+    self.content = self.rendered_content
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\response.py", line 92, in rendered_content
+    return template.render(context, self._request)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\backends\django.py", line 107, in render
+    return self.template.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\base.py", line 174, in render
+    return self._render(context)
+           ~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\base.py", line 166, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\base.py", line 1091, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\base.py", line 1052, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\defaulttags.py", line 511, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\urls\base.py", line 98, in reverse
+    resolved_url = resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\urls\resolvers.py", line 842, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'login' not found. 'login' is not a valid view function or pattern name.
+ERROR 2026-01-23 10:02:46,271 log 27080 15552 "GET /signup/ HTTP/1.1" 500 127328
+INFO 2026-01-23 12:51:58,210 autoreload 17984 24760 Watching for file changes with StatReloader
+ERROR 2026-01-23 12:52:07,269 log 17984 27244 Internal Server Error: /
+Traceback (most recent call last):
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\core\handlers\base.py", line 198, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\users\views.py", line 88, in landing_page
+    return redirect('dashboard')
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\shortcuts.py", line 51, in redirect
+    resolve_url(to, *args, **kwargs),
+    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\shortcuts.py", line 184, in resolve_url
+    return reverse(to, args=args, kwargs=kwargs)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\urls\base.py", line 98, in reverse
+    resolved_url = resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\urls\resolvers.py", line 842, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'dashboard' not found. 'dashboard' is not a valid view function or pattern name.
+ERROR 2026-01-23 12:52:07,281 log 17984 27244 "GET / HTTP/1.1" 500 97959
+INFO 2026-01-23 12:52:15,549 log 17984 18452 "GET /signup HTTP/1.1" 301 0
+INFO 2026-01-23 12:52:15,694 log 17984 18452 "GET /signup/ HTTP/1.1" 200 3587
+ERROR 2026-01-23 12:52:35,944 log 17984 8456 Internal Server Error: /login/
+Traceback (most recent call last):
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\core\handlers\base.py", line 221, in _get_response
+    response = response.render()
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\response.py", line 114, in render
+    self.content = self.rendered_content
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\response.py", line 92, in rendered_content
+    return template.render(context, self._request)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\backends\django.py", line 107, in render
+    return self.template.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\base.py", line 174, in render
+    return self._render(context)
+           ~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\base.py", line 166, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\base.py", line 1091, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\base.py", line 1052, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\defaulttags.py", line 511, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\urls\base.py", line 98, in reverse
+    resolved_url = resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\urls\resolvers.py", line 842, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'signup' not found. 'signup' is not a valid view function or pattern name.
+ERROR 2026-01-23 12:52:35,958 log 17984 8456 "GET /login/ HTTP/1.1" 500 128850
+INFO 2026-01-23 12:55:40,081 log 17984 27580 "GET /login/ HTTP/1.1" 200 3373
+ERROR 2026-01-23 12:55:57,552 log 17984 27580 Internal Server Error: /login/
+Traceback (most recent call last):
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\core\handlers\base.py", line 198, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\views\generic\base.py", line 106, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\utils\decorators.py", line 48, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\views\decorators\debug.py", line 143, in sensitive_post_parameters_wrapper
+    return view(request, *args, **kwargs)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\utils\decorators.py", line 192, in _view_wrapper
+    result = _process_exception(request, e)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\utils\decorators.py", line 190, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\views\decorators\cache.py", line 80, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\contrib\auth\views.py", line 89, in dispatch
+    return super().dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\views\generic\base.py", line 145, in dispatch
+    return handler(request, *args, **kwargs)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\views\generic\edit.py", line 151, in post
+    return self.form_valid(form)
+           ~~~~~~~~~~~~~~~^^^^^^
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\users\views.py", line 58, in form_valid
+    return super().form_valid(form)
+           ~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\contrib\auth\views.py", line 109, in form_valid
+    return HttpResponseRedirect(self.get_success_url())
+                                ~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\contrib\auth\views.py", line 41, in get_success_url
+    return self.get_redirect_url() or self.get_default_redirect_url()
+                                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\contrib\auth\views.py", line 93, in get_default_redirect_url
+    if self.next_page:
+       ^^^^^^^^^^^^^^
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\utils\functional.py", line 187, in __wrapper__
+    result = func(*self._args, **self._kw)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\urls\base.py", line 98, in reverse
+    resolved_url = resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\urls\resolvers.py", line 842, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'dashboard' not found. 'dashboard' is not a valid view function or pattern name.
+ERROR 2026-01-23 12:55:57,566 log 17984 27580 "POST /login/ HTTP/1.1" 500 152136
+INFO 2026-01-23 12:56:28,198 log 17984 27580 "GET /login/ HTTP/1.1" 200 3609
+INFO 2026-01-23 12:56:41,902 log 17984 27580 "GET /logout HTTP/1.1" 301 0
+WARNING 2026-01-23 12:56:41,928 log 17984 27580 "GET /logout/ HTTP/1.1" 405 0
+INFO 2026-01-23 12:56:49,884 log 17984 27580 "GET /signup/ HTTP/1.1" 200 3825
+INFO 2026-01-23 12:57:10,569 autoreload 9948 24752 Watching for file changes with StatReloader
+INFO 2026-01-23 12:57:46,084 log 9948 8244 "GET /login/ HTTP/1.1" 200 3373
+INFO 2026-01-23 12:57:50,222 log 9948 8244 "GET /password_reset/ HTTP/1.1" 200 3421
+ERROR 2026-01-23 12:58:06,065 log 9948 1428 Internal Server Error: /password_reset/
+Traceback (most recent call last):
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\core\handlers\base.py", line 198, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\views\generic\base.py", line 106, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\utils\decorators.py", line 48, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\utils\decorators.py", line 192, in _view_wrapper
+    result = _process_exception(request, e)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\utils\decorators.py", line 190, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\views\generic\base.py", line 145, in dispatch
+    return handler(request, *args, **kwargs)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\views\generic\edit.py", line 151, in post
+    return self.form_valid(form)
+           ~~~~~~~~~~~~~~~^^^^^^
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\contrib\auth\views.py", line 234, in form_valid
+    form.save(**opts)
+    ~~~~~~~~~^^^^^^^^
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\contrib\auth\forms.py", line 481, in save
+    self.send_mail(
+    ~~~~~~~~~~~~~~^
+        subject_template_name,
+        ^^^^^^^^^^^^^^^^^^^^^^
+    ...<4 lines>...
+        html_email_template_name=html_email_template_name,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\contrib\auth\forms.py", line 409, in send_mail
+    body = loader.render_to_string(email_template_name, context)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\backends\django.py", line 107, in render
+    return self.template.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\base.py", line 174, in render
+    return self._render(context)
+           ~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\base.py", line 166, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\base.py", line 1091, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\base.py", line 1052, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\defaulttags.py", line 58, in render
+    output = self.nodelist.render(context)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\base.py", line 1091, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\base.py", line 1052, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\loader_tags.py", line 56, in render
+    result = self.nodelist.render(context)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\base.py", line 1091, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\base.py", line 1052, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\defaulttags.py", line 511, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\urls\base.py", line 98, in reverse
+    resolved_url = resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\urls\resolvers.py", line 842, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'password_reset_confirm' not found. 'password_reset_confirm' is not a valid view function or pattern name.
+ERROR 2026-01-23 12:58:06,132 log 9948 1428 "POST /password_reset/ HTTP/1.1" 500 202540
+INFO 2026-01-23 12:58:22,619 log 9948 1428 "GET /login/ HTTP/1.1" 200 3373
+INFO 2026-01-23 13:25:42,588 autoreload 12240 17304 Watching for file changes with StatReloader
+ERROR 2026-01-23 13:25:49,835 log 9948 21268 Internal Server Error: /login/
+Traceback (most recent call last):
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\backends\django.py", line 107, in render
+    return self.template.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\base.py", line 174, in render
+    return self._render(context)
+           ~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\base.py", line 166, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\base.py", line 1091, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\base.py", line 1052, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\loader_tags.py", line 200, in render
+    template = context.template.engine.select_template(template_name)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\engine.py", line 234, in select_template
+    raise TemplateDoesNotExist(", ".join(not_found))
+django.template.exceptions.TemplateDoesNotExist: components/alerts.html
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\core\handlers\base.py", line 221, in _get_response
+    response = response.render()
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\response.py", line 114, in render
+    self.content = self.rendered_content
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\response.py", line 92, in rendered_content
+    return template.render(context, self._request)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\backends\django.py", line 109, in render
+    reraise(exc, self.backend)
+    ~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\backends\django.py", line 130, in reraise
+    raise new from exc
+django.template.exceptions.TemplateDoesNotExist: components/alerts.html
+ERROR 2026-01-23 13:25:49,853 log 9948 21268 "GET /login/ HTTP/1.1" 500 132218
+INFO 2026-01-23 13:26:05,156 log 9948 3980 "GET /admin HTTP/1.1" 301 0
+INFO 2026-01-23 13:26:05,426 log 9948 3980 "GET /admin/ HTTP/1.1" 200 11143
+INFO 2026-01-23 13:26:05,705 log 9948 3980 "GET /static/admin/css/dashboard.css HTTP/1.1" 200 441
+ERROR 2026-01-23 13:26:12,670 log 9948 3980 Internal Server Error: /login/
+Traceback (most recent call last):
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\backends\django.py", line 107, in render
+    return self.template.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\base.py", line 174, in render
+    return self._render(context)
+           ~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\base.py", line 166, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\base.py", line 1091, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\base.py", line 1052, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\loader_tags.py", line 200, in render
+    template = context.template.engine.select_template(template_name)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\engine.py", line 234, in select_template
+    raise TemplateDoesNotExist(", ".join(not_found))
+django.template.exceptions.TemplateDoesNotExist: components/alerts.html
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\core\handlers\base.py", line 221, in _get_response
+    response = response.render()
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\response.py", line 114, in render
+    self.content = self.rendered_content
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\response.py", line 92, in rendered_content
+    return template.render(context, self._request)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\backends\django.py", line 109, in render
+    reraise(exc, self.backend)
+    ~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\backends\django.py", line 130, in reraise
+    raise new from exc
+django.template.exceptions.TemplateDoesNotExist: components/alerts.html
+ERROR 2026-01-23 13:26:12,675 log 9948 3980 "GET /login/ HTTP/1.1" 500 131923
+ERROR 2026-01-23 13:26:26,149 log 9948 23996 Internal Server Error: /signup/
+Traceback (most recent call last):
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\backends\django.py", line 107, in render
+    return self.template.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\base.py", line 174, in render
+    return self._render(context)
+           ~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\base.py", line 166, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\base.py", line 1091, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\base.py", line 1052, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\loader_tags.py", line 200, in render
+    template = context.template.engine.select_template(template_name)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\engine.py", line 234, in select_template
+    raise TemplateDoesNotExist(", ".join(not_found))
+django.template.exceptions.TemplateDoesNotExist: components/alerts.html
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\core\handlers\base.py", line 221, in _get_response
+    response = response.render()
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\response.py", line 114, in render
+    self.content = self.rendered_content
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\response.py", line 92, in rendered_content
+    return template.render(context, self._request)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\backends\django.py", line 109, in render
+    reraise(exc, self.backend)
+    ~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\backends\django.py", line 130, in reraise
+    raise new from exc
+django.template.exceptions.TemplateDoesNotExist: components/alerts.html
+ERROR 2026-01-23 13:26:26,153 log 9948 23996 "GET /signup/ HTTP/1.1" 500 130371
+ERROR 2026-01-23 13:30:03,067 log 9948 19088 Internal Server Error: /signup/
+Traceback (most recent call last):
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\backends\django.py", line 107, in render
+    return self.template.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\base.py", line 174, in render
+    return self._render(context)
+           ~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\base.py", line 166, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\base.py", line 1091, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\base.py", line 1052, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\loader_tags.py", line 200, in render
+    template = context.template.engine.select_template(template_name)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\engine.py", line 234, in select_template
+    raise TemplateDoesNotExist(", ".join(not_found))
+django.template.exceptions.TemplateDoesNotExist: components/alerts.html
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\core\handlers\base.py", line 221, in _get_response
+    response = response.render()
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\response.py", line 114, in render
+    self.content = self.rendered_content
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\response.py", line 92, in rendered_content
+    return template.render(context, self._request)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\backends\django.py", line 109, in render
+    reraise(exc, self.backend)
+    ~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\backends\django.py", line 130, in reraise
+    raise new from exc
+django.template.exceptions.TemplateDoesNotExist: components/alerts.html
+ERROR 2026-01-23 13:30:03,071 log 9948 19088 "GET /signup/ HTTP/1.1" 500 130371
+INFO 2026-01-23 13:35:22,723 log 9948 4580 "GET /signup/ HTTP/1.1" 200 3571
+ERROR 2026-01-23 13:35:30,191 log 9948 4580 Internal Server Error: /
+Traceback (most recent call last):
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\core\handlers\base.py", line 198, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\users\views.py", line 88, in landing_page
+    return redirect('dashboard')
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\shortcuts.py", line 51, in redirect
+    resolve_url(to, *args, **kwargs),
+    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\shortcuts.py", line 184, in resolve_url
+    return reverse(to, args=args, kwargs=kwargs)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\urls\base.py", line 98, in reverse
+    resolved_url = resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\urls\resolvers.py", line 842, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'dashboard' not found. 'dashboard' is not a valid view function or pattern name.
+ERROR 2026-01-23 13:35:30,213 log 9948 4580 "GET / HTTP/1.1" 500 97865
+INFO 2026-01-23 13:36:57,225 log 9948 5300 "GET /login/ HTTP/1.1" 200 3357
+INFO 2026-01-23 13:36:59,592 log 9948 5300 "GET /password_reset/ HTTP/1.1" 200 3421
+INFO 2026-01-23 13:37:03,551 log 9948 5300 "GET /login/ HTTP/1.1" 200 3357
+INFO 2026-01-23 13:37:35,778 autoreload 3832 16244 Watching for file changes with StatReloader
+ERROR 2026-01-23 13:39:40,053 log 9948 26640 Internal Server Error: /
+Traceback (most recent call last):
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\core\handlers\base.py", line 198, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\users\views.py", line 88, in landing_page
+    return redirect('dashboard')
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\shortcuts.py", line 51, in redirect
+    resolve_url(to, *args, **kwargs),
+    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\shortcuts.py", line 184, in resolve_url
+    return reverse(to, args=args, kwargs=kwargs)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\urls\base.py", line 98, in reverse
+    resolved_url = resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\urls\resolvers.py", line 842, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'dashboard' not found. 'dashboard' is not a valid view function or pattern name.
+ERROR 2026-01-23 13:39:40,064 log 9948 26640 "GET / HTTP/1.1" 500 97865
+INFO 2026-01-23 14:04:27,237 autoreload 9948 24752 C:\Users\danpo\Desktop\Projetos\python\finanpy\users\views.py changed, reloading.
+INFO 2026-01-23 14:04:27,236 autoreload 3832 16244 C:\Users\danpo\Desktop\Projetos\python\finanpy\users\views.py changed, reloading.
+INFO 2026-01-23 14:04:28,415 autoreload 24776 12284 Watching for file changes with StatReloader
+INFO 2026-01-23 14:04:28,416 autoreload 5980 27132 Watching for file changes with StatReloader
+INFO 2026-01-23 14:04:40,138 autoreload 24776 12284 C:\Users\danpo\Desktop\Projetos\python\finanpy\users\views.py changed, reloading.
+INFO 2026-01-23 14:04:40,140 autoreload 5980 27132 C:\Users\danpo\Desktop\Projetos\python\finanpy\users\views.py changed, reloading.
+INFO 2026-01-23 14:04:40,945 autoreload 16916 11372 Watching for file changes with StatReloader
+INFO 2026-01-23 14:04:40,946 autoreload 23616 15288 Watching for file changes with StatReloader
+INFO 2026-01-23 14:04:56,770 autoreload 23616 15288 C:\Users\danpo\Desktop\Projetos\python\finanpy\users\urls.py changed, reloading.
+INFO 2026-01-23 14:04:56,771 autoreload 16916 11372 C:\Users\danpo\Desktop\Projetos\python\finanpy\users\urls.py changed, reloading.
+INFO 2026-01-23 14:04:57,689 autoreload 10952 11968 Watching for file changes with StatReloader
+INFO 2026-01-23 14:04:57,690 autoreload 7064 26480 Watching for file changes with StatReloader
+INFO 2026-01-23 14:09:34,183 autoreload 24620 17728 Watching for file changes with StatReloader
+ERROR 2026-01-23 14:09:44,377 log 7064 27568 Internal Server Error: /
+Traceback (most recent call last):
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\core\handlers\base.py", line 198, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\users\views.py", line 97, in landing_page
+    return redirect('dashboard')
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\shortcuts.py", line 51, in redirect
+    resolve_url(to, *args, **kwargs),
+    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\shortcuts.py", line 184, in resolve_url
+    return reverse(to, args=args, kwargs=kwargs)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\urls\base.py", line 98, in reverse
+    resolved_url = resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\urls\resolvers.py", line 842, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'dashboard' not found. 'dashboard' is not a valid view function or pattern name.
+ERROR 2026-01-23 14:09:44,390 log 7064 27568 "GET / HTTP/1.1" 500 98002
+INFO 2026-01-23 14:09:55,478 log 7064 27836 "GET /admin/ HTTP/1.1" 200 11143
+INFO 2026-01-23 14:10:03,014 log 7064 5700 "GET /dashboard HTTP/1.1" 301 0
+INFO 2026-01-23 14:10:03,386 log 7064 5700 "GET /dashboard/ HTTP/1.1" 200 1860
+ERROR 2026-01-23 14:10:13,884 log 7064 26656 Internal Server Error: /
+Traceback (most recent call last):
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\core\handlers\base.py", line 198, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\users\views.py", line 97, in landing_page
+    return redirect('dashboard')
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\shortcuts.py", line 51, in redirect
+    resolve_url(to, *args, **kwargs),
+    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\shortcuts.py", line 184, in resolve_url
+    return reverse(to, args=args, kwargs=kwargs)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\urls\base.py", line 98, in reverse
+    resolved_url = resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\urls\resolvers.py", line 842, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'dashboard' not found. 'dashboard' is not a valid view function or pattern name.
+ERROR 2026-01-23 14:10:13,895 log 7064 26656 "GET / HTTP/1.1" 500 97865
+INFO 2026-01-23 14:10:21,707 log 7064 26656 "GET /signup/ HTTP/1.1" 200 3571
+INFO 2026-01-23 14:10:25,052 log 7064 9588 "GET /login/ HTTP/1.1" 200 3357
+ERROR 2026-01-23 14:10:37,985 log 7064 9588 Internal Server Error: /login/
+Traceback (most recent call last):
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\core\handlers\base.py", line 198, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\views\generic\base.py", line 106, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\utils\decorators.py", line 48, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\views\decorators\debug.py", line 143, in sensitive_post_parameters_wrapper
+    return view(request, *args, **kwargs)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\utils\decorators.py", line 192, in _view_wrapper
+    result = _process_exception(request, e)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\utils\decorators.py", line 190, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\views\decorators\cache.py", line 80, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\contrib\auth\views.py", line 89, in dispatch
+    return super().dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\views\generic\base.py", line 145, in dispatch
+    return handler(request, *args, **kwargs)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\views\generic\edit.py", line 151, in post
+    return self.form_valid(form)
+           ~~~~~~~~~~~~~~~^^^^^^
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\users\views.py", line 59, in form_valid
+    return super().form_valid(form)
+           ~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\contrib\auth\views.py", line 109, in form_valid
+    return HttpResponseRedirect(self.get_success_url())
+                                ~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\contrib\auth\views.py", line 41, in get_success_url
+    return self.get_redirect_url() or self.get_default_redirect_url()
+                                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\contrib\auth\views.py", line 93, in get_default_redirect_url
+    if self.next_page:
+       ^^^^^^^^^^^^^^
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\utils\functional.py", line 187, in __wrapper__
+    result = func(*self._args, **self._kw)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\urls\base.py", line 98, in reverse
+    resolved_url = resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\urls\resolvers.py", line 842, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'dashboard' not found. 'dashboard' is not a valid view function or pattern name.
+ERROR 2026-01-23 14:10:37,995 log 7064 9588 "POST /login/ HTTP/1.1" 500 152042
+INFO 2026-01-23 14:10:48,533 log 7064 9588 "GET /login/ HTTP/1.1" 200 3592
+INFO 2026-01-23 14:14:21,776 autoreload 1384 26380 Watching for file changes with StatReloader
+INFO 2026-01-23 14:14:27,823 log 7064 24940 "GET /login HTTP/1.1" 301 0
+INFO 2026-01-23 14:14:27,848 log 7064 24940 "GET /login/ HTTP/1.1" 200 3357
+ERROR 2026-01-23 14:14:45,350 log 7064 26928 Internal Server Error: /login/
+Traceback (most recent call last):
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\core\handlers\base.py", line 198, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\views\generic\base.py", line 106, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\utils\decorators.py", line 48, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\views\decorators\debug.py", line 143, in sensitive_post_parameters_wrapper
+    return view(request, *args, **kwargs)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\utils\decorators.py", line 192, in _view_wrapper
+    result = _process_exception(request, e)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\utils\decorators.py", line 190, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\views\decorators\cache.py", line 80, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\contrib\auth\views.py", line 89, in dispatch
+    return super().dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\views\generic\base.py", line 145, in dispatch
+    return handler(request, *args, **kwargs)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\views\generic\edit.py", line 151, in post
+    return self.form_valid(form)
+           ~~~~~~~~~~~~~~~^^^^^^
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\users\views.py", line 59, in form_valid
+    return super().form_valid(form)
+           ~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\contrib\auth\views.py", line 109, in form_valid
+    return HttpResponseRedirect(self.get_success_url())
+                                ~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\contrib\auth\views.py", line 41, in get_success_url
+    return self.get_redirect_url() or self.get_default_redirect_url()
+                                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\contrib\auth\views.py", line 93, in get_default_redirect_url
+    if self.next_page:
+       ^^^^^^^^^^^^^^
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\utils\functional.py", line 187, in __wrapper__
+    result = func(*self._args, **self._kw)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\urls\base.py", line 98, in reverse
+    resolved_url = resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\urls\resolvers.py", line 842, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'dashboard' not found. 'dashboard' is not a valid view function or pattern name.
+ERROR 2026-01-23 14:14:45,361 log 7064 26928 "POST /login/ HTTP/1.1" 500 152042
+INFO 2026-01-23 14:16:59,163 autoreload 1384 26380 C:\Users\danpo\Desktop\Projetos\python\finanpy\users\views.py changed, reloading.
+INFO 2026-01-23 14:16:59,180 autoreload 10952 11968 C:\Users\danpo\Desktop\Projetos\python\finanpy\users\views.py changed, reloading.
+INFO 2026-01-23 14:16:59,357 autoreload 7064 26480 C:\Users\danpo\Desktop\Projetos\python\finanpy\users\views.py changed, reloading.
+INFO 2026-01-23 14:17:00,475 autoreload 408 16276 Watching for file changes with StatReloader
+INFO 2026-01-23 14:17:00,530 autoreload 18640 17148 Watching for file changes with StatReloader
+INFO 2026-01-23 14:17:00,681 autoreload 12876 12688 Watching for file changes with StatReloader
+INFO 2026-01-23 14:17:15,341 autoreload 18640 17148 C:\Users\danpo\Desktop\Projetos\python\finanpy\users\views.py changed, reloading.
+INFO 2026-01-23 14:17:15,350 autoreload 408 16276 C:\Users\danpo\Desktop\Projetos\python\finanpy\users\views.py changed, reloading.
+INFO 2026-01-23 14:17:15,361 autoreload 12876 12688 C:\Users\danpo\Desktop\Projetos\python\finanpy\users\views.py changed, reloading.
+INFO 2026-01-23 14:17:16,703 autoreload 6632 13300 Watching for file changes with StatReloader
+INFO 2026-01-23 14:17:16,776 autoreload 25096 13420 Watching for file changes with StatReloader
+INFO 2026-01-23 14:17:16,847 autoreload 1320 26648 Watching for file changes with StatReloader
+INFO 2026-01-23 14:17:30,577 autoreload 1320 26648 C:\Users\danpo\Desktop\Projetos\python\finanpy\users\views.py changed, reloading.
+INFO 2026-01-23 14:17:30,591 autoreload 6632 13300 C:\Users\danpo\Desktop\Projetos\python\finanpy\users\views.py changed, reloading.
+INFO 2026-01-23 14:17:30,600 autoreload 25096 13420 C:\Users\danpo\Desktop\Projetos\python\finanpy\users\views.py changed, reloading.
+INFO 2026-01-23 14:17:31,478 autoreload 12444 25004 Watching for file changes with StatReloader
+INFO 2026-01-23 14:17:31,480 autoreload 27232 11620 Watching for file changes with StatReloader
+INFO 2026-01-23 14:17:31,483 autoreload 21456 28416 Watching for file changes with StatReloader
+INFO 2026-01-23 14:18:53,148 log 12444 26332 "GET / HTTP/1.1" 302 0
+INFO 2026-01-23 14:18:53,178 log 12444 26332 "GET /dashboard/ HTTP/1.1" 200 1860
+INFO 2026-01-23 14:19:12,147 log 12444 12720 "GET /login/ HTTP/1.1" 200 3592
+INFO 2026-01-23 14:19:21,653 log 12444 9184 "GET /logout HTTP/1.1" 301 0
+WARNING 2026-01-23 14:19:21,669 log 12444 9184 "GET /logout/ HTTP/1.1" 405 0
+INFO 2026-01-23 14:19:28,636 log 12444 11028 "GET /signup/ HTTP/1.1" 200 3806
+INFO 2026-01-23 14:19:36,213 log 12444 11028 "GET /login/ HTTP/1.1" 200 3357
+INFO 2026-01-23 14:19:41,068 log 12444 11028 "GET /password_reset/ HTTP/1.1" 200 3421
+INFO 2026-01-23 14:19:46,444 log 12444 23268 "GET / HTTP/1.1" 302 0
+INFO 2026-01-23 14:19:46,467 log 12444 23268 "GET /dashboard/ HTTP/1.1" 200 1860
+INFO 2026-01-23 15:12:19,145 autoreload 27844 3576 Watching for file changes with StatReloader
+INFO 2026-01-23 15:12:33,571 log 12444 13784 "GET /admin/ HTTP/1.1" 200 11143
+INFO 2026-01-23 15:12:45,696 log 12444 16968 "GET /admin/accounts/account/ HTTP/1.1" 200 13887
+INFO 2026-01-23 15:12:45,843 log 12444 23596 "GET /static/admin/img/search.svg HTTP/1.1" 304 0
+INFO 2026-01-23 15:12:46,126 log 12444 16968 "GET /static/admin/css/changelists.css HTTP/1.1" 200 7501
+INFO 2026-01-23 15:12:46,171 log 12444 2064 "GET /admin/jsi18n/ HTTP/1.1" 200 8498
+INFO 2026-01-23 15:12:46,208 log 12444 16968 "GET /static/admin/js/filters.js HTTP/1.1" 200 978
+INFO 2026-01-23 15:12:46,270 log 12444 16968 "GET /static/admin/img/tooltag-add.svg HTTP/1.1" 200 593
+INFO 2026-01-23 15:12:50,045 log 12444 16968 "GET /admin/accounts/account/add/ HTTP/1.1" 200 17271
+INFO 2026-01-23 15:12:50,119 log 12444 16968 "GET /admin/jsi18n/ HTTP/1.1" 200 8498
+INFO 2026-01-23 15:13:31,384 log 12444 25692 "POST /admin/accounts/account/add/ HTTP/1.1" 302 0
+INFO 2026-01-23 15:13:31,467 log 12444 25692 "GET /admin/accounts/account/add/ HTTP/1.1" 200 17553
+INFO 2026-01-23 15:13:31,531 log 12444 25692 "GET /admin/jsi18n/ HTTP/1.1" 200 8498
+INFO 2026-01-23 15:13:31,734 log 12444 25692 "GET /static/admin/img/icon-yes-dark.svg HTTP/1.1" 200 558
+INFO 2026-01-23 15:13:53,503 log 12444 25076 "POST /admin/accounts/account/add/ HTTP/1.1" 302 0
+INFO 2026-01-23 15:13:53,719 log 12444 25076 "GET /admin/accounts/account/ HTTP/1.1" 200 17113
+INFO 2026-01-23 15:13:53,787 log 12444 25076 "GET /admin/jsi18n/ HTTP/1.1" 200 8498
+INFO 2026-01-23 15:13:53,831 log 12444 27576 "GET /static/admin/img/icon-yes.svg HTTP/1.1" 200 558
+INFO 2026-01-23 15:13:54,148 log 12444 27576 "GET /static/admin/img/sorting-icons.svg HTTP/1.1" 200 1761
+INFO 2026-01-23 15:13:58,578 log 12444 17036 "GET /admin/categories/category/ HTTP/1.1" 200 24708
+INFO 2026-01-23 15:13:58,655 log 12444 17036 "GET /admin/jsi18n/ HTTP/1.1" 200 8498
+INFO 2026-01-23 15:14:13,897 log 12444 17036 "GET /admin/profiles/profile/ HTTP/1.1" 200 16505
+INFO 2026-01-23 15:14:13,966 log 12444 17036 "GET /admin/jsi18n/ HTTP/1.1" 200 8498
+INFO 2026-01-23 15:14:17,606 log 12444 17036 "GET /admin/profiles/profile/1/change/ HTTP/1.1" 200 17123
+INFO 2026-01-23 15:14:17,673 log 12444 17036 "GET /admin/jsi18n/ HTTP/1.1" 200 8498
+INFO 2026-01-23 15:14:40,986 log 12444 16676 "POST /admin/profiles/profile/1/change/ HTTP/1.1" 302 0
+INFO 2026-01-23 15:14:41,030 log 12444 16676 "GET /admin/profiles/profile/ HTTP/1.1" 200 16756
+INFO 2026-01-23 15:14:41,081 log 12444 16676 "GET /admin/jsi18n/ HTTP/1.1" 200 8498
+INFO 2026-01-23 15:14:45,781 log 12444 1048 "GET /admin/transactions/transaction/ HTTP/1.1" 200 15836
+INFO 2026-01-23 15:14:46,001 log 12444 1048 "GET /admin/jsi18n/ HTTP/1.1" 200 8498
+INFO 2026-01-23 15:14:48,349 log 12444 1048 "GET /admin/transactions/transaction/add/ HTTP/1.1" 200 21391
+INFO 2026-01-23 15:14:48,403 log 12444 1048 "GET /admin/jsi18n/ HTTP/1.1" 200 8498
+INFO 2026-01-23 15:15:25,378 log 12444 1468 "POST /admin/transactions/transaction/add/ HTTP/1.1" 302 0
+INFO 2026-01-23 15:15:25,432 log 12444 1468 "GET /admin/transactions/transaction/add/ HTTP/1.1" 200 21676
+INFO 2026-01-23 15:15:25,495 log 12444 1468 "GET /admin/jsi18n/ HTTP/1.1" 200 8498
+INFO 2026-01-23 15:16:16,178 log 12444 19500 "POST /admin/transactions/transaction/add/ HTTP/1.1" 302 0
+INFO 2026-01-23 15:16:16,654 log 12444 19500 "GET /admin/transactions/transaction/ HTTP/1.1" 200 20173
+INFO 2026-01-23 15:16:16,710 log 12444 19500 "GET /admin/jsi18n/ HTTP/1.1" 200 8498
+INFO 2026-01-23 15:16:20,731 log 12444 19500 "GET /admin/transactions/transaction/add/ HTTP/1.1" 200 21391
+INFO 2026-01-23 15:16:20,790 log 12444 19500 "GET /admin/jsi18n/ HTTP/1.1" 200 8498
+INFO 2026-01-23 15:17:16,967 log 12444 7516 "POST /admin/transactions/transaction/add/ HTTP/1.1" 302 0
+INFO 2026-01-23 15:17:17,016 log 12444 7516 "GET /admin/transactions/transaction/add/ HTTP/1.1" 200 21675
+INFO 2026-01-23 15:17:17,080 log 12444 7516 "GET /admin/jsi18n/ HTTP/1.1" 200 8498
+INFO 2026-01-23 15:17:48,735 log 12444 12572 "POST /admin/transactions/transaction/add/ HTTP/1.1" 302 0
+INFO 2026-01-23 15:17:48,854 log 12444 12572 "GET /admin/transactions/transaction/ HTTP/1.1" 200 21471
+INFO 2026-01-23 15:17:48,933 log 12444 12572 "GET /admin/jsi18n/ HTTP/1.1" 200 8498
+INFO 2026-01-23 15:17:52,306 log 12444 12572 "GET /admin/categories/category/ HTTP/1.1" 200 24708
+INFO 2026-01-23 15:17:52,388 log 12444 12572 "GET /admin/jsi18n/ HTTP/1.1" 200 8498
+INFO 2026-01-23 15:17:53,951 log 12444 12572 "GET /admin/categories/category/add/ HTTP/1.1" 200 18471
+INFO 2026-01-23 15:17:54,007 log 12444 12572 "GET /admin/jsi18n/ HTTP/1.1" 200 8498
+INFO 2026-01-23 15:18:15,820 log 12444 28332 "POST /admin/categories/category/add/ HTTP/1.1" 302 0
+INFO 2026-01-23 15:18:15,877 log 12444 28332 "GET /admin/categories/category/ HTTP/1.1" 200 25719
+INFO 2026-01-23 15:18:15,923 log 12444 28332 "GET /admin/jsi18n/ HTTP/1.1" 200 8498
+INFO 2026-01-23 15:18:15,978 log 12444 28332 "GET /static/admin/img/icon-no.svg HTTP/1.1" 200 645
+INFO 2026-01-23 15:18:17,443 log 12444 16452 "GET /admin/transactions/transaction/ HTTP/1.1" 200 21311
+INFO 2026-01-23 15:18:17,497 log 12444 16452 "GET /admin/jsi18n/ HTTP/1.1" 200 8498
+INFO 2026-01-23 15:18:19,643 log 12444 16452 "GET /admin/transactions/transaction/add/ HTTP/1.1" 200 21440
+INFO 2026-01-23 15:18:19,717 log 12444 16452 "GET /admin/jsi18n/ HTTP/1.1" 200 8498
+INFO 2026-01-23 15:18:46,826 log 12444 23672 "POST /admin/transactions/transaction/add/ HTTP/1.1" 302 0
+INFO 2026-01-23 15:18:46,892 log 12444 23672 "GET /admin/transactions/transaction/ HTTP/1.1" 200 22200
+INFO 2026-01-23 15:18:46,961 log 12444 23672 "GET /admin/jsi18n/ HTTP/1.1" 200 8498
+INFO 2026-01-23 15:18:59,531 log 12444 952 "GET /dashboard/ HTTP/1.1" 200 1860
+INFO 2026-01-23 15:20:09,412 autoreload 27844 3576 C:\Users\danpo\Desktop\Projetos\python\finanpy\users\views.py changed, reloading.
+INFO 2026-01-23 15:20:09,462 autoreload 12444 25004 C:\Users\danpo\Desktop\Projetos\python\finanpy\users\views.py changed, reloading.
+INFO 2026-01-23 15:20:09,486 autoreload 27232 11620 C:\Users\danpo\Desktop\Projetos\python\finanpy\users\views.py changed, reloading.
+INFO 2026-01-23 15:20:12,840 autoreload 11492 15216 Watching for file changes with StatReloader
+INFO 2026-01-23 15:20:12,841 autoreload 27644 25964 Watching for file changes with StatReloader
+INFO 2026-01-23 15:20:12,844 autoreload 22084 23648 Watching for file changes with StatReloader
+INFO 2026-01-23 15:20:32,177 autoreload 22084 23648 C:\Users\danpo\Desktop\Projetos\python\finanpy\users\views.py changed, reloading.
+INFO 2026-01-23 15:20:32,180 autoreload 27644 25964 C:\Users\danpo\Desktop\Projetos\python\finanpy\users\views.py changed, reloading.
+INFO 2026-01-23 15:20:32,183 autoreload 11492 15216 C:\Users\danpo\Desktop\Projetos\python\finanpy\users\views.py changed, reloading.
+INFO 2026-01-23 15:20:33,820 autoreload 27932 4632 Watching for file changes with StatReloader
+INFO 2026-01-23 15:20:33,825 autoreload 9516 27572 Watching for file changes with StatReloader
+INFO 2026-01-23 15:20:33,843 autoreload 24972 7836 Watching for file changes with StatReloader
+INFO 2026-01-23 15:20:48,005 autoreload 27932 4632 C:\Users\danpo\Desktop\Projetos\python\finanpy\users\views.py changed, reloading.
+INFO 2026-01-23 15:20:48,020 autoreload 9516 27572 C:\Users\danpo\Desktop\Projetos\python\finanpy\users\views.py changed, reloading.
+INFO 2026-01-23 15:20:48,024 autoreload 24972 7836 C:\Users\danpo\Desktop\Projetos\python\finanpy\users\views.py changed, reloading.
+INFO 2026-01-23 15:20:49,431 autoreload 19008 7712 Watching for file changes with StatReloader
+INFO 2026-01-23 15:20:49,432 autoreload 23948 22036 Watching for file changes with StatReloader
+INFO 2026-01-23 15:20:49,468 autoreload 19564 22948 Watching for file changes with StatReloader
+INFO 2026-01-23 15:21:03,659 autoreload 19008 7712 C:\Users\danpo\Desktop\Projetos\python\finanpy\users\views.py changed, reloading.
+INFO 2026-01-23 15:21:03,661 autoreload 23948 22036 C:\Users\danpo\Desktop\Projetos\python\finanpy\users\views.py changed, reloading.
+INFO 2026-01-23 15:21:03,689 autoreload 19564 22948 C:\Users\danpo\Desktop\Projetos\python\finanpy\users\views.py changed, reloading.
+INFO 2026-01-23 15:21:05,539 autoreload 20460 3048 Watching for file changes with StatReloader
+INFO 2026-01-23 15:21:05,543 autoreload 27600 16864 Watching for file changes with StatReloader
+INFO 2026-01-23 15:21:05,586 autoreload 26772 4040 Watching for file changes with StatReloader
+INFO 2026-01-23 15:22:36,641 log 27600 7500 "GET /dashboard/ HTTP/1.1" 200 1860
+INFO 2026-01-23 15:22:42,788 log 27600 19952 "GET /dashboard/ HTTP/1.1" 200 1860
+INFO 2026-01-23 15:22:49,160 log 27600 23300 "GET / HTTP/1.1" 302 0
+INFO 2026-01-23 15:22:49,189 log 27600 23300 "GET /dashboard/ HTTP/1.1" 200 1860
+INFO 2026-01-23 15:23:27,102 log 27600 28396 "GET /dashboard/ HTTP/1.1" 200 1860
+INFO 2026-01-23 15:23:28,363 autoreload 28308 20940 Watching for file changes with StatReloader
+INFO 2026-01-23 15:23:39,244 log 27600 13136 "GET /admin/ HTTP/1.1" 200 14625
+INFO 2026-01-23 15:23:48,583 log 27600 19244 "GET /admin/transactions/transaction/3/change/ HTTP/1.1" 200 21814
+INFO 2026-01-23 15:23:48,677 log 27600 19244 "GET /admin/jsi18n/ HTTP/1.1" 200 8498
+INFO 2026-01-23 15:23:51,039 log 27600 19244 "GET /admin/ HTTP/1.1" 200 14625
+INFO 2026-01-23 15:23:57,098 log 27600 19244 "GET /login/ HTTP/1.1" 200 3357
+INFO 2026-01-23 15:24:03,684 log 27600 27260 "GET /dashboard/ HTTP/1.1" 200 1860
+INFO 2026-01-23 15:25:58,261 autoreload 28308 20940 C:\Users\danpo\Desktop\Projetos\python\finanpy\users\views.py changed, reloading.
+INFO 2026-01-23 15:25:58,282 autoreload 27600 16864 C:\Users\danpo\Desktop\Projetos\python\finanpy\users\views.py changed, reloading.
+INFO 2026-01-23 15:25:58,338 autoreload 20460 3048 C:\Users\danpo\Desktop\Projetos\python\finanpy\users\views.py changed, reloading.
+INFO 2026-01-23 15:26:00,752 autoreload 27564 1552 Watching for file changes with StatReloader
+INFO 2026-01-23 15:26:00,755 autoreload 6368 1328 Watching for file changes with StatReloader
+INFO 2026-01-23 15:26:00,920 autoreload 12856 14300 Watching for file changes with StatReloader
+INFO 2026-01-23 15:26:53,282 log 27564 1124 "GET /dashboard/ HTTP/1.1" 200 1860
+INFO 2026-01-23 15:27:00,137 log 27564 1124 "GET /dashboard/ HTTP/1.1" 200 1860
+ERROR 2026-01-23 15:28:16,289 log 27564 9948 Internal Server Error: /
+Traceback (most recent call last):
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\core\handlers\base.py", line 198, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\users\views.py", line 144, in landing_page
+    return render(request, 'landing.html')
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: landing.html
+ERROR 2026-01-23 15:28:16,315 log 27564 9948 "GET / HTTP/1.1" 500 92722
+WARNING 2026-01-23 15:28:16,529 log 27564 9948 "GET /favicon.ico HTTP/1.1" 404 5563
+WARNING 2026-01-23 15:28:40,059 log 27564 24036 "GET /users/login/ HTTP/1.1" 404 5566
+WARNING 2026-01-23 15:30:05,726 log 27564 24740 "GET /users/dashboard/ HTTP/1.1" 404 5578
+INFO 2026-01-23 15:31:37,855 log 27564 3048 "GET /dashboard/ HTTP/1.1" 302 0
+INFO 2026-01-23 15:31:37,941 log 27564 3048 "GET /login/?next=/dashboard/ HTTP/1.1" 200 3357
+INFO 2026-01-23 15:32:14,000 log 27564 21048 "GET /dashboard/ HTTP/1.1" 200 1860
+INFO 2026-01-23 15:32:20,572 log 27564 26852 "GET /login/ HTTP/1.1" 200 3357
+INFO 2026-01-23 15:35:13,440 log 27564 25088 "GET /dashboard/ HTTP/1.1" 200 1860
+INFO 2026-01-23 15:35:30,789 autoreload 8856 23476 Watching for file changes with StatReloader
+INFO 2026-01-23 15:35:37,150 log 27564 21804 "GET / HTTP/1.1" 302 0
+INFO 2026-01-23 15:35:37,191 log 27564 21804 "GET /dashboard/ HTTP/1.1" 200 1860
+INFO 2026-01-23 15:38:07,066 log 12856 12096 "GET /dashboard/ HTTP/1.1" 200 1860
+INFO 2026-01-23 15:38:32,269 autoreload 13244 17748 Watching for file changes with StatReloader
+INFO 2026-01-23 15:38:49,591 log 12856 24352 "GET /dashboard/ HTTP/1.1" 200 1860
+INFO 2026-01-23 15:38:59,520 log 12856 16520 "GET /admin/ HTTP/1.1" 200 14625
+INFO 2026-01-23 15:39:10,389 log 12856 1284 "GET /dashboard/ HTTP/1.1" 302 0
+INFO 2026-01-23 15:39:10,458 log 12856 1284 "GET /login/?next=/dashboard/ HTTP/1.1" 200 3357
+ERROR 2026-01-23 15:40:11,861 log 12856 24116 Internal Server Error: /
+Traceback (most recent call last):
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\core\handlers\base.py", line 198, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\users\views.py", line 144, in landing_page
+    return render(request, 'landing.html')
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: landing.html
+ERROR 2026-01-23 15:40:11,946 log 12856 24116 "GET / HTTP/1.1" 500 93347
+INFO 2026-01-23 15:42:58,326 autoreload 13244 17748 C:\Users\danpo\Desktop\Projetos\python\finanpy\app\settings.py changed, reloading.
+INFO 2026-01-23 15:42:58,520 autoreload 12856 14300 C:\Users\danpo\Desktop\Projetos\python\finanpy\app\settings.py changed, reloading.
+INFO 2026-01-23 15:43:00,027 autoreload 2496 5256 Watching for file changes with StatReloader
+INFO 2026-01-23 15:43:00,169 autoreload 1976 10276 Watching for file changes with StatReloader
+ERROR 2026-01-23 15:43:18,564 log 2496 768 Internal Server Error: /dashboard/
+Traceback (most recent call last):
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\defaulttags.py", line 1067, in find_library
+    return parser.libraries[name]
+           ~~~~~~~~~~~~~~~~^^^^^^
+KeyError: 'humanize'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\core\handlers\base.py", line 198, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\contrib\auth\decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\users\views.py", line 135, in dashboard
+    return render(request, 'dashboard.html', context)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\backends\django.py", line 79, in get_template
+    return Template(self.engine.get_template(template_name), self)
+                    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\engine.py", line 186, in get_template
+    template, origin = self.find_template(template_name)
+                       ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\engine.py", line 159, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\loaders\cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\loaders\base.py", line 28, in get_template
+    return Template(
+        contents,
+    ...<2 lines>...
+        self.engine,
+    )
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\base.py", line 157, in __init__
+    self.nodelist = self.compile_nodelist()
+                    ~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\base.py", line 199, in compile_nodelist
+    nodelist = parser.parse()
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\base.py", line 585, in parse
+    raise self.error(token, e)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\base.py", line 583, in parse
+    compiled_result = compile_func(self, token)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\loader_tags.py", line 307, in do_extends
+    nodelist = parser.parse()
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\base.py", line 585, in parse
+    raise self.error(token, e)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\base.py", line 583, in parse
+    compiled_result = compile_func(self, token)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\defaulttags.py", line 1129, in load
+    lib = find_library(parser, name)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\defaulttags.py", line 1069, in find_library
+    raise TemplateSyntaxError(
+    ...<5 lines>...
+    )
+django.template.exceptions.TemplateSyntaxError: Template: C:\Users\danpo\Desktop\Projetos\python\finanpy\templates\dashboard.html, 'humanize' is not a registered tag library. Must be one of:
+admin_list
+admin_modify
+admin_urls
+auth
+cache
+i18n
+l10n
+log
+static
+tz
+ERROR 2026-01-23 15:43:18,605 log 2496 768 "GET /dashboard/ HTTP/1.1" 500 233288
+INFO 2026-01-23 15:43:54,089 autoreload 11260 11252 Watching for file changes with StatReloader
+ERROR 2026-01-23 15:44:05,028 log 1976 19876 Internal Server Error: /dashboard/
+Traceback (most recent call last):
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\defaulttags.py", line 1067, in find_library
+    return parser.libraries[name]
+           ~~~~~~~~~~~~~~~~^^^^^^
+KeyError: 'humanize'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\core\handlers\base.py", line 198, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\contrib\auth\decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\users\views.py", line 135, in dashboard
+    return render(request, 'dashboard.html', context)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\backends\django.py", line 79, in get_template
+    return Template(self.engine.get_template(template_name), self)
+                    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\engine.py", line 186, in get_template
+    template, origin = self.find_template(template_name)
+                       ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\engine.py", line 159, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\loaders\cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\loaders\base.py", line 28, in get_template
+    return Template(
+        contents,
+    ...<2 lines>...
+        self.engine,
+    )
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\base.py", line 157, in __init__
+    self.nodelist = self.compile_nodelist()
+                    ~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\base.py", line 199, in compile_nodelist
+    nodelist = parser.parse()
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\base.py", line 585, in parse
+    raise self.error(token, e)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\base.py", line 583, in parse
+    compiled_result = compile_func(self, token)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\loader_tags.py", line 307, in do_extends
+    nodelist = parser.parse()
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\base.py", line 585, in parse
+    raise self.error(token, e)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\base.py", line 583, in parse
+    compiled_result = compile_func(self, token)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\defaulttags.py", line 1129, in load
+    lib = find_library(parser, name)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\defaulttags.py", line 1069, in find_library
+    raise TemplateSyntaxError(
+    ...<5 lines>...
+    )
+django.template.exceptions.TemplateSyntaxError: Template: C:\Users\danpo\Desktop\Projetos\python\finanpy\templates\dashboard.html, 'humanize' is not a registered tag library. Must be one of:
+admin_list
+admin_modify
+admin_urls
+auth
+cache
+i18n
+l10n
+log
+static
+tz
+ERROR 2026-01-23 15:44:05,046 log 1976 19876 "GET /dashboard/ HTTP/1.1" 500 233287
+ERROR 2026-01-23 15:44:09,191 log 1976 19876 Internal Server Error: /dashboard/
+Traceback (most recent call last):
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\defaulttags.py", line 1067, in find_library
+    return parser.libraries[name]
+           ~~~~~~~~~~~~~~~~^^^^^^
+KeyError: 'humanize'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\core\handlers\base.py", line 198, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\contrib\auth\decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\users\views.py", line 135, in dashboard
+    return render(request, 'dashboard.html', context)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\backends\django.py", line 79, in get_template
+    return Template(self.engine.get_template(template_name), self)
+                    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\engine.py", line 186, in get_template
+    template, origin = self.find_template(template_name)
+                       ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\engine.py", line 159, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\loaders\cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\loaders\base.py", line 28, in get_template
+    return Template(
+        contents,
+    ...<2 lines>...
+        self.engine,
+    )
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\base.py", line 157, in __init__
+    self.nodelist = self.compile_nodelist()
+                    ~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\base.py", line 199, in compile_nodelist
+    nodelist = parser.parse()
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\base.py", line 585, in parse
+    raise self.error(token, e)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\base.py", line 583, in parse
+    compiled_result = compile_func(self, token)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\loader_tags.py", line 307, in do_extends
+    nodelist = parser.parse()
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\base.py", line 585, in parse
+    raise self.error(token, e)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\base.py", line 583, in parse
+    compiled_result = compile_func(self, token)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\defaulttags.py", line 1129, in load
+    lib = find_library(parser, name)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\defaulttags.py", line 1069, in find_library
+    raise TemplateSyntaxError(
+    ...<5 lines>...
+    )
+django.template.exceptions.TemplateSyntaxError: Template: C:\Users\danpo\Desktop\Projetos\python\finanpy\templates\dashboard.html, 'humanize' is not a registered tag library. Must be one of:
+admin_list
+admin_modify
+admin_urls
+auth
+cache
+i18n
+l10n
+log
+static
+tz
+ERROR 2026-01-23 15:44:09,212 log 1976 19876 "GET /dashboard/ HTTP/1.1" 500 233286
+INFO 2026-01-23 15:44:12,211 log 1976 26748 "GET / HTTP/1.1" 200 7785
+INFO 2026-01-23 15:44:23,438 log 1976 27580 "GET /login/ HTTP/1.1" 200 3357
+INFO 2026-01-23 15:44:42,300 log 1976 20460 "POST /login/ HTTP/1.1" 302 0
+ERROR 2026-01-23 15:44:42,586 log 1976 20460 Internal Server Error: /dashboard/
+Traceback (most recent call last):
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\defaulttags.py", line 1067, in find_library
+    return parser.libraries[name]
+           ~~~~~~~~~~~~~~~~^^^^^^
+KeyError: 'humanize'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\core\handlers\base.py", line 198, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\contrib\auth\decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\users\views.py", line 135, in dashboard
+    return render(request, 'dashboard.html', context)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\backends\django.py", line 79, in get_template
+    return Template(self.engine.get_template(template_name), self)
+                    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\engine.py", line 186, in get_template
+    template, origin = self.find_template(template_name)
+                       ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\engine.py", line 159, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\loaders\cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\loaders\base.py", line 28, in get_template
+    return Template(
+        contents,
+    ...<2 lines>...
+        self.engine,
+    )
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\base.py", line 157, in __init__
+    self.nodelist = self.compile_nodelist()
+                    ~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\base.py", line 199, in compile_nodelist
+    nodelist = parser.parse()
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\base.py", line 585, in parse
+    raise self.error(token, e)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\base.py", line 583, in parse
+    compiled_result = compile_func(self, token)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\loader_tags.py", line 307, in do_extends
+    nodelist = parser.parse()
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\base.py", line 585, in parse
+    raise self.error(token, e)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\base.py", line 583, in parse
+    compiled_result = compile_func(self, token)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\defaulttags.py", line 1129, in load
+    lib = find_library(parser, name)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\defaulttags.py", line 1069, in find_library
+    raise TemplateSyntaxError(
+    ...<5 lines>...
+    )
+django.template.exceptions.TemplateSyntaxError: Template: C:\Users\danpo\Desktop\Projetos\python\finanpy\templates\dashboard.html, 'humanize' is not a registered tag library. Must be one of:
+admin_list
+admin_modify
+admin_urls
+auth
+cache
+i18n
+l10n
+log
+static
+tz
+ERROR 2026-01-23 15:44:42,601 log 1976 20460 "GET /dashboard/ HTTP/1.1" 500 233632
+INFO 2026-01-23 15:44:54,582 log 1976 23444 "GET / HTTP/1.1" 302 0
+ERROR 2026-01-23 15:44:54,702 log 1976 23444 Internal Server Error: /dashboard/
+Traceback (most recent call last):
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\defaulttags.py", line 1067, in find_library
+    return parser.libraries[name]
+           ~~~~~~~~~~~~~~~~^^^^^^
+KeyError: 'humanize'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\core\handlers\base.py", line 198, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\contrib\auth\decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\users\views.py", line 135, in dashboard
+    return render(request, 'dashboard.html', context)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\backends\django.py", line 79, in get_template
+    return Template(self.engine.get_template(template_name), self)
+                    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\engine.py", line 186, in get_template
+    template, origin = self.find_template(template_name)
+                       ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\engine.py", line 159, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\loaders\cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\loaders\base.py", line 28, in get_template
+    return Template(
+        contents,
+    ...<2 lines>...
+        self.engine,
+    )
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\base.py", line 157, in __init__
+    self.nodelist = self.compile_nodelist()
+                    ~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\base.py", line 199, in compile_nodelist
+    nodelist = parser.parse()
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\base.py", line 585, in parse
+    raise self.error(token, e)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\base.py", line 583, in parse
+    compiled_result = compile_func(self, token)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\loader_tags.py", line 307, in do_extends
+    nodelist = parser.parse()
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\base.py", line 585, in parse
+    raise self.error(token, e)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\base.py", line 583, in parse
+    compiled_result = compile_func(self, token)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\defaulttags.py", line 1129, in load
+    lib = find_library(parser, name)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\defaulttags.py", line 1069, in find_library
+    raise TemplateSyntaxError(
+    ...<5 lines>...
+    )
+django.template.exceptions.TemplateSyntaxError: Template: C:\Users\danpo\Desktop\Projetos\python\finanpy\templates\dashboard.html, 'humanize' is not a registered tag library. Must be one of:
+admin_list
+admin_modify
+admin_urls
+auth
+cache
+i18n
+l10n
+log
+static
+tz
+ERROR 2026-01-23 15:44:54,712 log 1976 23444 "GET /dashboard/ HTTP/1.1" 500 233338
+ERROR 2026-01-23 15:45:06,267 log 1976 22140 Internal Server Error: /dashboard/
+Traceback (most recent call last):
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\defaulttags.py", line 1067, in find_library
+    return parser.libraries[name]
+           ~~~~~~~~~~~~~~~~^^^^^^
+KeyError: 'humanize'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\core\handlers\base.py", line 198, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\contrib\auth\decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\users\views.py", line 135, in dashboard
+    return render(request, 'dashboard.html', context)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\backends\django.py", line 79, in get_template
+    return Template(self.engine.get_template(template_name), self)
+                    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\engine.py", line 186, in get_template
+    template, origin = self.find_template(template_name)
+                       ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\engine.py", line 159, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\loaders\cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\loaders\base.py", line 28, in get_template
+    return Template(
+        contents,
+    ...<2 lines>...
+        self.engine,
+    )
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\base.py", line 157, in __init__
+    self.nodelist = self.compile_nodelist()
+                    ~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\base.py", line 199, in compile_nodelist
+    nodelist = parser.parse()
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\base.py", line 585, in parse
+    raise self.error(token, e)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\base.py", line 583, in parse
+    compiled_result = compile_func(self, token)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\loader_tags.py", line 307, in do_extends
+    nodelist = parser.parse()
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\base.py", line 585, in parse
+    raise self.error(token, e)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\base.py", line 583, in parse
+    compiled_result = compile_func(self, token)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\defaulttags.py", line 1129, in load
+    lib = find_library(parser, name)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\defaulttags.py", line 1069, in find_library
+    raise TemplateSyntaxError(
+    ...<5 lines>...
+    )
+django.template.exceptions.TemplateSyntaxError: Template: C:\Users\danpo\Desktop\Projetos\python\finanpy\templates\dashboard.html, 'humanize' is not a registered tag library. Must be one of:
+admin_list
+admin_modify
+admin_urls
+auth
+cache
+i18n
+l10n
+log
+static
+tz
+ERROR 2026-01-23 15:45:06,274 log 1976 22140 "GET /dashboard/ HTTP/1.1" 500 233337
+ERROR 2026-01-23 15:45:26,492 log 1976 15732 Internal Server Error: /dashboard/
+Traceback (most recent call last):
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\defaulttags.py", line 1067, in find_library
+    return parser.libraries[name]
+           ~~~~~~~~~~~~~~~~^^^^^^
+KeyError: 'humanize'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\core\handlers\base.py", line 198, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\contrib\auth\decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\users\views.py", line 135, in dashboard
+    return render(request, 'dashboard.html', context)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\backends\django.py", line 79, in get_template
+    return Template(self.engine.get_template(template_name), self)
+                    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\engine.py", line 186, in get_template
+    template, origin = self.find_template(template_name)
+                       ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\engine.py", line 159, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\loaders\cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\loaders\base.py", line 28, in get_template
+    return Template(
+        contents,
+    ...<2 lines>...
+        self.engine,
+    )
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\base.py", line 157, in __init__
+    self.nodelist = self.compile_nodelist()
+                    ~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\base.py", line 199, in compile_nodelist
+    nodelist = parser.parse()
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\base.py", line 585, in parse
+    raise self.error(token, e)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\base.py", line 583, in parse
+    compiled_result = compile_func(self, token)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\loader_tags.py", line 307, in do_extends
+    nodelist = parser.parse()
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\base.py", line 585, in parse
+    raise self.error(token, e)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\base.py", line 583, in parse
+    compiled_result = compile_func(self, token)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\defaulttags.py", line 1129, in load
+    lib = find_library(parser, name)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\defaulttags.py", line 1069, in find_library
+    raise TemplateSyntaxError(
+    ...<5 lines>...
+    )
+django.template.exceptions.TemplateSyntaxError: Template: C:\Users\danpo\Desktop\Projetos\python\finanpy\templates\dashboard.html, 'humanize' is not a registered tag library. Must be one of:
+admin_list
+admin_modify
+admin_urls
+auth
+cache
+i18n
+l10n
+log
+static
+tz
+ERROR 2026-01-23 15:45:26,501 log 1976 15732 "GET /dashboard/ HTTP/1.1" 500 233475
+INFO 2026-01-23 15:46:51,551 autoreload 24040 21528 Watching for file changes with StatReloader
+ERROR 2026-01-23 15:46:56,485 log 24040 27412 Internal Server Error: /dashboard/
+Traceback (most recent call last):
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\defaulttags.py", line 1067, in find_library
+    return parser.libraries[name]
+           ~~~~~~~~~~~~~~~~^^^^^^
+KeyError: 'humanize'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\core\handlers\base.py", line 198, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\contrib\auth\decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\users\views.py", line 135, in dashboard
+    return render(request, 'dashboard.html', context)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\backends\django.py", line 79, in get_template
+    return Template(self.engine.get_template(template_name), self)
+                    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\engine.py", line 186, in get_template
+    template, origin = self.find_template(template_name)
+                       ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\engine.py", line 159, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\loaders\cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\loaders\base.py", line 28, in get_template
+    return Template(
+        contents,
+    ...<2 lines>...
+        self.engine,
+    )
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\base.py", line 157, in __init__
+    self.nodelist = self.compile_nodelist()
+                    ~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\base.py", line 199, in compile_nodelist
+    nodelist = parser.parse()
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\base.py", line 585, in parse
+    raise self.error(token, e)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\base.py", line 583, in parse
+    compiled_result = compile_func(self, token)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\loader_tags.py", line 307, in do_extends
+    nodelist = parser.parse()
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\base.py", line 585, in parse
+    raise self.error(token, e)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\base.py", line 583, in parse
+    compiled_result = compile_func(self, token)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\defaulttags.py", line 1129, in load
+    lib = find_library(parser, name)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\defaulttags.py", line 1069, in find_library
+    raise TemplateSyntaxError(
+    ...<5 lines>...
+    )
+django.template.exceptions.TemplateSyntaxError: Template: C:\Users\danpo\Desktop\Projetos\python\finanpy\templates\dashboard.html, 'humanize' is not a registered tag library. Must be one of:
+admin_list
+admin_modify
+admin_urls
+auth
+cache
+i18n
+l10n
+log
+static
+tz
+ERROR 2026-01-23 15:46:56,503 log 24040 27412 "GET /dashboard/ HTTP/1.1" 500 233382
+INFO 2026-01-23 15:47:05,384 log 24040 27412 "GET / HTTP/1.1" 302 0
+ERROR 2026-01-23 15:47:05,551 log 24040 27412 Internal Server Error: /dashboard/
+Traceback (most recent call last):
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\defaulttags.py", line 1067, in find_library
+    return parser.libraries[name]
+           ~~~~~~~~~~~~~~~~^^^^^^
+KeyError: 'humanize'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\core\handlers\base.py", line 198, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\contrib\auth\decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\users\views.py", line 135, in dashboard
+    return render(request, 'dashboard.html', context)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\backends\django.py", line 79, in get_template
+    return Template(self.engine.get_template(template_name), self)
+                    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\engine.py", line 186, in get_template
+    template, origin = self.find_template(template_name)
+                       ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\engine.py", line 159, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\loaders\cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\loaders\base.py", line 28, in get_template
+    return Template(
+        contents,
+    ...<2 lines>...
+        self.engine,
+    )
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\base.py", line 157, in __init__
+    self.nodelist = self.compile_nodelist()
+                    ~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\base.py", line 199, in compile_nodelist
+    nodelist = parser.parse()
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\base.py", line 585, in parse
+    raise self.error(token, e)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\base.py", line 583, in parse
+    compiled_result = compile_func(self, token)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\loader_tags.py", line 307, in do_extends
+    nodelist = parser.parse()
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\base.py", line 585, in parse
+    raise self.error(token, e)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\base.py", line 583, in parse
+    compiled_result = compile_func(self, token)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\defaulttags.py", line 1129, in load
+    lib = find_library(parser, name)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\defaulttags.py", line 1069, in find_library
+    raise TemplateSyntaxError(
+    ...<5 lines>...
+    )
+django.template.exceptions.TemplateSyntaxError: Template: C:\Users\danpo\Desktop\Projetos\python\finanpy\templates\dashboard.html, 'humanize' is not a registered tag library. Must be one of:
+admin_list
+admin_modify
+admin_urls
+auth
+cache
+i18n
+l10n
+log
+static
+tz
+ERROR 2026-01-23 15:47:05,560 log 24040 27412 "GET /dashboard/ HTTP/1.1" 500 233244
+INFO 2026-01-23 15:47:22,276 log 24040 11924 "GET /login/ HTTP/1.1" 200 3357
+INFO 2026-01-23 17:49:45,231 autoreload 1332 17964 Watching for file changes with StatReloader
+INFO 2026-01-23 17:50:03,982 log 1332 1172 "HEAD /dashboard/ HTTP/1.1" 302 0
+INFO 2026-01-23 17:51:45,374 autoreload 3660 1276 Watching for file changes with StatReloader
+INFO 2026-01-23 17:51:51,634 log 1332 8704 "GET /login/ HTTP/1.1" 200 3357
+INFO 2026-01-23 17:52:00,559 log 1332 8704 "GET / HTTP/1.1" 302 0
+ERROR 2026-01-23 17:52:00,885 log 1332 8704 Internal Server Error: /dashboard/
+Traceback (most recent call last):
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\core\handlers\base.py", line 198, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\contrib\auth\decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\users\views.py", line 169, in dashboard
+    return render(request, 'dashboard.html', context)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\backends\django.py", line 107, in render
+    return self.template.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\base.py", line 174, in render
+    return self._render(context)
+           ~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\base.py", line 166, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\base.py", line 1091, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\base.py", line 1052, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\loader_tags.py", line 160, in render
+    return compiled_parent._render(context)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\base.py", line 166, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\base.py", line 1091, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\base.py", line 1052, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\loader_tags.py", line 160, in render
+    return compiled_parent._render(context)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\base.py", line 166, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\base.py", line 1091, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\base.py", line 1052, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\loader_tags.py", line 66, in render
+    result = block.nodelist.render(context)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\base.py", line 1091, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\base.py", line 1052, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\loader_tags.py", line 66, in render
+    result = block.nodelist.render(context)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\base.py", line 1091, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\base.py", line 1052, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\template\defaulttags.py", line 511, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\urls\base.py", line 98, in reverse
+    resolved_url = resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+  File "C:\Users\danpo\Desktop\Projetos\python\finanpy\.venv\Lib\site-packages\django\urls\resolvers.py", line 842, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'list' not found. 'list' is not a valid view function or pattern name.
+ERROR 2026-01-23 17:52:00,901 log 1332 8704 "GET /dashboard/ HTTP/1.1" 500 231076
+INFO 2026-01-23 17:53:04,250 log 1332 3496 "GET /signup/ HTTP/1.1" 200 3571
+INFO 2026-01-23 17:55:30,083 autoreload 1332 17964 C:\Users\danpo\Desktop\Projetos\python\finanpy\users\views.py changed, reloading.
+INFO 2026-01-23 17:55:31,142 autoreload 7964 4228 Watching for file changes with StatReloader
+INFO 2026-01-23 17:55:45,935 autoreload 7964 4228 C:\Users\danpo\Desktop\Projetos\python\finanpy\users\views.py changed, reloading.
+INFO 2026-01-23 17:55:47,063 autoreload 22492 1160 Watching for file changes with StatReloader
+INFO 2026-01-23 18:06:44,181 autoreload 22492 1160 C:\Users\danpo\Desktop\Projetos\python\finanpy\app\settings.py changed, reloading.
+INFO 2026-01-23 18:06:46,481 autoreload 8212 9452 Watching for file changes with StatReloader
+INFO 2026-01-23 18:07:45,518 autoreload 8212 9452 C:\Users\danpo\Desktop\Projetos\python\finanpy\users\views.py changed, reloading.
+INFO 2026-01-23 18:07:46,610 autoreload 16208 1048 Watching for file changes with StatReloader
+INFO 2026-01-23 18:11:10,661 autoreload 16208 1048 C:\Users\danpo\Desktop\Projetos\python\finanpy\accounts\urls.py changed, reloading.
+INFO 2026-01-23 18:11:11,702 autoreload 21984 27732 Watching for file changes with StatReloader
+INFO 2026-01-23 18:12:10,642 autoreload 17152 24404 Watching for file changes with StatReloader
+INFO 2026-01-23 18:16:01,426 autoreload 17152 24404 C:\Users\danpo\Desktop\Projetos\python\finanpy\accounts\views.py changed, reloading.
+INFO 2026-01-23 18:16:01,424 autoreload 21984 27732 C:\Users\danpo\Desktop\Projetos\python\finanpy\accounts\views.py changed, reloading.
+INFO 2026-01-23 18:16:02,961 autoreload 27204 23048 Watching for file changes with StatReloader
+INFO 2026-01-23 18:16:02,962 autoreload 20044 23668 Watching for file changes with StatReloader
+INFO 2026-01-23 18:16:16,751 autoreload 20044 23668 C:\Users\danpo\Desktop\Projetos\python\finanpy\accounts\views.py changed, reloading.
+INFO 2026-01-23 18:16:16,758 autoreload 27204 23048 C:\Users\danpo\Desktop\Projetos\python\finanpy\accounts\views.py changed, reloading.
+INFO 2026-01-23 18:16:18,246 autoreload 25352 26740 Watching for file changes with StatReloader
+INFO 2026-01-23 18:16:18,291 autoreload 9924 21748 Watching for file changes with StatReloader
+INFO 2026-01-23 18:16:32,031 autoreload 9924 21748 C:\Users\danpo\Desktop\Projetos\python\finanpy\accounts\views.py changed, reloading.
+INFO 2026-01-23 18:16:32,037 autoreload 25352 26740 C:\Users\danpo\Desktop\Projetos\python\finanpy\accounts\views.py changed, reloading.
+INFO 2026-01-23 18:16:32,836 autoreload 17568 21092 Watching for file changes with StatReloader
+INFO 2026-01-23 18:16:32,837 autoreload 996 17996 Watching for file changes with StatReloader
+INFO 2026-01-23 18:17:10,244 autoreload 17568 21092 C:\Users\danpo\Desktop\Projetos\python\finanpy\accounts\urls.py changed, reloading.
+INFO 2026-01-23 18:17:10,276 autoreload 996 17996 C:\Users\danpo\Desktop\Projetos\python\finanpy\accounts\urls.py changed, reloading.
+INFO 2026-01-23 18:17:11,171 autoreload 26916 20720 Watching for file changes with StatReloader
+INFO 2026-01-23 18:17:11,173 autoreload 26056 9440 Watching for file changes with StatReloader
+INFO 2026-01-23 18:17:35,328 autoreload 14636 11252 Watching for file changes with StatReloader
+INFO 2026-01-23 18:20:43,501 autoreload 26916 20720 C:\Users\danpo\Desktop\Projetos\python\finanpy\accounts\views.py changed, reloading.
+INFO 2026-01-23 18:20:43,501 autoreload 14636 11252 C:\Users\danpo\Desktop\Projetos\python\finanpy\accounts\views.py changed, reloading.
+INFO 2026-01-23 18:20:43,502 autoreload 26056 9440 C:\Users\danpo\Desktop\Projetos\python\finanpy\accounts\views.py changed, reloading.
+INFO 2026-01-23 18:20:45,085 autoreload 3044 488 Watching for file changes with StatReloader
+INFO 2026-01-23 18:20:45,085 autoreload 17876 8068 Watching for file changes with StatReloader
+INFO 2026-01-23 18:20:45,087 autoreload 4700 26368 Watching for file changes with StatReloader
+INFO 2026-01-23 18:22:52,592 autoreload 21852 12516 Watching for file changes with StatReloader
+INFO 2026-01-23 18:24:02,084 autoreload 7792 22784 Watching for file changes with StatReloader
+INFO 2026-01-23 18:24:54,805 autoreload 7792 22784 C:\Users\danpo\Desktop\Projetos\python\finanpy\accounts\views.py changed, reloading.
+INFO 2026-01-23 18:24:54,812 autoreload 21852 12516 C:\Users\danpo\Desktop\Projetos\python\finanpy\accounts\views.py changed, reloading.
+INFO 2026-01-23 18:24:55,245 autoreload 3044 488 C:\Users\danpo\Desktop\Projetos\python\finanpy\accounts\views.py changed, reloading.
+INFO 2026-01-23 18:24:55,251 autoreload 17876 8068 C:\Users\danpo\Desktop\Projetos\python\finanpy\accounts\views.py changed, reloading.
+INFO 2026-01-23 18:24:55,263 autoreload 4700 26368 C:\Users\danpo\Desktop\Projetos\python\finanpy\accounts\views.py changed, reloading.
+INFO 2026-01-23 18:24:56,083 autoreload 17788 26396 Watching for file changes with StatReloader
+INFO 2026-01-23 18:24:56,158 autoreload 24220 20604 Watching for file changes with StatReloader
+INFO 2026-01-23 18:24:56,634 autoreload 1088 22552 Watching for file changes with StatReloader
+INFO 2026-01-23 18:24:56,635 autoreload 23288 19200 Watching for file changes with StatReloader
+INFO 2026-01-23 18:24:56,635 autoreload 1256 3404 Watching for file changes with StatReloader
+INFO 2026-01-23 18:25:18,348 log 17788 25148 "GET / HTTP/1.1" 200 12
+INFO 2026-01-23 18:25:26,354 log 17788 25284 "GET /admin/ HTTP/1.1" 200 11143
+INFO 2026-01-23 18:25:35,776 log 17788 7848 "GET /admin/transactions/transaction/ HTTP/1.1" 200 15473
+INFO 2026-01-23 18:25:35,918 log 17788 7848 "GET /admin/jsi18n/ HTTP/1.1" 200 8498
+INFO 2026-01-23 18:25:42,970 log 17788 7848 "GET /admin/accounts/account/ HTTP/1.1" 200 14205
+INFO 2026-01-23 18:25:43,033 log 17788 7848 "GET /admin/jsi18n/ HTTP/1.1" 200 8498
+WARNING 2026-01-23 18:26:38,370 log 17788 24936 "GET /dashboard/ HTTP/1.1" 404 5299
