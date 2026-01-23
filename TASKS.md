@@ -228,13 +228,13 @@
 ### Sprint 3: Autenticação e Landing Page (1 semana)
 
 #### 3.1 Sistema de Autenticação
-- [ ] **3.1.1** Criar CustomAuthBackend
+- [x] **3.1.1** Criar CustomAuthBackend
   - Criar arquivo users/backends.py
   - Implementar EmailAuthBackend
   - Permitir login apenas com email (case-insensitive)
   - Adicionar em settings.AUTHENTICATION_BACKENDS
 
-- [ ] **3.1.2** Criar formulário de cadastro
+- [x] **3.1.2** Criar formulário de cadastro
   - Criar arquivo users/forms.py
   - Criar SignUpForm (ModelForm ou Form)
   - Campos: email, password1, password2
@@ -242,7 +242,7 @@
   - Validar senhas coincidem
   - Adicionar validadores de senha do Django
 
-- [ ] **3.1.3** Criar view de cadastro
+- [x] **3.1.3** Criar view de cadastro
   - Criar SignUpView (CreateView) em users/views.py
   - Template users/templates/signup.html
   - Processar POST do formulário
@@ -250,13 +250,13 @@
   - Redirecionar para dashboard
   - Adicionar mensagens de sucesso/erro
 
-- [ ] **3.1.4** Criar formulário de login
+- [x] **3.1.4** Criar formulário de login
   - Criar LoginForm em users/forms.py
   - Campos: email, password
   - Adicionar campo "lembrar-me"
   - Validação customizada
 
-- [ ] **3.1.5** Criar view de login
+- [x] **3.1.5** Criar view de login
   - Criar LoginView em users/views.py
   - Template users/templates/login.html
   - Processar autenticação
@@ -264,44 +264,44 @@
   - Redirecionar para dashboard
   - Mensagens de erro claras
 
-- [ ] **3.1.6** Criar view de logout
+- [x] **3.1.6** Criar view de logout
   - Criar LogoutView em users/views.py
   - Implementar logout
   - Redirecionar para landing page
   - Mensagem de confirmação
 
 #### 3.2 Recuperação de Senha
-- [ ] **3.2.1** Configurar email backend
+- [x] **3.2.1** Configurar email backend
   - Configurar EMAIL_BACKEND em settings.py
   - Para desenvolvimento: console backend
   - Configurar EMAIL_HOST, EMAIL_PORT (para produção futura)
 
-- [ ] **3.2.2** Criar views de recuperação
+- [x] **3.2.2** Criar views de recuperação
   - PasswordResetView: solicitar email
   - PasswordResetDoneView: confirmação de envio
   - PasswordResetConfirmView: formulário nova senha
   - PasswordResetCompleteView: confirmação final
 
-- [ ] **3.2.3** Criar templates de recuperação
+- [x] **3.2.3** Criar templates de recuperação
   - Template password_reset_form.html
   - Template password_reset_done.html
   - Template password_reset_confirm.html
   - Template password_reset_complete.html
   - Template de email (password_reset_email.html)
 
-- [ ] **3.2.4** Configurar URLs de recuperação
+- [x] **3.2.4** Configurar URLs de recuperação
   - Adicionar URLs em users/urls.py
   - Configurar URL patterns do Django contrib.auth
   - Testar fluxo completo
 
 #### 3.3 Landing Page Pública
-- [ ] **3.3.1** Criar view da landing page
+- [x] **3.3.1** Criar view da landing page
   - Criar LandingPageView em users/views.py (ou app separado)
   - Template landing.html
   - Verificar se usuário já está logado
   - Redirecionar para dashboard se autenticado
 
-- [ ] **3.3.2** Design da landing page
+- [x] **3.3.2** Design da landing page
   - Hero section com título e CTA
   - Seção de features/benefícios
   - Seção "Como funciona"
@@ -310,18 +310,18 @@
   - Design com gradientes e tema escuro
   - Totalmente responsivo
 
-- [ ] **3.3.3** Componentes da landing
+- [x] **3.3.3** Componentes da landing
   - Navbar com logo e botões Login/Cadastrar
   - Cards de features com ícones
   - Botões com gradiente e hover effects
   - Animações sutis (opcional)
 
-- [ ] **3.3.4** Configurar URL raiz
+- [x] **3.3.4** Configurar URL raiz
   - Adicionar URL / para landing page
   - Configurar redirecionamento baseado em autenticação
 
 #### 3.4 Templates de Autenticação
-- [ ] **3.4.1** Template de cadastro
+- [x] **3.4.1** Template de cadastro
   - Formulário estilizado com TailwindCSS
   - Campos: email, senha, confirmar senha
   - Validação client-side básica
@@ -329,7 +329,7 @@
   - Mensagens de erro formatadas
   - Design responsivo
 
-- [ ] **3.4.2** Template de login
+- [x] **3.4.2** Template de login
   - Formulário estilizado
   - Campos: email, senha
   - Checkbox "lembrar-me"
@@ -338,7 +338,7 @@
   - Mensagens de erro
   - Design responsivo
 
-- [ ] **3.4.3** Mensagens e feedback
+- [x] **3.4.3** Mensagens e feedback
   - Configurar Django messages framework
   - Criar template de alerts reutilizável
   - Estilos para success, error, warning, info
@@ -347,20 +347,20 @@
 ### Sprint 4: Dashboard e Navegação (1 semana)
 
 #### 4.1 Estrutura Base do Dashboard
-- [ ] **4.1.1** Criar app dashboard (opcional) ou usar transactions
+- [x] **4.1.1** Criar app dashboard (opcional) ou usar transactions
   - Criar DashboardView em views.py
   - Template dashboard.html
   - Apenas usuários autenticados
   - Usar @login_required decorator
 
-- [ ] **4.1.2** Layout do dashboard
+- [x] **4.1.2** Layout do dashboard
   - Criar base_dashboard.html (herda de base.html)
   - Sidebar com navegação
   - Topbar com nome do usuário e logout
   - Content area principal
   - Mobile: hamburger menu
 
-- [ ] **4.1.3** Sidebar de navegação
+- [x] **4.1.3** Sidebar de navegação
   - Links: Dashboard, Transações, Categorias, Contas, Perfil
   - Ícones para cada item (usando emoji ou biblioteca)
   - Indicador de página ativa
@@ -368,82 +368,82 @@
   - Collapse em mobile
 
 #### 4.2 Cards de Resumo
-- [ ] **4.2.1** Card Saldo Total
+- [x] **4.2.1** Card Saldo Total
   - Calcular soma de todas as contas ativas do usuário
   - Exibir valor formatado em BRL
   - Gradiente verde se positivo, vermelho se negativo
   - Ícone representativo
 
-- [ ] **4.2.2** Card Receitas do Mês
+- [x] **4.2.2** Card Receitas do Mês
   - Filtrar transações tipo INCOME do mês atual
   - Somar valores
   - Exibir formatado
   - Gradiente verde
   - Comparativo com mês anterior (%, arrow up/down)
 
-- [ ] **4.2.3** Card Despesas do Mês
+- [x] **4.2.3** Card Despesas do Mês
   - Filtrar transações tipo EXPENSE do mês atual
   - Somar valores
   - Exibir formatado
   - Gradiente vermelho
   - Comparativo com mês anterior
 
-- [ ] **4.2.4** Card Balanço do Mês
+- [x] **4.2.4** Card Balanço do Mês
   - Receitas - Despesas do mês
   - Exibir formatado
   - Gradiente baseado em positivo/negativo
   - Percentual em relação às receitas
 
 #### 4.3 Lista de Transações Recentes
-- [ ] **4.3.1** Query de transações
+- [x] **4.3.1** Query de transações
   - Buscar últimas 5-10 transações do usuário
   - Ordenar por data decrescente
   - select_related para Account e Category
   - Filtrar apenas contas ativas
 
-- [ ] **4.3.2** Tabela de transações
+- [x] **4.3.2** Tabela de transações
   - Colunas: Data, Descrição, Categoria, Conta, Valor
   - Badge colorido para tipo (receita/despesa)
   - Formatação de moeda
   - Responsivo: stack em mobile
 
-- [ ] **4.3.3** Link para página completa
+- [x] **4.3.3** Link para página completa
   - Botão "Ver todas" redirecionando para /transactions/
   - Manter consistência visual
 
 #### 4.4 Gráfico de Despesas
-- [ ] **4.4.1** Processar dados para gráfico
+- [x] **4.4.1** Processar dados para gráfico
   - Agrupar despesas do mês por categoria
   - Calcular total e percentual de cada
   - Ordenar por valor (maior primeiro)
   - Limitar às top 5 categorias
 
-- [ ] **4.4.2** Implementar gráfico
+- [x] **4.4.2** Implementar gráfico
   - Usar Chart.js via CDN
   - Gráfico de pizza (donut) ou barras
   - Cores das categorias
   - Labels com valores e percentuais
   - Responsivo
 
-- [ ] **4.4.3** Fallback sem dados
+- [x] **4.4.3** Fallback sem dados
   - Exibir mensagem se não houver despesas
   - Sugerir registrar primeira transação
   - Design consistente
 
 #### 4.5 Seletor de Período
-- [ ] **4.5.1** Criar componente de filtro
+- [x] **4.5.1** Criar componente de filtro
   - Dropdown ou tabs para períodos
   - Opções: Esta semana, Este mês, Mês passado, Este ano, Personalizado
   - Para personalizado: dois campos de data
 
-- [ ] **4.5.2** Implementar lógica de filtro
+- [x] **4.5.2** Implementar lógica de filtro
   - Query params na URL (?period=month)
   - Recalcular todos os cards
   - Atualizar gráfico
   - Atualizar lista de transações
   - Manter seleção ao navegar
 
-- [ ] **4.5.3** JavaScript para interatividade
+- [x] **4.5.3** JavaScript para interatividade
   - Form submit ao selecionar período
   - AJAX para atualizar sem reload (opcional)
   - Loading state durante filtro
