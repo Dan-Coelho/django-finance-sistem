@@ -228,13 +228,13 @@
 ### Sprint 3: Autenticação e Landing Page (1 semana)
 
 #### 3.1 Sistema de Autenticação
-- [ ] **3.1.1** Criar CustomAuthBackend
+- [x] **3.1.1** Criar CustomAuthBackend
   - Criar arquivo users/backends.py
   - Implementar EmailAuthBackend
   - Permitir login apenas com email (case-insensitive)
   - Adicionar em settings.AUTHENTICATION_BACKENDS
 
-- [ ] **3.1.2** Criar formulário de cadastro
+- [x] **3.1.2** Criar formulário de cadastro
   - Criar arquivo users/forms.py
   - Criar SignUpForm (ModelForm ou Form)
   - Campos: email, password1, password2
@@ -242,7 +242,7 @@
   - Validar senhas coincidem
   - Adicionar validadores de senha do Django
 
-- [ ] **3.1.3** Criar view de cadastro
+- [x] **3.1.3** Criar view de cadastro
   - Criar SignUpView (CreateView) em users/views.py
   - Template users/templates/signup.html
   - Processar POST do formulário
@@ -250,13 +250,13 @@
   - Redirecionar para dashboard
   - Adicionar mensagens de sucesso/erro
 
-- [ ] **3.1.4** Criar formulário de login
+- [x] **3.1.4** Criar formulário de login
   - Criar LoginForm em users/forms.py
   - Campos: email, password
   - Adicionar campo "lembrar-me"
   - Validação customizada
 
-- [ ] **3.1.5** Criar view de login
+- [x] **3.1.5** Criar view de login
   - Criar LoginView em users/views.py
   - Template users/templates/login.html
   - Processar autenticação
@@ -264,44 +264,44 @@
   - Redirecionar para dashboard
   - Mensagens de erro claras
 
-- [ ] **3.1.6** Criar view de logout
+- [x] **3.1.6** Criar view de logout
   - Criar LogoutView em users/views.py
   - Implementar logout
   - Redirecionar para landing page
   - Mensagem de confirmação
 
 #### 3.2 Recuperação de Senha
-- [ ] **3.2.1** Configurar email backend
+- [x] **3.2.1** Configurar email backend
   - Configurar EMAIL_BACKEND em settings.py
   - Para desenvolvimento: console backend
   - Configurar EMAIL_HOST, EMAIL_PORT (para produção futura)
 
-- [ ] **3.2.2** Criar views de recuperação
+- [x] **3.2.2** Criar views de recuperação
   - PasswordResetView: solicitar email
   - PasswordResetDoneView: confirmação de envio
   - PasswordResetConfirmView: formulário nova senha
   - PasswordResetCompleteView: confirmação final
 
-- [ ] **3.2.3** Criar templates de recuperação
+- [x] **3.2.3** Criar templates de recuperação
   - Template password_reset_form.html
   - Template password_reset_done.html
   - Template password_reset_confirm.html
   - Template password_reset_complete.html
   - Template de email (password_reset_email.html)
 
-- [ ] **3.2.4** Configurar URLs de recuperação
+- [x] **3.2.4** Configurar URLs de recuperação
   - Adicionar URLs em users/urls.py
   - Configurar URL patterns do Django contrib.auth
   - Testar fluxo completo
 
 #### 3.3 Landing Page Pública
-- [ ] **3.3.1** Criar view da landing page
+- [x] **3.3.1** Criar view da landing page
   - Criar LandingPageView em users/views.py (ou app separado)
   - Template landing.html
   - Verificar se usuário já está logado
   - Redirecionar para dashboard se autenticado
 
-- [ ] **3.3.2** Design da landing page
+- [x] **3.3.2** Design da landing page
   - Hero section com título e CTA
   - Seção de features/benefícios
   - Seção "Como funciona"
@@ -310,18 +310,18 @@
   - Design com gradientes e tema escuro
   - Totalmente responsivo
 
-- [ ] **3.3.3** Componentes da landing
+- [x] **3.3.3** Componentes da landing
   - Navbar com logo e botões Login/Cadastrar
   - Cards de features com ícones
   - Botões com gradiente e hover effects
   - Animações sutis (opcional)
 
-- [ ] **3.3.4** Configurar URL raiz
+- [x] **3.3.4** Configurar URL raiz
   - Adicionar URL / para landing page
   - Configurar redirecionamento baseado em autenticação
 
 #### 3.4 Templates de Autenticação
-- [ ] **3.4.1** Template de cadastro
+- [x] **3.4.1** Template de cadastro
   - Formulário estilizado com TailwindCSS
   - Campos: email, senha, confirmar senha
   - Validação client-side básica
@@ -329,7 +329,7 @@
   - Mensagens de erro formatadas
   - Design responsivo
 
-- [ ] **3.4.2** Template de login
+- [x] **3.4.2** Template de login
   - Formulário estilizado
   - Campos: email, senha
   - Checkbox "lembrar-me"
@@ -338,7 +338,7 @@
   - Mensagens de erro
   - Design responsivo
 
-- [ ] **3.4.3** Mensagens e feedback
+- [x] **3.4.3** Mensagens e feedback
   - Configurar Django messages framework
   - Criar template de alerts reutilizável
   - Estilos para success, error, warning, info
