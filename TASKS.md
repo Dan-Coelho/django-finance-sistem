@@ -72,18 +72,18 @@
   - Configurar URL para arquivos estáticos e media
 
 #### 1.4 Setup do TailwindCSS
-- [ ] **1.4.1** Configurar TailwindCSS via CDN
+- [x] **1.4.1** Configurar TailwindCSS via CDN
   - Criar template base.html
   - Adicionar CDN do TailwindCSS no head
   - Adicionar configuração inline do Tailwind (se necessário)
 
-- [ ] **1.4.2** Criar estrutura de templates
+- [x] **1.4.2** Criar estrutura de templates
   - Criar pasta templates/ na raiz
   - Criar base.html com estrutura básica
   - Configurar blocks: title, content, scripts
   - Adicionar meta tags responsivas
 
-- [ ] **1.4.3** Criar componentes base
+- [x] **1.4.3** Criar componentes base
   - Criar templates/components/navbar.html
   - Criar templates/components/sidebar.html
   - Criar templates/components/footer.html

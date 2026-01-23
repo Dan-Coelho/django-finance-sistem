@@ -1,0 +1,18 @@
+<nav class="bg-white shadow-md">
+    <div class="container mx-auto px-4">
+        <div class="flex justify-between items-center h-16">
+            <div class="flex items-center">
+                <a href="/" class="text-xl font-bold text-blue-600">FinanPy</a>
+            </div>
+            <div class="flex items-center space-x-4">
+                {% if user.is_authenticated %}
+                    <span class="text-gray-700">Olá, {{ user.email }}</span>
+                    <a href="{% url 'logout' %}" class="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded">Sair</a>
+                {% else %}
+                    <a href="{% url 'login' %}" class="text-gray-700 hover:text-blue-600">Login</a>
+                    <a href="{% url 'signup' %}" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded">Cadastrar</a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</nav>
