@@ -1,5 +1,5 @@
-from django.contrib.auth.backends import ModelBackend
 from django.contrib.auth import get_user_model
+from django.contrib.auth.backends import ModelBackend
 from django.db.models import Q
 
 
@@ -8,7 +8,7 @@ class EmailAuthBackend(ModelBackend):
     Custom authentication backend that allows users to authenticate using their email address.
     Email comparison is case-insensitive.
     """
-    
+
     def authenticate(self, request, username=None, password=None, **kwargs):
         """
         Authenticate a user using their email address (case-insensitive).
@@ -23,10 +23,10 @@ class EmailAuthBackend(ModelBackend):
             User object if authentication is successful, None otherwise
         """
         UserModel = get_user_model()
-        
+
         if username is None or password is None:
             return None
-        
+
         try:
             # Find user by email (case-insensitive)
             user = UserModel.objects.get(
@@ -40,12 +40,12 @@ class EmailAuthBackend(ModelBackend):
         except UserModel.MultipleObjectsReturned:
             # Handle edge case where multiple users have same email (shouldn't happen with unique constraint)
             return None
-        
+
         if user.check_password(password) and self.user_can_authenticate(user):
             return user
-        
+
         return None
-    
+
     def get_user(self, user_id):
         """
         Retrieve a user by their ID.

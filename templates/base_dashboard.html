@@ -1,9 +1,27 @@
-{% extends 'base.html' %}
-
-{% block title %}{% block dashboard_title %}Dashboard{% endblock %} - FinanPy{% endblock %}
-
-{% block content %}
-<div class="flex h-screen bg-gray-900 text-white">
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% block dashboard_title %}Dashboard{% endblock %} - FinanPy{% endblock %}</title>
+    <!-- TailwindCSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Additional Tailwind configuration if needed -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#3b82f6',
+                        secondary: '#64748b',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gray-900 text-white min-h-screen flex">
     <!-- Sidebar -->
     <div class="w-64 bg-gray-800 flex flex-col">
         {% include 'components/sidebar.html' %}
@@ -18,9 +36,16 @@
 
         <!-- Dashboard Content Area -->
         <main class="flex-1 overflow-y-auto p-6 bg-gradient-to-br from-gray-900 to-black">
+            {% include 'components/breadcrumbs.html' %}
             {% block dashboard_content %}
             {% endblock %}
         </main>
     </div>
-</div>
-{% endblock %}
+
+    <!-- Include loading states script -->
+    <script src="{% static 'js/loading-states.js' %}"></script>
+
+    {% block scripts %}
+    {% endblock %}
+</body>
+</html>

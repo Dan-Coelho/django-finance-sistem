@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -40,6 +41,9 @@
     <footer>
         {% include 'components/footer.html' %}
     </footer>
+
+    <!-- Include loading states script -->
+    <script src="{% load static %}{% static 'js/loading-states.js' %}"></script>
 
     {% block scripts %}
     {% endblock %}

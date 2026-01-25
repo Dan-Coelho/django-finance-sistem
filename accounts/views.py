@@ -1,13 +1,16 @@
-from django.shortcuts import render, redirect
-from django.contrib.auth.decorators import login_required
-from django.contrib import messages
-from django.utils.decorators import method_decorator
-from django.views.generic import ListView, CreateView, UpdateView, DeleteView
-from django.urls import reverse_lazy
-from django.db.models import Sum, Q
 from decimal import Decimal
-from .models import Account
+
+from django.contrib import messages
+from django.contrib.auth.decorators import login_required
+from django.db.models import Sum
+from django.shortcuts import redirect
+from django.urls import reverse_lazy
+from django.utils.decorators import method_decorator
+from django.views.generic import CreateView, DeleteView, ListView, UpdateView
+
 from .forms import AccountForm
+from .models import Account
+
 
 @method_decorator(login_required, name='dispatch')
 class AccountListView(ListView):
@@ -50,6 +53,9 @@ class AccountListView(ListView):
             'total_balance': total_balance,
             'active_accounts_count': active_accounts_count,
             'highest_balance_account': highest_balance_account,
+            'breadcrumb_items': [
+                {'title': 'Contas', 'active': True}
+            ]
         })
 
         return context
@@ -71,6 +77,10 @@ class AccountCreateView(CreateView):
         context = super().get_context_data(**kwargs)
         context['title'] = 'Criar Conta'
         context['button_text'] = 'Criar Conta'
+        context['breadcrumb_items'] = [
+            {'title': 'Contas', 'url': reverse_lazy('accounts:list')},
+            {'title': 'Nova Conta', 'active': True}
+        ]
         return context
 
 @method_decorator(login_required, name='dispatch')
@@ -92,6 +102,10 @@ class AccountUpdateView(UpdateView):
         context = super().get_context_data(**kwargs)
         context['title'] = 'Editar Conta'
         context['button_text'] = 'Atualizar Conta'
+        context['breadcrumb_items'] = [
+            {'title': 'Contas', 'url': reverse_lazy('accounts:list')},
+            {'title': 'Editar Conta', 'active': True}
+        ]
         return context
 
 @method_decorator(login_required, name='dispatch')
@@ -116,3 +130,11 @@ class AccountDeleteView(DeleteView):
 
         messages.success(request, 'Conta excluída com sucesso!')
         return super().delete(request, *args, **kwargs)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['breadcrumb_items'] = [
+            {'title': 'Contas', 'url': reverse_lazy('accounts:list')},
+            {'title': 'Excluir Conta', 'active': True}
+        ]
+        return context

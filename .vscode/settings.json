@@ -1,0 +1,15 @@
+{
+  "[html]": {
+    "editor.defaultFormatter": null,
+    "editor.formatOnSave": false
+  },
+  "css.validate": false,
+  "scss.validate": false,
+  "less.validate": false,
+  "[javascript]": {
+    "editor.defaultFormatter": null
+  },
+  "javascript.validate.enable": false,
+  "html.validate.styles": false,
+  "html.validate.scripts": false
+}

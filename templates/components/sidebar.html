@@ -1,54 +1,56 @@
 
-<aside class="bg-white shadow-md w-64 min-h-screen">
-    <div class="p-4">
-        <h2 class="text-lg font-semibold mb-4">Navegação</h2>
-        <ul class="space-y-2">
-            <li><a href="{% url 'users:dashboard' %}" class="block py-2 px-4 rounded hover:bg-gray-100">Dashboard</a></li>
-            <li><a href="{% url 'transactions:list' %}" class="block py-2 px-4 rounded hover:bg-gray-100">Transações</a></li>
-            <li><a href="{% url 'accounts:list' %}" class="block py-2 px-4 rounded hover:bg-gray-100">Contas</a></li>
-            <li><a href="{% url 'categories:list' %}" class="block py-2 px-4 rounded hover:bg-gray-100">Categorias</a></li>
-            <li><a href="{% url 'profiles:detail' %}" class="block py-2 px-4 rounded hover:bg-gray-100">Perfil</a></li>
-        </ul>
+<nav class="bg-gray-800 text-white w-64 min-h-screen flex flex-col">
+    <div class="p-4 border-b border-gray-700">
+        <h2 class="text-lg font-semibold">Navegação</h2>
     </div>
-    
-    <ul class="space-y-2">
+
+    <ul class="flex-1 py-4">
         <li>
-            <a href="{% url 'users:dashboard' %}" class="flex items-center p-3 rounded-lg bg-indigo-900 text-white hover:bg-indigo-700 transition-colors duration-200">
+            <a href="{% url 'users:dashboard' %}" class="flex items-center p-3 rounded-lg text-gray-300 hover:bg-gray-700 hover:text-white transition-colors duration-200 {% if request.resolver_match.app_name == 'users' and request.resolver_match.url_name == 'dashboard' %}bg-gray-700 text-white{% endif %}">
                 <span class="mr-3">📊</span>
                 <span>Dashboard</span>
             </a>
         </li>
         <li>
-            <a href="/transactions/" class="flex items-center p-3 rounded-lg text-gray-300 hover:bg-gray-700 hover:text-white transition-colors duration-200">
+            <a href="{% url 'transactions:list' %}" class="flex items-center p-3 rounded-lg text-gray-300 hover:bg-gray-700 hover:text-white transition-colors duration-200 {% if request.resolver_match.app_name == 'transactions' %}bg-gray-700 text-white{% endif %}">
                 <span class="mr-3">💼</span>
                 <span>Transações</span>
+                {% if total_transactions > 0 %}
+                    <span class="ml-auto bg-gray-700 text-white text-xs font-medium px-2 py-0.5 rounded-full">{{ total_transactions }}</span>
+                {% endif %}
             </a>
         </li>
         <li>
-            <a href="/categories/" class="flex items-center p-3 rounded-lg text-gray-300 hover:bg-gray-700 hover:text-white transition-colors duration-200">
+            <a href="{% url 'categories:list' %}" class="flex items-center p-3 rounded-lg text-gray-300 hover:bg-gray-700 hover:text-white transition-colors duration-200 {% if request.resolver_match.app_name == 'categories' %}bg-gray-700 text-white{% endif %}">
                 <span class="mr-3">🏷️</span>
                 <span>Categorias</span>
+                {% if total_categories > 0 %}
+                    <span class="ml-auto bg-gray-700 text-white text-xs font-medium px-2 py-0.5 rounded-full">{{ total_categories }}</span>
+                {% endif %}
             </a>
         </li>
         <li>
-            <a href="/accounts/" class="flex items-center p-3 rounded-lg text-gray-300 hover:bg-gray-700 hover:text-white transition-colors duration-200">
+            <a href="{% url 'accounts:list' %}" class="flex items-center p-3 rounded-lg text-gray-300 hover:bg-gray-700 hover:text-white transition-colors duration-200 {% if request.resolver_match.app_name == 'accounts' %}bg-gray-700 text-white{% endif %}">
                 <span class="mr-3">🏦</span>
                 <span>Contas</span>
+                {% if total_accounts > 0 %}
+                    <span class="ml-auto bg-gray-700 text-white text-xs font-medium px-2 py-0.5 rounded-full">{{ total_accounts }}</span>
+                {% endif %}
             </a>
         </li>
         <li>
-            <a href="/profiles/" class="flex items-center p-3 rounded-lg text-gray-300 hover:bg-gray-700 hover:text-white transition-colors duration-200">
+            <a href="{% url 'profiles:detail' %}" class="flex items-center p-3 rounded-lg text-gray-300 hover:bg-gray-700 hover:text-white transition-colors duration-200 {% if request.resolver_match.app_name == 'profiles' %}bg-gray-700 text-white{% endif %}">
                 <span class="mr-3">👤</span>
                 <span>Perfil</span>
             </a>
         </li>
     </ul>
-</nav>
 
-<!-- Mobile Menu Button -->
-<div class="p-4 border-t border-gray-700 md:hidden">
-    <button id="mobile-menu-button" class="w-full flex justify-center items-center p-2 rounded-md bg-gray-700 hover:bg-gray-600">
-        <span class="mr-2">☰</span>
-        <span>Menu</span>
-    </button>
-</div>
+    <!-- Mobile Menu Button -->
+    <div class="p-4 border-t border-gray-700 md:hidden">
+        <button id="mobile-menu-button" class="w-full flex justify-center items-center p-2 rounded-md bg-gray-700 hover:bg-gray-600">
+            <span class="mr-2">☰</span>
+            <span>Menu</span>
+        </button>
+    </div>
+</nav>

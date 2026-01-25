@@ -1,0 +1,48 @@
+{% if messages %}
+<div id="toast-container" class="fixed inset-0 flex items-start justify-end p-4 pointer-events-none z-50">
+    {% for message in messages %}
+    <div class="transform transition-all duration-300 ease-out opacity-0 translate-y-2 translate-x-full js-toast-message
+        {% if message.tags == 'success' %}bg-green-500 text-white
+        {% elif message.tags == 'error' %}bg-red-500 text-white
+        {% elif message.tags == 'warning' %}bg-yellow-500 text-gray-800
+        {% elif message.tags == 'info' %}bg-blue-500 text-white
+        {% else %}bg-gray-800 text-white
+        {% endif %}"
+         data-delay="5000">
+        <div class="px-4 py-3 text-sm font-medium rounded-lg shadow-lg max-w-sm">
+            {{ message }}
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Show all toast messages with animation
+    const toastMessages = document.querySelectorAll('.js-toast-message');
+    
+    toastMessages.forEach((toast, index) => {
+        // Small delay between each toast
+        setTimeout(() => {
+            // Remove the hidden classes to show the toast
+            toast.classList.remove('opacity-0', 'translate-y-2', 'translate-x-full');
+            toast.classList.add('opacity-100', 'translate-y-0', 'translate-x-0');
+            
+            // Auto dismiss after delay
+            const delay = parseInt(toast.getAttribute('data-delay'));
+            if (delay > 0) {
+                setTimeout(() => {
+                    toast.classList.remove('opacity-100', 'translate-y-0', 'translate-x-0');
+                    toast.classList.add('opacity-0', 'translate-y-2', 'translate-x-full');
+                    
+                    // Remove element after animation completes
+                    setTimeout(() => {
+                        toast.remove();
+                    }, 300);
+                }, delay);
+            }
+        }, index * 200); // Stagger the appearance of multiple messages
+    });
+});
+</script>
+{% endif %}

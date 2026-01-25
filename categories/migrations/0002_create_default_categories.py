@@ -1,15 +1,15 @@
-from django.db import migrations
 from django.contrib.auth import get_user_model
+from django.db import migrations
 
 
 def create_default_categories(apps, schema_editor):
     Category = apps.get_model('categories', 'Category')
     User = get_user_model()
-    
+
     # Get or create a default user for default categories
     # Since default categories don't belong to a specific user, we'll set user to None
     # But first we need to make sure the model allows it (which it does based on our model)
-    
+
     # Income categories
     income_categories = [
         {'name': 'Salário', 'color': '#4CAF50', 'type': 'INCOME'},
@@ -17,7 +17,7 @@ def create_default_categories(apps, schema_editor):
         {'name': 'Investimentos', 'color': '#CDDC39', 'type': 'INCOME'},
         {'name': 'Outros', 'color': '#FFEB3B', 'type': 'INCOME'},
     ]
-    
+
     # Expense categories
     expense_categories = [
         {'name': 'Alimentação', 'color': '#F44336', 'type': 'EXPENSE'},
@@ -28,7 +28,7 @@ def create_default_categories(apps, schema_editor):
         {'name': 'Educação', 'color': '#2196F3', 'type': 'EXPENSE'},
         {'name': 'Outros', 'color': '#03A9F4', 'type': 'EXPENSE'},
     ]
-    
+
     # Create income categories
     for cat_data in income_categories:
         Category.objects.get_or_create(
@@ -41,7 +41,7 @@ def create_default_categories(apps, schema_editor):
                 'user': None  # Default categories don't belong to a specific user
             }
         )
-    
+
     # Create expense categories
     for cat_data in expense_categories:
         Category.objects.get_or_create(
@@ -58,7 +58,7 @@ def create_default_categories(apps, schema_editor):
 
 def reverse_default_categories(apps, schema_editor):
     Category = apps.get_model('categories', 'Category')
-    
+
     # Delete all default categories
     Category.objects.filter(is_default=True).delete()
 

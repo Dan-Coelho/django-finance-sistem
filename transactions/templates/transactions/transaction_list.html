@@ -1,0 +1,339 @@
+{% extends 'base_dashboard.html' %}
+
+{% load humanize %}
+
+{% block title %}Transações{% endblock %}
+
+{% block dashboard_content %}
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+  <div class="flex justify-between items-center mb-6">
+    <h1 class="text-3xl font-bold text-gray-900">Transações</h1>
+    <div class="flex space-x-3">
+      <a href="{% url 'transactions:create-income' %}" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">
+        Nova Receita
+      </a>
+      <a href="{% url 'transactions:create-expense' %}" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">
+        Nova Despesa
+      </a>
+    </div>
+  </div>
+
+  <!-- Summary Cards -->
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+    <div class="bg-gray-800 overflow-hidden shadow rounded-lg">
+      <div class="px-4 py-5 sm:p-6">
+        <div class="flex items-center">
+          <div class="flex-shrink-0 bg-green-100 rounded-md p-3">
+            <svg class="h-6 w-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 11l3-3m0 0l3 3m-3-3v8m0-13a9 9 0 110 18 9 9 0 010-18z"></path>
+            </svg>
+          </div>
+          <div class="ml-5 w-0 flex-1">
+            <dl>
+              <dt class="text-sm font-medium text-gray-100 truncate">Receitas</dt>
+              <dd class="flex items-baseline">
+                <div class="text-2xl font-semibold text-gray-300">
+                  R$ {{ total_income|floatformat:2|intcomma }}
+                </div>
+              </dd>
+            </dl>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="bg-gray-800 overflow-hidden shadow rounded-lg">
+      <div class="px-4 py-5 sm:p-6">
+        <div class="flex items-center">
+          <div class="flex-shrink-0 bg-red-100 rounded-md p-3">
+            <svg class="h-6 w-6 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 13l-3 3m0 0l-3-3m3 3V8m0 13a9 9 0 110-18 9 9 0 010 18z"></path>
+            </svg>
+          </div>
+          <div class="ml-5 w-0 flex-1">
+            <dl>
+              <dt class="text-sm font-medium text-gray-100 truncate">Despesas</dt>
+              <dd class="flex items-baseline">
+                <div class="text-2xl font-semibold text-gray-300">
+                  R$ {{ total_expense|floatformat:2|intcomma }}
+                </div>
+              </dd>
+            </dl>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="bg-gray-800 overflow-hidden shadow rounded-lg">
+      <div class="px-4 py-5 sm:p-6">
+        <div class="flex items-center">
+          <div class="flex-shrink-0 bg-blue-100 rounded-md p-3">
+            <svg class="h-6 w-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+            </svg>
+          </div>
+          <div class="ml-5 w-0 flex-1">
+            <dl>
+              <dt class="text-sm font-medium text-gray-100 truncate">Saldo</dt>
+              <dd class="flex items-baseline">
+                <div class="text-2xl font-semibold text-gray-300">
+                  R$ {{ balance|floatformat:2|intcomma }}
+                </div>
+              </dd>
+            </dl>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Filters -->
+  <div class="mb-6 bg-white rounded-lg shadow">
+    <div class="border-b border-gray-200">
+      <nav class="flex -mb-px overflow-x-auto">
+        <button type="button" class="active-filter-tab whitespace-nowrap py-4 px-6 border-b-2 border-indigo-500 text-sm font-medium text-indigo-600" data-target="filter-panel">
+          Filtros
+        </button>
+      </nav>
+    </div>
+    <div id="filter-panel" class="p-4">
+      <form method="GET" class="space-y-4">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-4">
+          <div class="lg:col-span-2">
+            <label for="{{ filter_form.search.id_for_label }}" class="block text-sm font-medium text-gray-700">Buscar</label>
+            {{ filter_form.search }}
+          </div>
+          <div>
+            <label for="{{ filter_form.type.id_for_label }}" class="block text-sm font-medium text-gray-700">Tipo</label>
+            {{ filter_form.type }}
+          </div>
+          <div>
+            <label for="{{ filter_form.account.id_for_label }}" class="block text-sm font-medium text-gray-700">Conta</label>
+            {{ filter_form.account }}
+          </div>
+          <div>
+            <label for="{{ filter_form.category.id_for_label }}" class="block text-sm font-medium text-gray-700">Categoria</label>
+            {{ filter_form.category }}
+          </div>
+          <div>
+            <label for="{{ filter_form.date_from.id_for_label }}" class="block text-sm font-medium text-gray-700">Data Início</label>
+            {{ filter_form.date_from }}
+          </div>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div>
+            <label for="{{ filter_form.date_to.id_for_label }}" class="block text-sm font-medium text-gray-700">Data Fim</label>
+            {{ filter_form.date_to }}
+          </div>
+        </div>
+        <div class="flex space-x-3 pt-2">
+          <button type="submit" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+            Filtrar
+          </button>
+          <a href="{% url 'transactions:list' %}" class="inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md shadow-sm text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+            Limpar
+          </a>
+        </div>
+
+        <!-- Display active filters as chips -->
+        <div class="mt-4">
+          <h4 class="text-sm font-medium text-gray-700 mb-2">Filtros Ativos:</h4>
+          <div class="flex flex-wrap gap-2">
+            {% if request.GET.type %}
+              <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-indigo-100 text-indigo-800">
+                Tipo:
+                {% if request.GET.type == 'INCOME' %}Receita
+                {% elif request.GET.type == 'EXPENSE' %}Despesa
+                {% else %}{{ request.GET.type }}{% endif %}
+                <a href="{% url 'transactions:list' %}?{% for key, value in request.GET.items %}{% if key != 'type' %}{{ key }}={{ value }}{% if not forloop.last %}&{% endif %}{% endif %}{% endfor %}" class="ml-1 inline-flex items-center text-indigo-600 hover:text-indigo-800">
+                  ×
+                </a>
+              </span>
+            {% endif %}
+            {% if request.GET.account %}
+              {% for account in filter_form.account.queryset %}
+                {% if account.id|stringformat:"s" == request.GET.account %}
+                  <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-indigo-100 text-indigo-800">
+                    Conta: {{ account.name }}
+                    <a href="{% url 'transactions:list' %}?{% for key, value in request.GET.items %}{% if key != 'account' %}{{ key }}={{ value }}{% if not forloop.last %}&{% endif %}{% endif %}{% endfor %}" class="ml-1 inline-flex items-center text-indigo-600 hover:text-indigo-800">
+                      ×
+                    </a>
+                  </span>
+                {% endif %}
+              {% endfor %}
+            {% endif %}
+            {% if request.GET.category %}
+              {% for category in filter_form.category.queryset %}
+                {% if category.id|stringformat:"s" == request.GET.category %}
+                  <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-indigo-100 text-indigo-800">
+                    Categoria: {{ category.name }}
+                    <a href="{% url 'transactions:list' %}?{% for key, value in request.GET.items %}{% if key != 'category' %}{{ key }}={{ value }}{% if not forloop.last %}&{% endif %}{% endif %}{% endfor %}" class="ml-1 inline-flex items-center text-indigo-600 hover:text-indigo-800">
+                      ×
+                    </a>
+                  </span>
+                {% endif %}
+              {% endfor %}
+            {% endif %}
+            {% if request.GET.date_from %}
+              <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-indigo-100 text-indigo-800">
+                De: {{ request.GET.date_from }}
+                <a href="{% url 'transactions:list' %}?{% for key, value in request.GET.items %}{% if key != 'date_from' %}{{ key }}={{ value }}{% if not forloop.last %}&{% endif %}{% endif %}{% endfor %}" class="ml-1 inline-flex items-center text-indigo-600 hover:text-indigo-800">
+                  ×
+                </a>
+              </span>
+            {% endif %}
+            {% if request.GET.date_to %}
+              <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-indigo-100 text-indigo-800">
+                Até: {{ request.GET.date_to }}
+                <a href="{% url 'transactions:list' %}?{% for key, value in request.GET.items %}{% if key != 'date_to' %}{{ key }}={{ value }}{% if not forloop.last %}&{% endif %}{% endif %}{% endfor %}" class="ml-1 inline-flex items-center text-indigo-600 hover:text-indigo-800">
+                  ×
+                </a>
+              </span>
+            {% endif %}
+            {% if request.GET.search %}
+              <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-indigo-100 text-indigo-800">
+                Busca: {{ request.GET.search }}
+                <a href="{% url 'transactions:list' %}?{% for key, value in request.GET.items %}{% if key != 'search' %}{{ key }}={{ value }}{% if not forloop.last %}&{% endif %}{% endif %}{% endfor %}" class="ml-1 inline-flex items-center text-indigo-600 hover:text-indigo-800">
+                  ×
+                </a>
+              </span>
+            {% endif %}
+            {% if request.GET.type or request.GET.account or request.GET.category or request.GET.date_from or request.GET.date_to or request.GET.search %}
+              <a href="{% url 'transactions:list' %}" class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-800 hover:bg-red-200">
+                Limpar Todos
+              </a>
+            {% endif %}
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Transactions Table -->
+  <div class="bg-white shadow overflow-hidden sm:rounded-lg">
+    <table class="min-w-full divide-y divide-gray-200">
+      <thead class="bg-gray-50">
+        <tr>
+          <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Data</th>
+          <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Descrição</th>
+          <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Categoria</th>
+          <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Conta</th>
+          <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Tipo</th>
+          <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Valor</th>
+          <th scope="col" class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Ações</th>
+        </tr>
+      </thead>
+      <tbody class="bg-white divide-y divide-gray-200">
+        {% for transaction in transactions %}
+          <tr>
+            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ transaction.date|date:"d/m/Y" }}</td>
+            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{{ transaction.description }}</td>
+            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+              <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium" style="background-color: {{ transaction.category.color }}20; color: {{ transaction.category.color }};">
+                {{ transaction.category.name }}
+              </span>
+            </td>
+            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ transaction.account.name }}</td>
+            <td class="px-6 py-4 whitespace-nowrap">
+              {% if transaction.type == 'INCOME' %}
+                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                  Receita
+                </span>
+              {% else %}
+                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">
+                  Despesa
+                </span>
+              {% endif %}
+            </td>
+            <td class="px-6 py-4 whitespace-nowrap text-sm font-semibold {% if transaction.type == 'INCOME' %}text-green-600{% else %}text-red-600{% endif %}">
+              {% if transaction.type == 'INCOME' %}+{% else %}-{% endif %}R$ {{ transaction.amount|floatformat:2 }}
+            </td>
+            <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+              <a href="{% url 'transactions:edit' transaction.pk %}" class="text-indigo-600 hover:text-indigo-900 mr-3">Editar</a>
+              <a href="{% url 'transactions:delete' transaction.pk %}" class="text-red-600 hover:text-red-900">Excluir</a>
+            </td>
+          </tr>
+        {% empty %}
+          <tr>
+            <td colspan="7" class="px-6 py-4 text-center text-sm text-gray-500">
+              Nenhuma transação encontrada.
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Pagination -->
+  {% if is_paginated %}
+    <div class="mt-6 flex items-center justify-between">
+      <div class="flex-1 flex justify-between sm:hidden">
+        {% if page_obj.has_previous %}
+          <a href="?page={{ page_obj.previous_page_number }}{% for key,value in request.GET.items %}{% if key != 'page' %}&{{ key }}={{ value }}{% endif %}{% endfor %}"
+             class="relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50">
+            Anterior
+          </a>
+        {% endif %}
+        {% if page_obj.has_next %}
+          <a href="?page={{ page_obj.next_page_number }}{% for key,value in request.GET.items %}{% if key != 'page' %}&{{ key }}={{ value }}{% endif %}{% endfor %}"
+             class="ml-3 relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50">
+            Próxima
+          </a>
+        {% endif %}
+      </div>
+      <div class="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
+        <div>
+          <p class="text-sm text-gray-700">
+            Mostrando <span class="font-medium">{{ page_obj.start_index }}</span> a <span class="font-medium">{{ page_obj.end_index }}</span> de <span class="font-medium">{{ paginator.count }}</span> resultados
+          </p>
+        </div>
+        <div>
+          <nav class="relative z-0 inline-flex rounded-md shadow-sm -space-x-px" aria-label="Pagination">
+            {% if page_obj.has_previous %}
+              <a href="?page=1{% for key,value in request.GET.items %}{% if key != 'page' %}&{{ key }}={{ value }}{% endif %}{% endfor %}"
+                 class="relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50">
+                <span class="sr-only">Primeira</span>
+                &laquo;
+              </a>
+              <a href="?page={{ page_obj.previous_page_number }}{% for key,value in request.GET.items %}{% if key != 'page' %}&{{ key }}={{ value }}{% endif %}{% endfor %}"
+                 class="relative inline-flex items-center px-4 py-2 border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50">
+                {{ page_obj.previous_page_number }}
+              </a>
+            {% endif %}
+            
+            <a href="#" class="relative inline-flex items-center px-4 py-2 border border-gray-300 bg-indigo-50 text-sm font-medium text-indigo-600 hover:bg-gray-50 z-10">
+              {{ page_obj.number }}
+            </a>
+            
+            {% if page_obj.has_next %}
+              <a href="?page={{ page_obj.next_page_number }}{% for key,value in request.GET.items %}{% if key != 'page' %}&{{ key }}={{ value }}{% endif %}{% endfor %}"
+                 class="relative inline-flex items-center px-4 py-2 border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50">
+                {{ page_obj.next_page_number }}
+              </a>
+              <a href="?page={{ page_obj.paginator.num_pages }}{% for key,value in request.GET.items %}{% if key != 'page' %}&{{ key }}={{ value }}{% endif %}{% endfor %}"
+                 class="relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50">
+                <span class="sr-only">Última</span>
+                &raquo;
+              </a>
+            {% endif %}
+          </nav>
+        </div>
+      </div>
+    </div>
+  {% endif %}
+</div>
+
+<script>
+// Update URL without page parameter when filter changes
+document.addEventListener('DOMContentLoaded', function() {
+  const filterForm = document.querySelector('form[method="GET"]');
+  if (filterForm) {
+    filterForm.addEventListener('submit', function(e) {
+      // Remove page parameter from URL when submitting filter
+      const inputs = filterForm.querySelectorAll('input[name="page"], select[name="page"]');
+      inputs.forEach(input => input.remove());
+    });
+  }
+});
+</script>
+{% endblock %}

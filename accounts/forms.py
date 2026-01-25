@@ -1,6 +1,8 @@
 from django import forms
 from django.core.exceptions import ValidationError
+
 from .models import Account
+
 
 class AccountForm(forms.ModelForm):
     class Meta:
@@ -22,13 +24,13 @@ class AccountForm(forms.ModelForm):
                 'placeholder': '0.00'
             }),
         }
-    
+
     def clean_balance(self):
         balance = self.cleaned_data.get('balance')
         if balance is not None and balance < 0:
             raise ValidationError('O saldo não pode ser negativo.')
         return balance
-    
+
     def clean_name(self):
         name = self.cleaned_data.get('name')
         if not name or name.strip() == '':

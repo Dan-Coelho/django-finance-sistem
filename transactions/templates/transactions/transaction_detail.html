@@ -1,0 +1,196 @@
+{% extends 'base_dashboard.html' %}
+
+{% block title %}Detalhes da Transação{% endblock %}
+
+{% block dashboard_content %}
+<div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+  <div class="bg-white shadow overflow-hidden sm:rounded-lg">
+    <div class="px-4 py-5 sm:px-6 border-b border-gray-200">
+      <h3 class="text-lg leading-6 font-medium text-gray-900">
+        Detalhes da Transação
+      </h3>
+    </div>
+    <div class="px-4 py-5 sm:p-6">
+      <!-- Main transaction details -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+        <div class="bg-gray-50 p-4 rounded-lg">
+          <h4 class="text-sm font-medium text-gray-500">Descrição</h4>
+          <p class="mt-1 text-sm font-medium text-gray-900">{{ transaction.description }}</p>
+        </div>
+        <div class="bg-gray-50 p-4 rounded-lg">
+          <h4 class="text-sm font-medium text-gray-500">Data</h4>
+          <p class="mt-1 text-sm font-medium text-gray-900">{{ transaction.date|date:"d/m/Y" }}</p>
+        </div>
+        <div class="bg-gray-50 p-4 rounded-lg">
+          <h4 class="text-sm font-medium text-gray-500">Tipo</h4>
+          <p class="mt-1 text-sm font-medium text-gray-900">
+            {% if transaction.type == 'INCOME' %}
+              <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                Receita
+              </span>
+            {% else %}
+              <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">
+                Despesa
+              </span>
+            {% endif %}
+          </p>
+        </div>
+        <div class="bg-gray-50 p-4 rounded-lg">
+          <h4 class="text-sm font-medium text-gray-500">Valor</h4>
+          <p class="mt-1 text-lg font-bold {% if transaction.type == 'INCOME' %}text-green-600{% else %}text-red-600{% endif %}">
+            {% if transaction.type == 'INCOME' %}+{% else %}-{% endif %}R$ {{ transaction.amount|floatformat:2 }}
+          </p>
+        </div>
+        <div class="bg-gray-50 p-4 rounded-lg">
+          <h4 class="text-sm font-medium text-gray-500">Categoria</h4>
+          <p class="mt-1 text-sm text-gray-900">
+            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium" style="background-color: {{ transaction.category.color }}20; color: {{ transaction.category.color }};">
+              {{ transaction.category.name }}
+            </span>
+          </p>
+        </div>
+        <div class="bg-gray-50 p-4 rounded-lg">
+          <h4 class="text-sm font-medium text-gray-500">Conta</h4>
+          <p class="mt-1 text-sm text-gray-900">{{ transaction.account.name }}</p>
+        </div>
+      </div>
+
+      <!-- Additional information -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+        <div class="bg-white border border-gray-200 rounded-lg p-4">
+          <h4 class="text-sm font-medium text-gray-700 mb-3">Informações da Conta</h4>
+          <div class="space-y-2">
+            <div class="flex justify-between">
+              <span class="text-sm text-gray-500">Nome:</span>
+              <span class="text-sm font-medium">{{ transaction.account.name }}</span>
+            </div>
+            <div class="flex justify-between">
+              <span class="text-sm text-gray-500">Descrição:</span>
+              <span class="text-sm font-medium">{{ transaction.account.description|default:"-" }}</span>
+            </div>
+            <div class="flex justify-between">
+              <span class="text-sm text-gray-500">Saldo Atual:</span>
+              <span class="text-sm font-medium">R$ {{ transaction.account.balance|floatformat:2 }}</span>
+            </div>
+            <div class="flex justify-between">
+              <span class="text-sm text-gray-500">Status:</span>
+              <span class="text-sm font-medium">
+                {% if transaction.account.is_active %}
+                  <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">Ativa</span>
+                {% else %}
+                  <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">Inativa</span>
+                {% endif %}
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white border border-gray-200 rounded-lg p-4">
+          <h4 class="text-sm font-medium text-gray-700 mb-3">Informações da Categoria</h4>
+          <div class="space-y-2">
+            <div class="flex justify-between">
+              <span class="text-sm text-gray-500">Nome:</span>
+              <span class="text-sm font-medium">{{ transaction.category.name }}</span>
+            </div>
+            <div class="flex justify-between">
+              <span class="text-sm text-gray-500">Tipo:</span>
+              <span class="text-sm font-medium">
+                {% if transaction.category.type == 'INCOME' %}
+                  <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">Receita</span>
+                {% else %}
+                  <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">Despesa</span>
+                {% endif %}
+              </span>
+            </div>
+            <div class="flex justify-between">
+              <span class="text-sm text-gray-500">Cor:</span>
+              <span class="text-sm font-medium">
+                <span class="inline-block w-4 h-4 rounded-full mr-1" style="background-color: {{ transaction.category.color }};"></span>
+                {{ transaction.category.color }}
+              </span>
+            </div>
+            <div class="flex justify-between">
+              <span class="text-sm text-gray-500">Origem:</span>
+              <span class="text-sm font-medium">
+                {% if transaction.category.is_default %}
+                  <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800">Padrão</span>
+                {% else %}
+                  <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-purple-100 text-purple-800">Personalizada</span>
+                {% endif %}
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Related transactions -->
+      {% if related_transactions %}
+      <div class="mb-8">
+        <h4 class="text-sm font-medium text-gray-700 mb-3">Transações Recentes nesta Conta</h4>
+        <div class="overflow-x-auto">
+          <table class="min-w-full divide-y divide-gray-200">
+            <thead class="bg-gray-50">
+              <tr>
+                <th scope="col" class="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Data</th>
+                <th scope="col" class="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Descrição</th>
+                <th scope="col" class="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Tipo</th>
+                <th scope="col" class="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Valor</th>
+              </tr>
+            </thead>
+            <tbody class="bg-white divide-y divide-gray-200">
+              {% for rel_trans in related_transactions %}
+              <tr>
+                <td class="px-3 py-2 whitespace-nowrap text-sm text-gray-500">{{ rel_trans.date|date:"d/m/Y" }}</td>
+                <td class="px-3 py-2 whitespace-nowrap text-sm font-medium text-gray-900">{{ rel_trans.description }}</td>
+                <td class="px-3 py-2 whitespace-nowrap">
+                  {% if rel_trans.type == 'INCOME' %}
+                    <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                      Receita
+                    </span>
+                  {% else %}
+                    <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">
+                      Despesa
+                    </span>
+                  {% endif %}
+                </td>
+                <td class="px-3 py-2 whitespace-nowrap text-sm font-semibold {% if rel_trans.type == 'INCOME' %}text-green-600{% else %}text-red-600{% endif %}">
+                  {% if rel_trans.type == 'INCOME' %}+{% else %}-{% endif %}R$ {{ rel_trans.amount|floatformat:2 }}
+                </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+      {% endif %}
+
+      <!-- Timestamps -->
+      <div class="bg-gray-50 p-4 rounded-lg mb-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div>
+            <h4 class="text-sm font-medium text-gray-500">Criado em</h4>
+            <p class="mt-1 text-sm text-gray-900">{{ transaction.created_at|date:"d/m/Y H:i:s" }}</p>
+          </div>
+          <div>
+            <h4 class="text-sm font-medium text-gray-500">Atualizado em</h4>
+            <p class="mt-1 text-sm text-gray-900">{{ transaction.updated_at|date:"d/m/Y H:i:s" }}</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Action buttons -->
+      <div class="flex flex-col sm:flex-row sm:justify-end sm:space-x-3 space-y-3 sm:space-y-0 pt-4 border-t border-gray-200">
+        <a href="{% url 'transactions:list' %}" class="inline-flex justify-center items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md shadow-sm text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+          Voltar para Lista
+        </a>
+        <a href="{% url 'transactions:edit' transaction.pk %}" class="inline-flex justify-center items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+          Editar Transação
+        </a>
+        <a href="{% url 'transactions:delete' transaction.pk %}" class="inline-flex justify-center items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">
+          Excluir Transação
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,104 @@
+{% extends 'base_dashboard.html' %}
+
+{% load humanize %}
+
+{% block title %}Meu Perfil{% endblock %}
+
+{% block dashboard_content %}
+<div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+  <div class="bg-white shadow overflow-hidden sm:rounded-lg">
+    <!-- Profile header -->
+    <div class="px-4 py-5 sm:px-6 bg-gradient-to-r from-indigo-500 to-purple-600 text-white">
+      <div class="flex items-center">
+        <!-- Avatar placeholder -->
+        <div class="flex-shrink-0 h-20 w-20 rounded-full bg-white bg-opacity-20 flex items-center justify-center">
+          <span class="text-2xl font-bold">{{ profile.first_name|first|upper|default:profile.user.email|first|upper }}</span>
+        </div>
+        <div class="ml-4">
+          <h3 class="text-2xl font-bold">
+            {% if profile.first_name %}{{ profile.first_name }} {% endif %}{{ profile.last_name|default:'' }}
+          </h3>
+          <p class="text-indigo-100">{{ profile.user.email }}</p>
+        </div>
+      </div>
+    </div>
+    
+    <div class="px-4 py-5 sm:p-6">
+      <!-- Profile stats -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+        <div class="bg-indigo-50 p-4 rounded-lg border border-indigo-100">
+          <div class="text-sm font-medium text-indigo-700">Transações</div>
+          <div class="mt-1 text-3xl font-bold text-gray-900">{{ total_transactions|intcomma }}</div>
+        </div>
+        <div class="bg-indigo-50 p-4 rounded-lg border border-indigo-100">
+          <div class="text-sm font-medium text-indigo-700">Contas</div>
+          <div class="mt-1 text-3xl font-bold text-gray-900">{{ total_accounts|intcomma }}</div>
+        </div>
+        <div class="bg-indigo-50 p-4 rounded-lg border border-indigo-100">
+          <div class="text-sm font-medium text-indigo-700">Desde</div>
+          <div class="mt-1 text-3xl font-bold text-gray-900">{{ profile.user.date_joined|date:"Y" }}</div>
+        </div>
+      </div>
+      
+      <!-- Profile details -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div class="bg-gray-50 p-6 rounded-lg">
+          <h4 class="text-lg font-medium text-gray-900 mb-4">Informações Pessoais</h4>
+          
+          <div class="space-y-4">
+            <div>
+              <label class="block text-sm font-medium text-gray-700">Nome Completo</label>
+              <div class="mt-1 text-sm text-gray-900">
+                {% if profile.first_name or profile.last_name %}
+                  {{ profile.first_name }} {{ profile.last_name }}
+                {% else %}
+                  <span class="text-gray-500">Não informado</span>
+                {% endif %}
+              </div>
+            </div>
+            
+            <div>
+              <label class="block text-sm font-medium text-gray-700">Email</label>
+              <div class="mt-1 text-sm text-gray-900">{{ profile.user.email }}</div>
+            </div>
+            
+            <div>
+              <label class="block text-sm font-medium text-gray-700">Telefone</label>
+              <div class="mt-1 text-sm text-gray-900">
+                {% if profile.phone %}
+                  {{ profile.phone }}
+                {% else %}
+                  <span class="text-gray-500">Não informado</span>
+                {% endif %}
+              </div>
+            </div>
+            
+            <div>
+              <label class="block text-sm font-medium text-gray-700">Membro desde</label>
+              <div class="mt-1 text-sm text-gray-900">{{ profile.user.date_joined|date:"d/m/Y" }}</div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="bg-gray-50 p-6 rounded-lg">
+          <h4 class="text-lg font-medium text-gray-900 mb-4">Ações</h4>
+          
+          <div class="space-y-4">
+            <a href="{% url 'profiles:edit' %}" class="block w-full text-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+              Editar Perfil
+            </a>
+            
+            <a href="{% url 'users:change_email' %}" class="block w-full text-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md shadow-sm text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+              Alterar Email
+            </a>
+            
+            <a href="{% url 'users:change_password' %}" class="block w-full text-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md shadow-sm text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+              Alterar Senha
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

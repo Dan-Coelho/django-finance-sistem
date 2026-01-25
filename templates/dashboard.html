@@ -120,7 +120,7 @@
                             <td class="px-4 py-3 text-sm text-gray-300">{{ transaction.description|truncatechars:30 }}</td>
                             <td class="px-4 py-3 text-sm">
                                 <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium"
-                                      style="background-color: rgba({{ transaction.category.color }}, 0.2); color: {{ transaction.category.color }};">
+                                      style="background-color: {{ transaction.category.color }}20; color: {{ transaction.category.color }};">
                                     {{ transaction.category.name }}
                                 </span>
                             </td>
@@ -136,7 +136,10 @@
             {% else %}
             <div class="text-center py-8">
                 <p class="text-gray-400">Nenhuma transação registrada ainda</p>
-                <a href="{% url 'transactions:create' %}" class="mt-4 inline-block text-indigo-400 hover:text-indigo-300 text-sm">Adicionar primeira transação</a>
+                <div class="mt-4 space-x-4">
+                    <a href="{% url 'transactions:create-income' %}" class="inline-block text-indigo-400 hover:text-indigo-300 text-sm">Adicionar Receita</a>
+                    <a href="{% url 'transactions:create-expense' %}" class="inline-block text-indigo-400 hover:text-indigo-300 text-sm">Adicionar Despesa</a>
+                </div>
             </div>
             {% endif %}
         </div>
@@ -202,33 +205,10 @@
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
                 </svg>
                 <p class="text-gray-400 text-center">Nenhuma despesa registrada este mês</p>
-                <a href="{% url 'transactions:create' %}?type=expense" class="mt-2 text-indigo-400 hover:text-indigo-300 text-sm">Registrar despesa</a>
+                <a href="{% url 'transactions:create-expense' %}" class="mt-2 text-indigo-400 hover:text-indigo-300 text-sm">Registrar despesa</a>
             </div>
             {% endif %}
         </div>
     </div>
 </div>
-
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    const periodSelect = document.getElementById('period-select');
-    const customDatesDiv = document.getElementById('custom-dates');
-
-    // Show/hide custom date inputs based on selection
-    periodSelect.addEventListener('change', function() {
-        if (this.value === 'custom') {
-            customDatesDiv.classList.remove('hidden');
-        } else {
-            customDatesDiv.classList.add('hidden');
-        }
-    });
-
-    // Handle form submission with loading state
-    const periodForm = document.getElementById('period-form');
-    periodForm.addEventListener('submit', function(e) {
-        // Optional: Add loading state here if needed
-        // e.g., show a spinner or disable the button temporarily
-    });
-});
-</script>
 {% endblock %}

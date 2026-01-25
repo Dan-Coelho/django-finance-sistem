@@ -551,14 +551,14 @@
 ### Sprint 6: CRUD de Categorias (1 semana)
 
 #### 6.1 Listagem de Categorias
-- [ ] **6.1.1** Criar CategoryListView
+- [x] **6.1.1** Criar CategoryListView
   - ListView para Category model
   - Filtrar categorias do usuário + categorias default
   - Separar visualmente receitas e despesas
   - Template categories/category_list.html
   - Ordenar por tipo e nome
 
-- [ ] **6.1.2** Template de listagem
+- [x] **6.1.2** Template de listagem
   - Duas seções: Receitas e Despesas
   - Cards ou lista com: nome, cor (preview), tipo
   - Indicador de categoria padrão vs personalizada
@@ -566,27 +566,27 @@
   - Botão "Nova Categoria"
   - Responsivo
 
-- [ ] **6.1.3** Filtros e busca
+- [x] **6.1.3** Filtros e busca
   - Filtro por tipo (todas, receitas, despesas)
   - Busca por nome
   - Toggle mostrar/ocultar inativas
 
 #### 6.2 Criação de Categoria
-- [ ] **6.2.1** Criar CategoryCreateView
+- [x] **6.2.1** Criar CategoryCreateView
   - CreateView para Category model
   - Fields: name, type, color
   - Associar user automaticamente
   - is_default = False
   - Redirect para lista
 
-- [ ] **6.2.2** Criar CategoryForm
+- [x] **6.2.2** Criar CategoryForm
   - ModelForm em categories/forms.py
   - Fields: name, type, color
   - Choices para type (INCOME/EXPENSE)
   - Widget para color (color picker ou select)
   - Validação: nome único por tipo e usuário
 
-- [ ] **6.2.3** Template de criação
+- [x] **6.2.3** Template de criação
   - Formulário estilizado
   - Seletor visual de cores
   - Preview da categoria antes de salvar
@@ -594,50 +594,50 @@
   - Botões: Salvar, Cancelar
 
 #### 6.3 Edição de Categoria
-- [ ] **6.3.1** Criar CategoryUpdateView
+- [x] **6.3.1** Criar CategoryUpdateView
   - UpdateView para Category model
   - Verificar: category.user == request.user E is_default == False
   - Bloquear edição de categorias padrão
   - Fields: name, color, is_active
   - Type não editável
 
-- [ ] **6.3.2** Template de edição
+- [x] **6.3.2** Template de edição
   - Mesma estrutura do create
   - Campo type readonly mas visível
   - Preview atualizado em tempo real
   - Validação de permissões
 
-- [ ] **6.3.3** Validações
+- [x] **6.3.3** Validações
   - Apenas categorias personalizadas editáveis
   - Mensagem clara se tentar editar padrão
   - Verificar ownership
 
 #### 6.4 Exclusão de Categoria
-- [ ] **6.4.1** Criar CategoryDeleteView
+- [x] **6.4.1** Criar CategoryDeleteView
   - DeleteView para Category model
   - Verificar ownership e is_default == False
   - Verificar se não há transações usando
   - Bloquear exclusão se houver transações
 
-- [ ] **6.4.2** Modal de confirmação
+- [x] **6.4.2** Modal de confirmação
   - Avisar sobre transações se houver
   - Sugerir desativar ao invés de excluir
   - Mensagem sobre impacto
   - Botões: Confirmar, Cancelar
 
-- [ ] **6.4.3** Tratamento de erros
+- [x] **6.4.3** Tratamento de erros
   - Mensagem se categoria padrão
   - Mensagem se há transações
   - Redirect apropriado
 
 #### 6.5 URLs e Navegação
-- [ ] **6.5.1** Configurar URLs
+- [x] **6.5.1** Configurar URLs
   - /categories/ - lista
   - /categories/create/ - criar
   - /categories/<pk>/edit/ - editar
   - /categories/<pk>/delete/ - excluir
 
-- [ ] **6.5.2** Navegação
+- [x] **6.5.2** Navegação
   - Adicionar "Categorias" na sidebar
   - Links no dashboard se relevante
   - Breadcrumbs
@@ -645,14 +645,14 @@
 ### Sprint 7: CRUD de Transações (1-2 semanas)
 
 #### 7.1 Listagem de Transações
-- [ ] **7.1.1** Criar TransactionListView
+- [x] **7.1.1** Criar TransactionListView
   - ListView para Transaction model
   - Filtrar por account.user == request.user
   - Ordenar por data decrescente
   - select_related('account', 'category')
   - Paginação (20 por página)
 
-- [ ] **7.1.2** Template de listagem
+- [x] **7.1.2** Template de listagem
   - Tabela responsiva
   - Colunas: Data, Descrição, Categoria, Conta, Tipo, Valor
   - Badge colorido para tipo
@@ -661,45 +661,45 @@
   - Total da página/filtro
   - Responsivo: cards em mobile
 
-- [ ] **7.1.3** Botão de nova transação
+- [x] **7.1.3** Botão de nova transação
   - Botão flutuante ou no topo
   - Dropdown: Nova Receita / Nova Despesa
   - Design destacado com gradiente
 
 #### 7.2 Filtros de Transações
-- [ ] **7.2.1** Criar form de filtros
+- [x] **7.2.1** Criar form de filtros
   - Campo: período (data início e fim)
   - Campo: categorias (multiple choice)
   - Campo: contas (multiple choice)
   - Campo: tipo (receita/despesa/todas)
   - Botões: Filtrar, Limpar
 
-- [ ] **7.2.2** Implementar lógica de filtro
+- [x] **7.2.2** Implementar lógica de filtro
   - Query params na URL
   - Filtros combinados (AND)
   - Manter filtros ao paginar
   - Exibir filtros ativos
 
-- [ ] **7.2.3** UI de filtros
+- [x] **7.2.3** UI de filtros
   - Sidebar de filtros (desktop)
   - Drawer ou modal (mobile)
   - Chips mostrando filtros ativos
   - Contador de resultados
 
-- [ ] **7.2.4** Resumo filtrado
+- [x] **7.2.4** Resumo filtrado
   - Card com total de receitas filtradas
   - Card com total de despesas filtradas
   - Card com balanço
   - Comparativo com período anterior
 
 #### 7.3 Criação de Transação
-- [ ] **7.3.1** Criar TransactionCreateView
+- [x] **7.3.1** Criar TransactionCreateView
   - CreateView para Transaction model
   - Two views: CreateIncomeView e CreateExpenseView
   - Ou uma view com type pré-selecionado
   - Fields: amount, date, category, account, description
 
-- [ ] **7.3.2** Criar TransactionForm
+- [x] **7.3.2** Criar TransactionForm
   - ModelForm em transactions/forms.py
   - Fields: amount, date, category, account, description
   - Filtrar categories por type
@@ -708,7 +708,7 @@
   - Data padrão: hoje
   - Widgets customizados
 
-- [ ] **7.3.3** Template de criação
+- [x] **7.3.3** Template de criação
   - Formulário em duas colunas (desktop)
   - Input de valor destacado e grande
   - Date picker (HTML5 date input)
@@ -717,63 +717,63 @@
   - Preview do impacto no saldo
   - Botões: Salvar, Salvar e Novo, Cancelar
 
-- [ ] **7.3.4** Validações avançadas
+- [x] **7.3.4** Validações avançadas
   - Verificar category.type == transaction.type
   - Verificar account pertence ao user
   - Verificar saldo suficiente (warning, não bloqueio)
   - Mensagens de validação claras
 
 #### 7.4 Edição de Transação
-- [ ] **7.4.1** Criar TransactionUpdateView
+- [x] **7.4.1** Criar TransactionUpdateView
   - UpdateView para Transaction model
   - Verificar account.user == request.user
   - Todos os campos editáveis
   - Recalcular saldo da conta
 
-- [ ] **7.4.2** Template de edição
+- [x] **7.4.2** Template de edição
   - Mesma estrutura do create
   - Título diferenciado
   - Mostrar valor anterior do saldo
   - Mostrar novo valor do saldo (calculado)
   - Indicador de mudança no saldo
 
-- [ ] **7.4.3** Lógica de atualização de saldo
+- [x] **7.4.3** Lógica de atualização de saldo
   - No save do form: reverter transação antiga
   - Aplicar nova transação
   - Usar transaction.atomic()
   - Logging das mudanças
 
 #### 7.5 Exclusão de Transação
-- [ ] **7.5.1** Criar TransactionDeleteView
+- [x] **7.5.1** Criar TransactionDeleteView
   - DeleteView para Transaction model
   - Verificar ownership via account.user
   - Signal ajustará saldo automaticamente
 
-- [ ] **7.5.2** Modal de confirmação
+- [x] **7.5.2** Modal de confirmação
   - Mostrar detalhes da transação
   - Avisar sobre impacto no saldo
   - Mostrar novo saldo após exclusão
   - Botões: Confirmar (vermelho), Cancelar
 
-- [ ] **7.5.3** Feedback de sucesso
+- [x] **7.5.3** Feedback de sucesso
   - Mensagem confirmando exclusão
   - Mostrar novo saldo da conta
   - Redirect para lista
 
 #### 7.6 Detalhes de Transação (Opcional)
-- [ ] **7.6.1** Criar TransactionDetailView
+- [x] **7.6.1** Criar TransactionDetailView
   - DetailView para Transaction model
   - Exibir todos os campos
   - Informações da conta e categoria
   - Histórico de edições (se implementado)
 
-- [ ] **7.6.2** Template de detalhes
+- [x] **7.6.2** Template de detalhes
   - Layout de card grande
   - Badges e ícones
   - Botões: Editar, Excluir, Voltar
 
 #### 7.7 URLs e Navegação
-- [ ] **7.7.1** Configurar URLs
+- [x] **7.7.1** Configurar URLs
   - /transactions/ - lista
   - /transactions/income/create/ - nova receita
   - /transactions/expense/create/ - nova despesa
@@ -781,7 +781,7 @@
   - /transactions/<pk>/edit/ - editar
   - /transactions/<pk>/delete/ - excluir
 
-- [ ] **7.7.2** Navegação
+- [x] **7.7.2** Navegação
   - Item "Transações" na sidebar
   - Links no dashboard
   - Breadcrumbs em todas as páginas
@@ -789,12 +789,12 @@
 ### Sprint 8: Gestão de Perfil e Melhorias UX (1 semana)
 
 #### 8.1 Visualização de Perfil
-- [ ] **8.1.1** Criar ProfileDetailView
+- [x] **8.1.1** Criar ProfileDetailView
   - DetailView para Profile model
   - Buscar via request.user.profile
   - Template profiles/profile_detail.html
 
-- [ ] **8.1.2** Template de perfil
+- [x] **8.1.2** Template de perfil
   - Card com informações do usuário
   - Exibir: nome completo, email, telefone
   - Avatar (placeholder ou inicial do nome)
@@ -803,74 +803,74 @@
   - Design moderno com gradientes
 
 #### 8.2 Edição de Perfil
-- [ ] **8.2.1** Criar ProfileUpdateView
+- [x] **8.2.1** Criar ProfileUpdateView
   - UpdateView para Profile model
   - Fields: first_name, last_name, phone
   - Verificar profile.user == request.user
 
-- [ ] **8.2.2** Criar ProfileForm
+- [x] **8.2.2** Criar ProfileForm
   - ModelForm em profiles/forms.py
   - Fields: first_name, last_name, phone
   - Validação de telefone (formato brasileiro)
   - Todos os campos opcionais
 
-- [ ] **8.2.3** Template de edição
+- [x] **8.2.3** Template de edição
   - Formulário estilizado
   - Preview do nome completo
   - Validação client-side
   - Botões: Salvar, Cancelar
 
-- [ ] **8.2.4** Edição de email e senha
+- [x] **8.2.4** Edição de email e senha
   - Link "Alterar Email" (form separado)
   - Link "Alterar Senha" (form separado)
   - Validações de segurança
   - Confirmação por email (opcional)
 
 #### 8.3 Melhorias de UX
-- [ ] **8.3.1** Mensagens de feedback
+- [x] **8.3.1** Mensagens de feedback
   - Toast notifications com Tailwind
   - Auto-dismiss após 5s
   - Posicionamento top-right
   - Animações suaves
 
-- [ ] **8.3.2** Loading states
+- [x] **8.3.2** Loading states
   - Spinner em botões durante submit
   - Skeleton screens em listas
   - Progress bar em operações longas
 
-- [ ] **8.3.3** Empty states
+- [x] **8.3.3** Empty states
   - Mensagem quando não há transações
   - Mensagem quando não há contas
   - Mensagem quando não há categorias personalizadas
   - CTAs para primeira ação
   - Ilustrações ou ícones grandes
 
-- [ ] **8.3.4** Confirmações visuais
+- [x] **8.3.4** Confirmações visuais
   - Animação de sucesso em criações
   - Highlight em items recém-criados
   - Transições suaves entre páginas
 
 #### 8.4 Breadcrumbs e Navegação
-- [ ] **8.4.1** Implementar breadcrumbs
+- [x] **8.4.1** Implementar breadcrumbs
   - Componente reutilizável
   - Em todas as páginas internas
   - Links funcionais
   - Página atual não clicável
 
-- [ ] **8.4.2** Melhorar sidebar
+- [x] **8.4.2** Melhorar sidebar
   - Indicador de página ativa
   - Contador de items (ex: "5 contas")
   - Collapse/expand em mobile
   - Smooth transitions
 
 #### 8.5 URLs e Navegação
-- [ ] **8.5.1** Configurar URLs
+- [x] **8.5.1** Configurar URLs
   - /profile/ - visualizar
   - /profile/edit/ - editar
   - /profile/change-email/ - alterar email
   - /profile/change-password/ - alterar senha
 
-- [ ] **8.5.2** Navegação
+- [x] **8.5.2** Navegação
   - Item "Perfil" na sidebar
   - Dropdown de usuário no topbar
   - Links rápidos

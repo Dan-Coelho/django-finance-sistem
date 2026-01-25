@@ -31,7 +31,7 @@ extend-ignore = [
 ]
 
 [tool.ruff.lint.isort]
-profile = "django"
+# profile = "django"
 
 [tool.ruff.format]
 quote-style = "single"
@@ -43,4 +43,4 @@ indent-style = "space"
 skip-magic-trailing-comma = false
 
 # Like Black, automatically detect the appropriate line ending.
-line-ending-style = "auto"
+# line-ending-style = "auto"

@@ -1,0 +1,91 @@
+{% extends 'base_dashboard.html' %}
+
+{% block title %}{% if object %}Editar Categoria{% else %}Nova Categoria{% endif %}{% endblock %}
+
+{% block content %}
+<div class="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+  <div class="bg-white shadow overflow-hidden sm:rounded-lg">
+    <div class="px-4 py-5 sm:px-6 border-b border-gray-200">
+      <h3 class="text-lg leading-6 font-medium text-gray-900">
+        {% if object %}
+          Editar Categoria
+        {% else %}
+          Nova Categoria
+        {% endif %}
+      </h3>
+    </div>
+    <div class="px-4 py-5 sm:p-6">
+      <form method="post" class="space-y-6">
+        {% csrf_token %}
+        
+        <div class="grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
+          <div class="sm:col-span-4">
+            <label for="{{ form.name.id_for_label }}" class="block text-sm font-medium text-gray-700">
+              Nome
+            </label>
+            {{ form.name }}
+            {% if form.name.errors %}
+              <p class="mt-2 text-sm text-red-600">{{ form.name.errors }}</p>
+            {% endif %}
+          </div>
+
+          <div class="sm:col-span-2">
+            <label for="{{ form.type.id_for_label }}" class="block text-sm font-medium text-gray-700">
+              Tipo
+            </label>
+            {{ form.type }}
+            {% if form.type.errors %}
+              <p class="mt-2 text-sm text-red-600">{{ form.type.errors }}</p>
+            {% endif %}
+          </div>
+
+          <div class="sm:col-span-2">
+            <label for="{{ form.color.id_for_label }}" class="block text-sm font-medium text-gray-700">
+              Cor
+            </label>
+            <div class="flex items-center mt-1">
+              {{ form.color }}
+              <span class="ml-3 inline-block h-6 w-6 rounded-full" style="background-color: {{ form.color.value|default:'#000000' }};" id="color-preview"></span>
+            </div>
+            {% if form.color.errors %}
+              <p class="mt-2 text-sm text-red-600">{{ form.color.errors }}</p>
+            {% endif %}
+          </div>
+        </div>
+
+        <div class="flex justify-end space-x-3">
+          <a href="{% url 'categories:list' %}" class="inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md shadow-sm text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+            Cancelar
+          </a>
+          <button type="submit" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+            {% if object %}
+              Atualizar
+            {% else %}
+              Criar
+            {% endif %}
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const colorInput = document.querySelector('#id_color');
+  const colorPreview = document.querySelector('#color-preview');
+  
+  if (colorInput && colorPreview) {
+    // Update preview when color changes
+    colorInput.addEventListener('change', function() {
+      colorPreview.style.backgroundColor = this.value;
+    });
+    
+    // Also update on input (for live updates)
+    colorInput.addEventListener('input', function() {
+      colorPreview.style.backgroundColor = this.value;
+    });
+  }
+});
+</script>
+{% endblock %}

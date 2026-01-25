@@ -1,20 +1,21 @@
-from django.shortcuts import render, redirect
-from django.contrib.auth import login, logout
+from datetime import date, datetime, timedelta
+from datetime import timezone as dt_timezone
+from decimal import Decimal
+
 from django.contrib import messages
-from django.views.generic import CreateView
-from django.contrib.auth.views import LoginView, LogoutView
-from django.urls import reverse_lazy
-from django.contrib.auth import get_user_model
+from django.contrib.auth import get_user_model, login
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.views import LoginView, LogoutView
 from django.db.models import Sum
+from django.shortcuts import redirect, render
+from django.urls import reverse_lazy
 from django.utils import timezone
-from datetime import datetime, date
-from datetime import timedelta
+from django.views.generic import CreateView
+
 from accounts.models import Account
 from transactions.models import Transaction
-from decimal import Decimal
-from .forms import SignUpForm, LoginForm
 
+from .forms import LoginForm, SignUpForm
 
 User = get_user_model()
 
@@ -133,13 +134,13 @@ def dashboard(request):
 
     # Ensure end_date is a datetime object with time set to end of day
     if isinstance(end_date, date):
-        end_date = datetime.combine(end_date, datetime.max.time()).replace(tzinfo=timezone.utc)
+        end_date = datetime.combine(end_date, datetime.max.time()).replace(tzinfo=dt_timezone.utc)
     else:
         end_date = end_date.replace(hour=23, minute=59, second=59, microsecond=999999)
 
     # Ensure start_date is a datetime object with time set to start of day
     if isinstance(start_date, date):
-        start_date = datetime.combine(start_date, datetime.min.time()).replace(tzinfo=timezone.utc)
+        start_date = datetime.combine(start_date, datetime.min.time()).replace(tzinfo=dt_timezone.utc)
     else:
         start_date = start_date.replace(hour=0, minute=0, second=0, microsecond=0)
 
@@ -206,6 +207,12 @@ def dashboard(request):
 
         chart_colors.append(rgba_color)
 
+    # Calculate counters for sidebar
+    total_transactions = Transaction.objects.filter(account__user=request.user).count()
+    total_accounts = Account.objects.filter(user=request.user).count()
+    # Count user's custom categories (excluding defaults)
+    total_categories = request.user.categories.filter(is_default=False).count() + 5  # Add default categories
+
     context = {
         'total_balance': total_balance,
         'monthly_income': period_income,
@@ -219,6 +226,12 @@ def dashboard(request):
         'selected_period': period,
         'start_date': start_date_str or start_date.strftime('%Y-%m-%d') if start_date and hasattr(start_date, 'strftime') else '',
         'end_date': end_date_str or end_date.strftime('%Y-%m-%d') if end_date and hasattr(end_date, 'strftime') else '',
+        'breadcrumb_items': [
+            {'title': 'Dashboard', 'active': True}
+        ],
+        'total_transactions': total_transactions,
+        'total_accounts': total_accounts,
+        'total_categories': total_categories,
     }
 
     return render(request, 'dashboard.html', context)
