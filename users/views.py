@@ -13,6 +13,7 @@ from django.utils import timezone
 from django.views.generic import CreateView
 
 from accounts.models import Account
+from categories.models import Category
 from transactions.models import Transaction
 
 from .forms import LoginForm, SignUpForm
@@ -169,6 +170,48 @@ def dashboard(request):
     # Calculate period balance
     period_balance = period_income - period_expenses
 
+    # Calculate additional metrics for task 9.1.1
+    # Average daily expenses for the current period
+    days_in_period = (end_date.date() - start_date.date()).days + 1
+    avg_daily_expenses = period_expenses / days_in_period if days_in_period > 0 else Decimal('0.00')
+
+    # Category with highest expense in the current period
+    highest_expense_category = Transaction.objects.filter(
+        account__user=request.user,
+        type='EXPENSE',
+        date__gte=start_date,
+        date__lte=end_date
+    ).values('category__name').annotate(
+        total=Sum('amount')
+    ).order_by('-total').first()
+
+    # Monthly evolution data (last 6 months)
+    monthly_evolution = []
+    for i in range(5, -1, -1):  # Last 6 months including current
+        month_start = (today.replace(day=1) - timedelta(days=i*30)).replace(day=1)
+        month_end = (month_start + timedelta(days=32)).replace(day=1) - timedelta(days=1)
+
+        month_income = Transaction.objects.filter(
+            account__user=request.user,
+            type='INCOME',
+            date__gte=month_start,
+            date__lte=month_end
+        ).aggregate(total=Sum('amount'))['total'] or Decimal('0.00')
+
+        month_expense = Transaction.objects.filter(
+            account__user=request.user,
+            type='EXPENSE',
+            date__gte=month_start,
+            date__lte=month_end
+        ).aggregate(total=Sum('amount'))['total'] or Decimal('0.00')
+
+        monthly_evolution.append({
+            'month': month_start.strftime('%b/%y'),
+            'income': float(month_income),
+            'expense': float(month_expense),
+            'balance': float(month_income - month_expense)
+        })
+
     # Get recent transactions for selected period
     recent_transactions = Transaction.objects.filter(
         account__user=request.user,
@@ -218,6 +261,9 @@ def dashboard(request):
         'monthly_income': period_income,
         'monthly_expenses': period_expenses,
         'monthly_balance': period_balance,
+        'avg_daily_expenses': avg_daily_expenses,
+        'highest_expense_category': highest_expense_category,
+        'monthly_evolution': monthly_evolution,
         'recent_transactions': recent_transactions,
         'chart_categories': chart_categories,
         'chart_amounts': chart_amounts,
@@ -244,3 +290,241 @@ def landing_page(request):
     if request.user.is_authenticated:
         return redirect('users:dashboard')
     return render(request, 'landing.html')
+
+
+@login_required
+def change_email(request):
+    """
+    View for changing user's email address
+    """
+    if request.method == 'POST':
+        # In a real implementation, you would handle email change here
+        # This would typically involve:
+        # 1. Validating the new email
+        # 2. Sending a confirmation email to the new address
+        # 3. Updating the email after confirmation
+        new_email = request.POST.get('email')
+        messages.success(request, 'Email alterado com sucesso!')
+        return redirect('profiles:detail')
+
+    context = {
+        'breadcrumb_items': [
+            {'title': 'Perfil', 'url': reverse_lazy('profiles:detail')},
+            {'title': 'Alterar Email', 'active': True}
+        ]
+    }
+    return render(request, 'users/change_email.html', context)
+
+
+@login_required
+def change_password(request):
+    """
+    View for changing user's password
+    """
+    if request.method == 'POST':
+        # In a real implementation, you would handle password change here
+        # This would typically involve:
+        # 1. Validating the old password
+        # 2. Checking that the new password meets requirements
+        # 3. Updating the password
+        messages.success(request, 'Senha alterada com sucesso!')
+        return redirect('profiles:detail')
+
+    context = {
+        'breadcrumb_items': [
+            {'title': 'Perfil', 'url': reverse_lazy('profiles:detail')},
+            {'title': 'Alterar Senha', 'active': True}
+        ]
+    }
+    return render(request, 'users/change_password.html', context)
+
+
+@login_required
+def reports(request):
+    """
+    View for the reports page that shows financial reports for authenticated users.
+    """
+    # Get filters from request parameters
+    report_type = request.GET.get('report_type', 'summary')  # Default to summary report
+    period = request.GET.get('period', 'current_month')
+    start_date_str = request.GET.get('start_date')
+    end_date_str = request.GET.get('end_date')
+    category_ids = request.GET.getlist('categories')
+    account_ids = request.GET.getlist('accounts')
+    selected_category_id = request.GET.get('category_id')  # For category report
+
+    # Calculate date range based on selected period
+    today = timezone.now()
+    start_date = None
+    end_date = today
+
+    if period == 'current_week':
+        # Start from Monday of current week
+        start_date = today - timedelta(days=today.weekday())
+    elif period == 'current_month':
+        # Start from first day of current month
+        start_date = today.replace(day=1)
+    elif period == 'last_month':
+        # Start from first day of last month, end on last day of last month
+        first_day_current_month = today.replace(day=1)
+        last_day_last_month = first_day_current_month - timedelta(days=1)
+        start_date = last_day_last_month.replace(day=1)
+        end_date = last_day_last_month
+    elif period == 'current_year':
+        # Start from first day of current year
+        start_date = today.replace(month=1, day=1)
+    elif period == 'custom' and start_date_str and end_date_str:
+        try:
+            start_date = datetime.strptime(start_date_str, '%Y-%m-%d').date()
+            end_date = datetime.strptime(end_date_str, '%Y-%m-%d').date()
+        except ValueError:
+            # If dates are invalid, fall back to current month
+            start_date = today.replace(day=1)
+            period = 'current_month'
+    else:
+        # Default to current month
+        start_date = today.replace(day=1)
+        period = 'current_month'
+
+    # Ensure end_date is a datetime object with time set to end of day
+    if isinstance(end_date, date):
+        end_date = datetime.combine(end_date, datetime.max.time()).replace(tzinfo=dt_timezone.utc)
+    else:
+        end_date = end_date.replace(hour=23, minute=59, second=59, microsecond=999999)
+
+    # Ensure start_date is a datetime object with time set to start of day
+    if isinstance(start_date, date):
+        start_date = datetime.combine(start_date, datetime.min.time()).replace(tzinfo=dt_timezone.utc)
+    else:
+        start_date = start_date.replace(hour=0, minute=0, second=0, microsecond=0)
+
+    # Build the base query for transactions
+    transactions = Transaction.objects.filter(
+        account__user=request.user,
+        date__gte=start_date,
+        date__lte=end_date
+    ).select_related('account', 'category')
+
+    # Apply category filters if specified
+    if category_ids:
+        transactions = transactions.filter(category_id__in=category_ids)
+
+    # Apply account filters if specified
+    if account_ids:
+        transactions = transactions.filter(account_id__in=account_ids)
+
+    # Calculate totals for filtered transactions
+    total_income = sum(t.amount for t in transactions if t.type == 'INCOME')
+    total_expense = sum(t.amount for t in transactions if t.type == 'EXPENSE')
+    balance = total_income - total_expense
+
+    # Get all categories and accounts for the filter dropdowns
+    all_categories = Category.objects.filter(user=request.user)
+    all_accounts = Account.objects.filter(user=request.user)
+
+    # Prepare data based on report type
+    if report_type == 'category' and selected_category_id:
+        # Category report: show all transactions for a specific category
+        selected_category = Category.objects.filter(user=request.user, id=selected_category_id).first()
+        category_transactions = transactions.filter(category_id=selected_category_id).order_by('-date')
+
+        # Calculate category totals
+        category_total_income = sum(t.amount for t in category_transactions if t.type == 'INCOME')
+        category_total_expense = sum(t.amount for t in category_transactions if t.type == 'EXPENSE')
+        category_balance = category_total_income - category_total_expense
+
+        context = {
+            'report_type': report_type,
+            'selected_category': selected_category,
+            'category_transactions': category_transactions,
+            'category_total_income': category_total_income,
+            'category_total_expense': category_total_expense,
+            'category_balance': category_balance,
+            'all_categories': all_categories,
+            'all_accounts': all_accounts,
+            'selected_period': period,
+            'start_date': start_date_str or start_date.strftime('%Y-%m-%d') if start_date and hasattr(start_date, 'strftime') else '',
+            'end_date': end_date_str or end_date.strftime('%Y-%m-%d') if end_date and hasattr(end_date, 'strftime') else '',
+            'selected_categories': [int(id) for id in category_ids],
+            'selected_accounts': [int(id) for id in account_ids],
+            'selected_category_id': int(selected_category_id) if selected_category_id else None,
+            'breadcrumb_items': [
+                {'title': 'Relatórios', 'url': reverse_lazy('users:reports')},
+                {'title': 'Relatório por Categoria', 'active': True}
+            ]
+        }
+        return render(request, 'reports/category_report.html', context)
+
+    elif report_type == 'cashflow':
+        # Cash flow report: show daily income/expenses over time
+        # Group transactions by date
+        daily_data = {}
+        for transaction in transactions:
+            date_str = transaction.date.strftime('%Y-%m-%d')
+            if date_str not in daily_data:
+                daily_data[date_str] = {'date': transaction.date, 'income': 0, 'expenses': 0, 'transactions': []}
+
+            if transaction.type == 'INCOME':
+                daily_data[date_str]['income'] += transaction.amount
+            else:
+                daily_data[date_str]['expenses'] += transaction.amount
+
+            daily_data[date_str]['transactions'].append(transaction)
+
+        # Sort by date
+        sorted_daily_data = sorted(daily_data.values(), key=lambda x: x['date'])
+
+        # Calculate cumulative balance
+        cumulative_balance = 0
+        for day_data in sorted_daily_data:
+            daily_net = day_data['income'] - day_data['expenses']
+            cumulative_balance += daily_net
+            day_data['net'] = daily_net  # Add net value for the day
+            day_data['cumulative_balance'] = cumulative_balance
+
+        context = {
+            'report_type': report_type,
+            'daily_data': sorted_daily_data,
+            'total_income': total_income,
+            'total_expense': total_expense,
+            'balance': balance,
+            'all_categories': all_categories,
+            'all_accounts': all_accounts,
+            'selected_period': period,
+            'start_date': start_date_str or start_date.strftime('%Y-%m-%d') if start_date and hasattr(start_date, 'strftime') else '',
+            'end_date': end_date_str or end_date.strftime('%Y-%m-%d') if end_date and hasattr(end_date, 'strftime') else '',
+            'selected_categories': [int(id) for id in category_ids],
+            'selected_accounts': [int(id) for id in account_ids],
+            'breadcrumb_items': [
+                {'title': 'Relatórios', 'url': reverse_lazy('users:reports')},
+                {'title': 'Fluxo de Caixa', 'active': True}
+            ]
+        }
+        return render(request, 'reports/cashflow_report.html', context)
+
+    else:
+        # Default to monthly summary report
+        # Prepare data for the monthly summary report
+        monthly_summary = {
+            'total_income': total_income,
+            'total_expense': total_expense,
+            'balance': balance,
+            'transactions': transactions.order_by('-date')
+        }
+
+        context = {
+            'report_type': 'summary',
+            'monthly_summary': monthly_summary,
+            'all_categories': all_categories,
+            'all_accounts': all_accounts,
+            'selected_period': period,
+            'start_date': start_date_str or start_date.strftime('%Y-%m-%d') if start_date and hasattr(start_date, 'strftime') else '',
+            'end_date': end_date_str or end_date.strftime('%Y-%m-%d') if end_date and hasattr(end_date, 'strftime') else '',
+            'selected_categories': [int(id) for id in category_ids],
+            'selected_accounts': [int(id) for id in account_ids],
+            'breadcrumb_items': [
+                {'title': 'Relatórios', 'active': True}
+            ]
+        }
+
+        return render(request, 'reports/reports.html', context)

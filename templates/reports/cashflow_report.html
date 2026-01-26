@@ -1,0 +1,309 @@
+{% extends 'base_dashboard.html' %}
+
+{% load humanize %}
+
+{% block dashboard_title %}Relatório de Fluxo de Caixa{% endblock %}
+{% block page_header %}Relatório de Fluxo de Caixa{% endblock %}
+
+{% block dashboard_content %}
+<div class="max-w-7xl mx-auto">
+    <!-- Filters Section -->
+    <div class="mb-8 bg-gray-800 rounded-xl p-6 shadow-lg">
+        <form method="GET" id="report-filters">
+            <input type="hidden" name="report_type" value="cashflow">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                <div>
+                    <label class="block text-sm font-medium text-gray-300 mb-1">Período</label>
+                    <select name="period" id="period-select" class="w-full bg-gray-700 text-white rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                        <option value="current_month" {% if selected_period == 'current_month' %}selected{% endif %}>Este mês</option>
+                        <option value="current_week" {% if selected_period == 'current_week' %}selected{% endif %}>Esta semana</option>
+                        <option value="last_month" {% if selected_period == 'last_month' %}selected{% endif %}>Mês passado</option>
+                        <option value="current_year" {% if selected_period == 'current_year' %}selected{% endif %}>Este ano</option>
+                        <option value="custom" {% if selected_period == 'custom' %}selected{% endif %}>Personalizado</option>
+                    </select>
+                </div>
+
+                <div id="custom-dates" class="grid grid-cols-2 gap-2 {% if selected_period != 'custom' %}hidden{% endif %}">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-300 mb-1">Data Início</label>
+                        <input type="date" name="start_date" value="{{ start_date }}" class="w-full bg-gray-700 text-white rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-300 mb-1">Data Fim</label>
+                        <input type="date" name="end_date" value="{{ end_date }}" class="w-full bg-gray-700 text-white rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-medium text-gray-300 mb-1">Categorias</label>
+                    <select name="categories" multiple class="w-full bg-gray-700 text-white rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500 h-32">
+                        {% for category in all_categories %}
+                        <option value="{{ category.id }}" {% if category.id in selected_categories %}selected{% endif %}>
+                            {{ category.name }}
+                        </option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-medium text-gray-300 mb-1">Contas</label>
+                    <select name="accounts" multiple class="w-full bg-gray-700 text-white rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500 h-32">
+                        {% for account in all_accounts %}
+                        <option value="{{ account.id }}" {% if account.id in selected_accounts %}selected{% endif %}>
+                            {{ account.name }}
+                        </option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+
+            <div class="mt-4 flex justify-end">
+                <button type="submit" class="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-lg transition-colors duration-200">
+                    Aplicar Filtros
+                </button>
+            </div>
+        </form>
+    </div>
+
+    <!-- Cash Flow Summary Cards -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+        <!-- Total Income Card -->
+        <div class="bg-gray-800 rounded-xl p-6 shadow-lg">
+            <div class="flex items-center">
+                <div class="p-3 rounded-lg bg-green-900/30">
+                    <svg class="w-6 h-6 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 11l3-3m0 0l3 3m-3-3v8m0-13a9 9 0 110 18 9 9 0 010-18z"></path>
+                    </svg>
+                </div>
+                <div class="ml-4">
+                    <h3 class="text-sm font-medium text-gray-400">Receitas Totais</h3>
+                    <p class="text-2xl font-semibold text-white">R$ {{ total_income|floatformat:2|intcomma }}</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Total Expenses Card -->
+        <div class="bg-gray-800 rounded-xl p-6 shadow-lg">
+            <div class="flex items-center">
+                <div class="p-3 rounded-lg bg-red-900/30">
+                    <svg class="w-6 h-6 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 13l-3-3m0 0l-3 3m3-3v8m0-13a9 9 0 110 18 9 9 0 010-18z"></path>
+                    </svg>
+                </div>
+                <div class="ml-4">
+                    <h3 class="text-sm font-medium text-gray-400">Despesas Totais</h3>
+                    <p class="text-2xl font-semibold text-white">R$ {{ total_expense|floatformat:2|intcomma }}</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Net Balance Card -->
+        <div class="bg-gray-800 rounded-xl p-6 shadow-lg">
+            <div class="flex items-center">
+                <div class="p-3 rounded-lg {% if balance >= 0 %}bg-blue-900/30{% else %}bg-red-900/30{% endif %}">
+                    <svg class="w-6 h-6 {% if balance >= 0 %}text-blue-400{% else %}text-red-400{% endif %}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+                    </svg>
+                </div>
+                <div class="ml-4">
+                    <h3 class="text-sm font-medium text-gray-400">Balanço Líquido</h3>
+                    <p class="text-2xl font-semibold {% if balance >= 0 %}text-white{% else %}text-red-400{% endif %}">R$ {{ balance|floatformat:2|intcomma }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cash Flow Chart -->
+    <div class="bg-gray-800 rounded-xl p-6 shadow-lg mb-8">
+        <h2 class="text-xl font-bold text-white mb-6">Fluxo de Caixa Diário</h2>
+        <div class="h-80">
+            <canvas id="cashFlowChart"></canvas>
+        </div>
+    </div>
+
+    <!-- Daily Cash Flow Table -->
+    <div class="bg-gray-800 rounded-xl p-6 shadow-lg">
+        <div class="flex items-center justify-between mb-6">
+            <h2 class="text-xl font-bold text-white">Detalhes Diários</h2>
+            <div class="text-sm text-gray-400">
+                Exibindo {{ daily_data|length }} dias
+            </div>
+        </div>
+
+        {% if daily_data %}
+        <div class="overflow-x-auto">
+            <table class="min-w-full divide-y divide-gray-700">
+                <thead>
+                    <tr>
+                        <th class="px-4 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">Data</th>
+                        <th class="px-4 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">Receitas</th>
+                        <th class="px-4 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">Despesas</th>
+                        <th class="px-4 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">Líquido</th>
+                        <th class="px-4 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">Saldo Acumulado</th>
+                        <th class="px-4 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">Transações</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-gray-700">
+                    {% for day_data in daily_data %}
+                    <tr>
+                        <td class="px-4 py-3 whitespace-nowrap text-sm text-gray-300">{{ day_data.date|date:"d/m/Y" }}</td>
+                        <td class="px-4 py-3 text-sm text-green-400">R$ {{ day_data.income|floatformat:2|intcomma }}</td>
+                        <td class="px-4 py-3 text-sm text-red-400">R$ {{ day_data.expenses|floatformat:2|intcomma }}</td>
+                        <td class="px-4 py-3 text-sm font-medium {% if day_data.net >= 0 %}text-green-400{% else %}text-red-400{% endif %}">
+                            R$ {{ day_data.net|floatformat:2|intcomma }}
+                        </td>
+                        <td class="px-4 py-3 text-sm font-semibold text-white">R$ {{ day_data.cumulative_balance|floatformat:2|intcomma }}</td>
+                        <td class="px-4 py-3 text-sm text-gray-300">{{ day_data.transactions|length }} transações</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% else %}
+        <div class="text-center py-8">
+            <svg class="mx-auto h-12 w-12 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+            </svg>
+            <h3 class="mt-2 text-sm font-medium text-gray-400">Nenhum dado encontrado</h3>
+            <p class="mt-1 text-sm text-gray-500">Tente ajustar os filtros para ver mais resultados.</p>
+        </div>
+        {% endif %}
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const periodSelect = document.getElementById('period-select');
+    const customDatesDiv = document.getElementById('custom-dates');
+
+    periodSelect.addEventListener('change', function() {
+        if (this.value === 'custom') {
+            customDatesDiv.classList.remove('hidden');
+        } else {
+            customDatesDiv.classList.add('hidden');
+        }
+    });
+
+    // Cash Flow Chart
+    const cashFlowCtx = document.getElementById('cashFlowChart').getContext('2d');
+
+    // Prepare data for chart
+    const dailyData = {{ daily_data|safe }};
+    const dates = dailyData.map(item => item.date);
+    const incomes = dailyData.map(item => item.income);
+    const expenses = dailyData.map(item => item.expenses);
+    const netValues = dailyData.map(item => item.income - item.expenses);
+    const cumulativeBalances = dailyData.map(item => item.cumulative_balance);
+
+    // Create the cash flow chart
+    const cashFlowChart = new Chart(cashFlowCtx, {
+        type: 'line',
+        data: {
+            labels: dates,
+            datasets: [
+                {
+                    label: 'Receitas',
+                    data: incomes,
+                    borderColor: 'rgba(72, 187, 120, 1)',
+                    backgroundColor: 'rgba(72, 187, 120, 0.1)',
+                    borderWidth: 2,
+                    fill: false,
+                    tension: 0.3
+                },
+                {
+                    label: 'Despesas',
+                    data: expenses,
+                    borderColor: 'rgba(239, 68, 68, 1)',
+                    backgroundColor: 'rgba(239, 68, 68, 0.1)',
+                    borderWidth: 2,
+                    fill: false,
+                    tension: 0.3
+                },
+                {
+                    label: 'Líquido',
+                    data: netValues,
+                    borderColor: 'rgba(59, 130, 246, 1)',
+                    backgroundColor: 'rgba(59, 130, 246, 0.1)',
+                    borderWidth: 2,
+                    fill: false,
+                    tension: 0.3
+                },
+                {
+                    label: 'Saldo Acumulado',
+                    data: cumulativeBalances,
+                    borderColor: 'rgba(168, 85, 247, 1)',
+                    backgroundColor: 'rgba(168, 85, 247, 0.1)',
+                    borderWidth: 2,
+                    fill: false,
+                    tension: 0.3,
+                    yAxisID: 'y1'
+                }
+            ]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    position: 'top',
+                    labels: {
+                        color: '#e5e7eb',
+                        font: {
+                            size: 12
+                        }
+                    }
+                },
+                tooltip: {
+                    callbacks: {
+                        label: function(context) {
+                            const label = context.dataset.label || '';
+                            const value = context.parsed.y || 0;
+                            return `${label}: R$ ${value.toLocaleString('pt-BR', {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
+                        }
+                    }
+                }
+            },
+            scales: {
+                x: {
+                    grid: {
+                        color: 'rgba(75, 85, 99, 0.2)'
+                    },
+                    ticks: {
+                        color: '#9ca3af'
+                    }
+                },
+                y: {
+                    grid: {
+                        color: 'rgba(75, 85, 99, 0.2)'
+                    },
+                    ticks: {
+                        color: '#9ca3af',
+                        callback: function(value) {
+                            return 'R$ ' + value.toLocaleString('pt-BR');
+                        }
+                    }
+                },
+                y1: {
+                    position: 'right',
+                    grid: {
+                        drawOnChartArea: false
+                    },
+                    ticks: {
+                        color: '#9ca3af',
+                        callback: function(value) {
+                            return 'R$ ' + value.toLocaleString('pt-BR');
+                        }
+                    }
+                }
+            }
+        }
+    });
+});
+
+// Helper function to negate values for template
+Number.prototype.negate = function() {
+    return -this;
+};
+</script>
+{% endblock %}

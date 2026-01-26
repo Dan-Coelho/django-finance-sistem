@@ -1,0 +1,184 @@
+{% extends 'base_dashboard.html' %}
+
+{% load humanize %}
+
+{% block dashboard_title %}Relatório por Categoria{% endblock %}
+{% block page_header %}Relatório por Categoria{% endblock %}
+
+{% block dashboard_content %}
+<div class="max-w-7xl mx-auto">
+    <!-- Filters Section -->
+    <div class="mb-8 bg-gray-800 rounded-xl p-6 shadow-lg">
+        <form method="GET" id="report-filters">
+            <input type="hidden" name="report_type" value="category">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                <div>
+                    <label class="block text-sm font-medium text-gray-300 mb-1">Período</label>
+                    <select name="period" id="period-select" class="w-full bg-gray-700 text-white rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                        <option value="current_month" {% if selected_period == 'current_month' %}selected{% endif %}>Este mês</option>
+                        <option value="current_week" {% if selected_period == 'current_week' %}selected{% endif %}>Esta semana</option>
+                        <option value="last_month" {% if selected_period == 'last_month' %}selected{% endif %}>Mês passado</option>
+                        <option value="current_year" {% if selected_period == 'current_year' %}selected{% endif %}>Este ano</option>
+                        <option value="custom" {% if selected_period == 'custom' %}selected{% endif %}>Personalizado</option>
+                    </select>
+                </div>
+
+                <div id="custom-dates" class="grid grid-cols-2 gap-2 {% if selected_period != 'custom' %}hidden{% endif %}">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-300 mb-1">Data Início</label>
+                        <input type="date" name="start_date" value="{{ start_date }}" class="w-full bg-gray-700 text-white rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-300 mb-1">Data Fim</label>
+                        <input type="date" name="end_date" value="{{ end_date }}" class="w-full bg-gray-700 text-white rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-medium text-gray-300 mb-1">Categorias</label>
+                    <select name="category_id" class="w-full bg-gray-700 text-white rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                        <option value="">Selecione uma categoria</option>
+                        {% for category in all_categories %}
+                        <option value="{{ category.id }}" {% if category.id == selected_category_id %}selected{% endif %}>
+                            {{ category.name }}
+                        </option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-medium text-gray-300 mb-1">Contas</label>
+                    <select name="accounts" multiple class="w-full bg-gray-700 text-white rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500 h-32">
+                        {% for account in all_accounts %}
+                        <option value="{{ account.id }}" {% if account.id in selected_accounts %}selected{% endif %}>
+                            {{ account.name }}
+                        </option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+
+            <div class="mt-4 flex justify-end">
+                <button type="submit" class="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-lg transition-colors duration-200">
+                    Aplicar Filtros
+                </button>
+            </div>
+        </form>
+    </div>
+
+    <!-- Category Summary Cards -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+        <!-- Category Name Card -->
+        <div class="bg-gray-800 rounded-xl p-6 shadow-lg">
+            <div class="flex items-center">
+                <div class="p-3 rounded-lg bg-purple-900/30">
+                    <svg class="w-6 h-6 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"></path>
+                    </svg>
+                </div>
+                <div class="ml-4">
+                    <h3 class="text-sm font-medium text-gray-400">Categoria</h3>
+                    <p class="text-2xl font-semibold text-white">{{ selected_category.name }}</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Category Income Card -->
+        <div class="bg-gray-800 rounded-xl p-6 shadow-lg">
+            <div class="flex items-center">
+                <div class="p-3 rounded-lg bg-green-900/30">
+                    <svg class="w-6 h-6 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 11l3-3m0 0l3 3m-3-3v8m0-13a9 9 0 110 18 9 9 0 010-18z"></path>
+                    </svg>
+                </div>
+                <div class="ml-4">
+                    <h3 class="text-sm font-medium text-gray-400">Receitas</h3>
+                    <p class="text-2xl font-semibold text-white">R$ {{ category_total_income|floatformat:2|intcomma }}</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Category Expenses Card -->
+        <div class="bg-gray-800 rounded-xl p-6 shadow-lg">
+            <div class="flex items-center">
+                <div class="p-3 rounded-lg bg-red-900/30">
+                    <svg class="w-6 h-6 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 13l-3 3m0 0l-3-3m3 3V8m0 13a9 9 0 110 18 9 9 0 010-18z"></path>
+                    </svg>
+                </div>
+                <div class="ml-4">
+                    <h3 class="text-sm font-medium text-gray-400">Despesas</h3>
+                    <p class="text-2xl font-semibold text-white">R$ {{ category_total_expense|floatformat:2|intcomma }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Category Transactions Table -->
+    <div class="bg-gray-800 rounded-xl p-6 shadow-lg">
+        <div class="flex items-center justify-between mb-6">
+            <h2 class="text-xl font-bold text-white">Transações da Categoria</h2>
+            <div class="text-sm text-gray-400">
+                Exibindo {{ category_transactions|length }} transações
+            </div>
+        </div>
+
+        {% if category_transactions %}
+        <div class="overflow-x-auto">
+            <table class="min-w-full divide-y divide-gray-700">
+                <thead>
+                    <tr>
+                        <th class="px-4 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">Data</th>
+                        <th class="px-4 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">Descrição</th>
+                        <th class="px-4 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">Conta</th>
+                        <th class="px-4 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">Tipo</th>
+                        <th class="px-4 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">Valor</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-gray-700">
+                    {% for transaction in category_transactions %}
+                    <tr>
+                        <td class="px-4 py-3 whitespace-nowrap text-sm text-gray-300">{{ transaction.date|date:"d/m/Y" }}</td>
+                        <td class="px-4 py-3 text-sm text-gray-300">{{ transaction.description|truncatechars:30 }}</td>
+                        <td class="px-4 py-3 text-sm text-gray-300">{{ transaction.account.name }}</td>
+                        <td class="px-4 py-3 text-sm">
+                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium
+                                {% if transaction.type == 'INCOME' %}bg-green-900/30 text-green-400{% else %}bg-red-900/30 text-red-400{% endif %}">
+                                {% if transaction.type == 'INCOME' %}Receita{% else %}Despesa{% endif %}
+                            </span>
+                        </td>
+                        <td class="px-4 py-3 text-sm font-medium {% if transaction.type == 'INCOME' %}text-green-400{% else %}text-red-400{% endif %}">
+                            {% if transaction.type == 'INCOME' %}+{% endif %}R$ {{ transaction.amount|floatformat:2|intcomma }}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% else %}
+        <div class="text-center py-8">
+            <svg class="mx-auto h-12 w-12 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+            </svg>
+            <h3 class="mt-2 text-sm font-medium text-gray-400">Nenhuma transação encontrada</h3>
+            <p class="mt-1 text-sm text-gray-500">Tente ajustar os filtros para ver mais resultados.</p>
+        </div>
+        {% endif %}
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const periodSelect = document.getElementById('period-select');
+    const customDatesDiv = document.getElementById('custom-dates');
+    
+    periodSelect.addEventListener('change', function() {
+        if (this.value === 'custom') {
+            customDatesDiv.classList.remove('hidden');
+        } else {
+            customDatesDiv.classList.add('hidden');
+        }
+    });
+});
+</script>
+{% endblock %}

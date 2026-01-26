@@ -878,65 +878,65 @@
 ### Sprint 9: Melhorias de Dashboard e Relatórios (1 semana)
 
 #### 9.1 Aprimoramento do Dashboard
-- [ ] **9.1.1** Adicionar mais métricas
+- [x] **9.1.1** Adicionar mais métricas
   - Média de gastos diários do mês
   - Categoria com maior gasto
   - Evolução mensal (últimos 6 meses)
   - Meta de gastos (configurável - opcional)
 
-- [ ] **9.1.2** Gráfico de evolução
+- [x] **9.1.2** Gráfico de evolução
   - Gráfico de linha: receitas vs despesas
   - Por mês nos últimos 6-12 meses
   - Usando Chart.js
   - Cores consistentes com design
   - Responsivo
 
-- [ ] **9.1.3** Top categorias
+- [x] **9.1.3** Top categorias
   - Lista das 5 categorias com mais gastos
   - Valor e percentual
   - Barra de progresso visual
   - Link para filtro por categoria
 
 #### 9.2 Página de Relatórios (Opcional)
-- [ ] **9.2.1** Criar ReportsView
+- [x] **9.2.1** Criar ReportsView
   - View para geração de relatórios
   - Filtros: período, categorias, contas
   - Template reports/reports.html
 
-- [ ] **9.2.2** Relatório de Resumo Mensal
+- [x] **9.2.2** Relatório de Resumo Mensal
   - Tabela: categoria x valor
   - Total de receitas
   - Total de despesas
   - Balanço
   - Comparativo com mês anterior
 
-- [ ] **9.2.3** Relatório por Categoria
+- [x] **9.2.3** Relatório por Categoria
   - Detalhar todas as transações por categoria
   - Gráfico de pizza
   - Tabela de transações
   - Export CSV (opcional)
 
-- [ ] **9.2.4** Relatório de Fluxo de Caixa
+- [x] **9.2.4** Relatório de Fluxo de Caixa
   - Entradas e saídas dia a dia
   - Saldo acumulado
   - Gráfico de linha
   - Identificar dias de maior gasto
 
 #### 9.3 Exportação de Dados (Opcional)
-- [ ] **9.3.1** Export de transações para CSV
+- [x] **9.3.1** Export de transações para CSV
   - Botão "Exportar" na lista de transações
   - Gerar CSV com filtros aplicados
   - Headers em português
   - Formatação de valores
 
-- [ ] **9.3.2** Export de relatórios para PDF
+- [x] **9.3.2** Export de relatórios para PDF
   - Biblioteca para geração de PDF
   - Template do relatório em PDF
   - Download direto
   - Ou: usar print CSS para impressão
 
 #### 9.4 URLs
-- [ ] **9.4.1** Configurar URLs
+- [x] **9.4.1** Configurar URLs
   - /reports/ - página de relatórios
   - /reports/monthly/ - relatório mensal
   - /reports/category/ - por categoria

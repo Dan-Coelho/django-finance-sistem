@@ -1,5 +1,7 @@
 {% extends 'base_dashboard.html' %}
 
+{% load humanize %}
+
 {% block dashboard_title %}Contas{% endblock %}
 {% block page_header %}Contas{% endblock %}
 
@@ -139,7 +141,7 @@
 <script>
 document.addEventListener('DOMContentLoaded', function() {
     const orderingSelect = document.getElementById('ordering-select');
-    
+
     orderingSelect.addEventListener('change', function() {
         const selectedValue = this.value;
         // Reload the page with the new ordering parameter
