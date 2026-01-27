@@ -1059,29 +1059,29 @@
 ### Sprint 11: Testes (Sprint Final)
 
 #### 11.1 Testes de Models
-- [ ] **11.1.1** Testar User model
+- [x] **11.1.1** Testar User model
   - Teste de criação de usuário
   - Teste de email único
   - Teste de criação de superuser
   - Teste de métodos customizados
 
-- [ ] **11.1.2** Testar Profile model
+- [x] **11.1.2** Testar Profile model
   - Teste de criação automática via signal
   - Teste de relacionamento com User
   - Teste de __str__ method
 
-- [ ] **11.1.3** Testar Account model
+- [x] **11.1.3** Testar Account model
   - Teste de criação
   - Teste de validações
   - Teste de atualização de balance
   - Teste de relacionamento com User
 
-- [ ] **11.1.4** Testar Category model
+- [x] **11.1.4** Testar Category model
   - Teste de categorias padrão
   - Teste de categorias personalizadas
   - Teste de validações
 
-- [ ] **11.1.5** Testar Transaction model
+- [x] **11.1.5** Testar Transaction model
   - Teste de criação
   - Teste de validações
   - Teste de signals (atualização de balance)

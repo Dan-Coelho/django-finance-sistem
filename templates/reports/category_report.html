@@ -93,7 +93,7 @@
                 </div>
                 <div class="ml-4">
                     <h3 class="text-sm font-medium text-gray-400">Receitas</h3>
-                    <p class="text-2xl font-semibold text-white">R$ {{ category_total_income|floatformat:2|intcomma }}</p>
+                    <p class="text-2xl font-semibold text-white">R$ {{ category_total_income|floatformat:2 }}</p>
                 </div>
             </div>
         </div>
@@ -108,7 +108,7 @@
                 </div>
                 <div class="ml-4">
                     <h3 class="text-sm font-medium text-gray-400">Despesas</h3>
-                    <p class="text-2xl font-semibold text-white">R$ {{ category_total_expense|floatformat:2|intcomma }}</p>
+                    <p class="text-2xl font-semibold text-white">R$ {{ category_total_expense|floatformat:2 }}</p>
                 </div>
             </div>
         </div>
@@ -148,7 +148,7 @@
                             </span>
                         </td>
                         <td class="px-4 py-3 text-sm font-medium {% if transaction.type == 'INCOME' %}text-green-400{% else %}text-red-400{% endif %}">
-                            {% if transaction.type == 'INCOME' %}+{% endif %}R$ {{ transaction.amount|floatformat:2|intcomma }}
+                            {% if transaction.type == 'INCOME' %}+{% endif %}R$ {{ transaction.amount|floatformat:2 }}
                         </td>
                     </tr>
                     {% endfor %}

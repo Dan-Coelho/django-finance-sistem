@@ -21,34 +21,34 @@
         }
     </script>
 </head>
-<body class="bg-gray-900 text-white min-h-screen flex">
-    <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:z-50 focus:px-4 focus:py-2 focus:bg-white focus:text-gray-900">
-        Pular para o conteúdo principal
-    </a>
-    <!-- Sidebar -->
-    <aside class="w-64 bg-gray-800 flex flex-col">
-        {% include 'components/sidebar.html' %}
-    </aside>
+<body class="bg-gray-900 text-white min-h-screen">
+    <div class="flex flex-col">
+        {% include 'components/topbar.html' %}
+        <div class="flex">
+            <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:z-50 focus:px-4 focus:py-2 focus:bg-white focus:text-gray-900">
+                Pular para o conteúdo principal
+            </a>
+            <!-- Sidebar -->
+            <aside class="w-48 bg-gray-800 hidden sm:flex sm:flex-none">
+                {% include 'components/sidebar.html' %}
+            </aside>
 
-    <!-- Main Content -->
-    <div class="flex-1 flex flex-col overflow-hidden">
-        <!-- Topbar -->
-        <header class="bg-gray-800 border-b border-gray-700">
-            {% include 'components/topbar.html' %}
-        </header>
+            <!-- Main Content -->
+            <div class="flex-1 flex flex-col overflow-hidden">
+                <!-- Dashboard Content Area -->
+                <main id="main-content" class="flex-1 overflow-y-auto p-6 bg-gradient-to-br from-gray-900 to-black">
+                    {% include 'components/breadcrumbs.html' %}
+                    {% block dashboard_content %}
+                    {% endblock %}
+                </main>
+            </div>
 
-        <!-- Dashboard Content Area -->
-        <main id="main-content" class="flex-1 overflow-y-auto p-6 bg-gradient-to-br from-gray-900 to-black">
-            {% include 'components/breadcrumbs.html' %}
-            {% block dashboard_content %}
+            <!-- Include loading states script -->
+            <script src="{% static 'js/loading-states.js' %}"></script>
+
+            {% block scripts %}
             {% endblock %}
-        </main>
+        </div>
     </div>
-
-    <!-- Include loading states script -->
-    <script src="{% static 'js/loading-states.js' %}"></script>
-
-    {% block scripts %}
-    {% endblock %}
 </body>
 </html>

@@ -77,7 +77,7 @@
                 </div>
                 <div class="ml-4">
                     <h3 class="text-sm font-medium text-gray-400">Receitas Totais</h3>
-                    <p class="text-2xl font-semibold text-white">R$ {{ total_income|floatformat:2|intcomma }}</p>
+                    <p class="text-2xl font-semibold text-white">R$ {{ total_income|floatformat:2 }}</p>
                 </div>
             </div>
         </div>
@@ -92,7 +92,7 @@
                 </div>
                 <div class="ml-4">
                     <h3 class="text-sm font-medium text-gray-400">Despesas Totais</h3>
-                    <p class="text-2xl font-semibold text-white">R$ {{ total_expense|floatformat:2|intcomma }}</p>
+                    <p class="text-2xl font-semibold text-white">R$ {{ total_expense|floatformat:2 }}</p>
                 </div>
             </div>
         </div>
@@ -107,7 +107,7 @@
                 </div>
                 <div class="ml-4">
                     <h3 class="text-sm font-medium text-gray-400">Balanço Líquido</h3>
-                    <p class="text-2xl font-semibold {% if balance >= 0 %}text-white{% else %}text-red-400{% endif %}">R$ {{ balance|floatformat:2|intcomma }}</p>
+                    <p class="text-2xl font-semibold {% if balance >= 0 %}text-white{% else %}text-red-400{% endif %}">R$ {{ balance|floatformat:2 }}</p>
                 </div>
             </div>
         </div>
@@ -147,12 +147,12 @@
                     {% for day_data in daily_data %}
                     <tr>
                         <td class="px-4 py-3 whitespace-nowrap text-sm text-gray-300">{{ day_data.date|date:"d/m/Y" }}</td>
-                        <td class="px-4 py-3 text-sm text-green-400">R$ {{ day_data.income|floatformat:2|intcomma }}</td>
-                        <td class="px-4 py-3 text-sm text-red-400">R$ {{ day_data.expenses|floatformat:2|intcomma }}</td>
+                        <td class="px-4 py-3 text-sm text-green-400">R$ {{ day_data.income|floatformat:2 }}</td>
+                        <td class="px-4 py-3 text-sm text-red-400">R$ {{ day_data.expenses|floatformat:2 }}</td>
                         <td class="px-4 py-3 text-sm font-medium {% if day_data.net >= 0 %}text-green-400{% else %}text-red-400{% endif %}">
-                            R$ {{ day_data.net|floatformat:2|intcomma }}
+                            R$ {{ day_data.net|floatformat:2 }}
                         </td>
-                        <td class="px-4 py-3 text-sm font-semibold text-white">R$ {{ day_data.cumulative_balance|floatformat:2|intcomma }}</td>
+                        <td class="px-4 py-3 text-sm font-semibold text-white">R$ {{ day_data.cumulative_balance|floatformat:2 }}</td>
                         <td class="px-4 py-3 text-sm text-gray-300">{{ day_data.transactions|length }} transações</td>
                     </tr>
                     {% endfor %}

@@ -10,7 +10,7 @@
     <!-- Filters Section -->
     <div class="mb-8 bg-gray-800 rounded-xl p-6 shadow-lg">
         <form method="GET" id="report-filters">
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                 <div>
                     <label class="block text-sm font-medium text-gray-300 mb-1">Período</label>
                     <select name="period" id="period-select" class="w-full bg-gray-700 text-white rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500">
@@ -73,45 +73,45 @@
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
         <!-- Total Income Card -->
         <div class="bg-gray-800 rounded-xl p-6 shadow-lg">
-            <div class="flex items-center">
+            <div class="flex items-center justify-around">
                 <div class="p-3 rounded-lg bg-green-900/30">
-                    <svg class="w-6 h-6 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg class="w-10 md:w-8 h-10 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 11l3-3m0 0l3 3m-3-3v8m0-13a9 9 0 110 18 9 9 0 010-18z"></path>
                     </svg>
                 </div>
                 <div class="ml-4">
-                    <h3 class="text-sm font-medium text-gray-400">Receitas</h3>
-                    <p class="text-2xl font-semibold text-white">R$ {{ monthly_summary.total_income|floatformat:2|intcomma }}</p>
+                    <h3 class="text-sm md:text-md font-medium text-gray-400">Receitas</h3>
+                    <p class="text-xl md:text-2xl font-semibold text-white">R$ {{ monthly_summary.total_income|floatformat:2 }}</p>
                 </div>
             </div>
         </div>
 
         <!-- Total Expenses Card -->
         <div class="bg-gray-800 rounded-xl p-6 shadow-lg">
-            <div class="flex items-center">
+            <div class="flex items-center justify-around">
                 <div class="p-3 rounded-lg bg-red-900/30">
-                    <svg class="w-6 h-6 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg class="w-10 md:w-8 h-10 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 13l-3-3m0 0l-3 3m3-3v8m0-13a9 9 0 110 18 9 9 0 010-18z"></path>
                     </svg>
                 </div>
                 <div class="ml-4">
-                    <h3 class="text-sm font-medium text-gray-400">Despesas</h3>
-                    <p class="text-2xl font-semibold text-white">R$ {{ monthly_summary.total_expense|floatformat:2|intcomma }}</p>
+                    <h3 class="text-sm md:text-md font-medium text-gray-400">Despesas</h3>
+                    <p class="text-xl md:text-2xl font-semibold text-white">R$ {{ monthly_summary.total_expense|floatformat:2 }}</p>
                 </div>
             </div>
         </div>
 
         <!-- Balance Card -->
         <div class="bg-gray-800 rounded-xl p-6 shadow-lg">
-            <div class="flex items-center">
+            <div class="flex items-center justify-around">
                 <div class="p-3 rounded-lg {% if monthly_summary.balance >= 0 %}bg-blue-900/30{% else %}bg-red-900/30{% endif %}">
-                    <svg class="w-6 h-6 {% if monthly_summary.balance >= 0 %}text-blue-400{% else %}text-red-400{% endif %}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg class="w-10 md:w-8 h-10 {% if monthly_summary.balance >= 0 %}text-blue-400{% else %}text-red-400{% endif %}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
                     </svg>
                 </div>
                 <div class="ml-4">
-                    <h3 class="text-sm font-medium text-gray-400">Balanço</h3>
-                    <p class="text-2xl font-semibold {% if monthly_summary.balance >= 0 %}text-white{% else %}text-red-400{% endif %}">R$ {{ monthly_summary.balance|floatformat:2|intcomma }}</p>
+                    <h3 class="text-sm md:text-md font-medium text-gray-400">Balanço</h3>
+                    <p class="text-xl md:text-2xl font-semibold {% if monthly_summary.balance >= 0 %}text-white{% else %}text-red-400{% endif %}">R$ {{ monthly_summary.balance|floatformat:2 }}</p>
                 </div>
             </div>
         </div>
@@ -158,7 +158,7 @@
                             </span>
                         </td>
                         <td class="px-4 py-3 text-sm font-medium {% if transaction.type == 'INCOME' %}text-green-400{% else %}text-red-400{% endif %}">
-                            {% if transaction.type == 'INCOME' %}+{% endif %}R$ {{ transaction.amount|floatformat:2|intcomma }}
+                            {% if transaction.type == 'INCOME' %}+{% endif %}R$ {{ transaction.amount|floatformat:2 }}
                         </td>
                     </tr>
                     {% endfor %}
