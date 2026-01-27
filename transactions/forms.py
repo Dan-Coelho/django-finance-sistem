@@ -8,7 +8,7 @@ from .models import Account, Category, Transaction
 class TransactionForm(forms.ModelForm):
     class Meta:
         model = Transaction
-        fields = ['amount', 'date', 'category', 'account', 'description']
+        fields = ['amount', 'date', 'category', 'account', 'description', 'type']
         widgets = {
             'amount': forms.NumberInput(attrs={
                 'class': 'shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md p-2 text-gray-900',
@@ -29,34 +29,31 @@ class TransactionForm(forms.ModelForm):
                 'rows': 3,
                 'class': 'shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md p-2 text-gray-900',
                 'placeholder': 'Descrição da transação...'
-            })
+            }),
+            'type': forms.HiddenInput(),
         }
 
     def __init__(self, *args, **kwargs):
-        user = kwargs.pop('user', None)  # Extract user from kwargs
-        transaction_type = kwargs.pop('transaction_type', None)  # Extract transaction type
+        user = kwargs.pop('user', None)
+        transaction_type = kwargs.pop('transaction_type', None)
         super().__init__(*args, **kwargs)
 
         if user:
-            # Filter accounts for the current user
             self.fields['account'].queryset = Account.objects.filter(user=user)
-
-            # Filter categories based on transaction type
+            
             if transaction_type:
                 self.fields['category'].queryset = Category.objects.filter(
                     Q(user=user) | Q(is_default=True),
                     type=transaction_type
                 ).order_by('name')
+                self.fields['type'].initial = transaction_type
+            elif self.instance and self.instance.pk:
+                self.fields['category'].queryset = Category.objects.filter(
+                    Q(user=user) | Q(is_default=True),
+                    type=self.instance.type
+                ).order_by('name')
             else:
-                # If no type specified, use the instance's type or show all
-                if self.instance and self.instance.pk:
-                    self.fields['category'].queryset = Category.objects.filter(
-                        Q(user=user) | Q(is_default=True),
-                        type=self.instance.type
-                    ).order_by('name')
-                else:
-                    # For new transactions, we'll set this in the view
-                    self.fields['category'].queryset = Category.objects.none()
+                self.fields['category'].queryset = Category.objects.none()
 
     def clean_amount(self):
         amount = self.cleaned_data.get('amount')
@@ -76,7 +73,6 @@ class TransactionForm(forms.ModelForm):
         category = cleaned_data.get('category')
         transaction_type = cleaned_data.get('type')
 
-        # Validate that category type matches transaction type
         if category and transaction_type and category.type != transaction_type:
             raise ValidationError('A categoria deve ser do mesmo tipo da transação.')
 
@@ -91,6 +87,7 @@ class TransactionFilterForm(forms.Form):
     ]
 
     account = forms.ModelChoiceField(
+        label="Conta",
         queryset=Account.objects.none(),
         required=False,
         widget=forms.Select(attrs={
@@ -98,6 +95,7 @@ class TransactionFilterForm(forms.Form):
         })
     )
     category = forms.ModelChoiceField(
+        label="Categoria",
         queryset=Category.objects.none(),
         required=False,
         widget=forms.Select(attrs={
@@ -105,6 +103,7 @@ class TransactionFilterForm(forms.Form):
         })
     )
     type = forms.ChoiceField(
+        label="Tipo",
         choices=TYPE_CHOICES,
         required=False,
         widget=forms.Select(attrs={
@@ -112,6 +111,7 @@ class TransactionFilterForm(forms.Form):
         })
     )
     date_from = forms.DateField(
+        label="De",
         required=False,
         widget=forms.DateInput(attrs={
             'type': 'date',
@@ -119,6 +119,7 @@ class TransactionFilterForm(forms.Form):
         })
     )
     date_to = forms.DateField(
+        label="Até",
         required=False,
         widget=forms.DateInput(attrs={
             'type': 'date',
@@ -126,6 +127,7 @@ class TransactionFilterForm(forms.Form):
         })
     )
     search = forms.CharField(
+        label="Busca",
         max_length=100,
         required=False,
         widget=forms.TextInput(attrs={

@@ -1,43 +1,74 @@
 from django.db.models import F
-from django.db.models.signals import post_delete, post_save
+from django.db.models.signals import post_delete, post_save, pre_save
 from django.dispatch import receiver
 
+from context_processors import invalidate_counters_cache
+
 from .models import Transaction
+
+
+@receiver(pre_save, sender=Transaction)
+def store_pre_save_instance(sender, instance, **kwargs):
+    """
+    Store the original state of the transaction instance before it is saved.
+    """
+    if instance.pk:
+        instance._pre_save_instance = Transaction.objects.get(pk=instance.pk)
+    else:
+        instance._pre_save_instance = None
 
 
 @receiver(post_save, sender=Transaction)
 def update_account_balance_on_save(sender, instance, created, **kwargs):
     """
-    Update the account balance when a transaction is saved.
-    For income transactions, add the amount to the balance.
-    For expense transactions, subtract the amount from the balance.
+    Update the account balance when a transaction is saved (created or updated).
     """
     account = instance.account
-
-    if instance.type == Transaction.INCOME:
-        # For income, add the amount to the balance
-        account.balance = F('balance') + instance.amount
+    
+    if created:
+        # New transaction
+        if instance.type == Transaction.INCOME:
+            account.balance = F('balance') + instance.amount
+        else:
+            account.balance = F('balance') - instance.amount
+        account.save(update_fields=['balance'])
     else:
-        # For expense, subtract the amount from the balance
-        account.balance = F('balance') - instance.amount
+        # Updated transaction
+        pre_save_instance = instance._pre_save_instance
+        if pre_save_instance:
+            # Revert the old amount
+            if pre_save_instance.type == Transaction.INCOME:
+                account.balance = F('balance') - pre_save_instance.amount
+            else:
+                account.balance = F('balance') + pre_save_instance.amount
+            account.save(update_fields=['balance'])
+            
+            # Apply the new amount
+            account.refresh_from_db()
+            if instance.type == Transaction.INCOME:
+                account.balance = F('balance') + instance.amount
+            else:
+                account.balance = F('balance') - instance.amount
+            account.save(update_fields=['balance'])
 
-    account.save(update_fields=['balance'])
+    # Invalidate the counters cache for the user
+    if instance.account.user_id:
+        invalidate_counters_cache(instance.account.user_id)
 
 
 @receiver(post_delete, sender=Transaction)
 def update_account_balance_on_delete(sender, instance, **kwargs):
     """
     Update the account balance when a transaction is deleted.
-    For income transactions, subtract the amount from the balance.
-    For expense transactions, add the amount back to the balance.
     """
     account = instance.account
 
     if instance.type == Transaction.INCOME:
-        # For income, subtract the amount from the balance (reverse the effect)
         account.balance = F('balance') - instance.amount
     else:
-        # For expense, add the amount back to the balance (reverse the effect)
         account.balance = F('balance') + instance.amount
-
     account.save(update_fields=['balance'])
+
+    # Invalidate the counters cache for the user
+    if instance.account.user_id:
+        invalidate_counters_cache(instance.account.user_id)

@@ -1,6 +1,9 @@
+import logging
+
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.core.cache import cache
 from django.db.models import Q
 from django.shortcuts import redirect, render
 from django.urls import reverse_lazy
@@ -9,33 +12,40 @@ from django.views.generic import CreateView, DeleteView, UpdateView
 from .forms import CategoryForm
 from .models import Category
 
+logger = logging.getLogger(__name__)
 
 @login_required
 def category_list(request):
-    # Get categories for the current user plus default categories
-    user_categories = Category.objects.filter(
-        Q(user=request.user) | Q(is_default=True)
-    ).order_by('type', 'name')
+    # Cache for default categories
+    default_categories = cache.get('default_categories')
+    if not default_categories:
+        default_categories = Category.objects.filter(is_default=True)
+        cache.set('default_categories', default_categories, 3600)  # Cache for 1 hour
+
+    # Get user-specific categories
+    user_categories = Category.objects.filter(user=request.user)
+
+    # Combine querysets
+    all_categories = default_categories | user_categories
+    all_categories = all_categories.select_related('user').order_by('type', 'name')
 
     # Separate income and expense categories
-    income_categories = user_categories.filter(type='INCOME')
-    expense_categories = user_categories.filter(type='EXPENSE')
+    income_categories = all_categories.filter(type='INCOME')
+    expense_categories = all_categories.filter(type='EXPENSE')
 
     # Apply filters if present
     category_type = request.GET.get('type', '')
     search_query = request.GET.get('search', '')
 
     if category_type:
-        user_categories = user_categories.filter(type=category_type)
         if category_type == 'INCOME':
-            income_categories = user_categories
-            expense_categories = []
+            income_categories = income_categories.filter(type='INCOME')
+            expense_categories = expense_categories.none()  # Use none() for empty queryset
         elif category_type == 'EXPENSE':
-            expense_categories = user_categories
-            income_categories = []
+            expense_categories = expense_categories.filter(type='EXPENSE')
+            income_categories = income_categories.none()
 
     if search_query:
-        user_categories = user_categories.filter(name__icontains=search_query)
         income_categories = income_categories.filter(name__icontains=search_query)
         expense_categories = expense_categories.filter(name__icontains=search_query)
 
@@ -60,8 +70,10 @@ class CategoryCreateView(LoginRequiredMixin, CreateView):
     def form_valid(self, form):
         form.instance.user = self.request.user
         form.instance.is_default = False
+        response = super().form_valid(form)
         messages.success(self.request, 'Categoria criada com sucesso!')
-        return super().form_valid(form)
+        logger.info(f"Category '{form.instance.name}' created by user '{self.request.user}'.")
+        return response
 
     def get_form_kwargs(self):
         kwargs = super().get_form_kwargs()
@@ -90,12 +102,14 @@ class CategoryUpdateView(LoginRequiredMixin, UpdateView):
             messages.error(self.request, 'Você não pode editar esta categoria.')
             return redirect('categories:list')
 
+        response = super().form_valid(form)
         messages.success(self.request, 'Categoria atualizada com sucesso!')
-        return super().form_valid(form)
+        logger.info(f"Category '{form.instance.name}' updated by user '{self.request.user}'.")
+        return response
 
     def get_queryset(self):
         # Only allow updating categories that belong to the current user and are not default
-        return Category.objects.filter(user=self.request.user, is_default=False)
+        return Category.objects.filter(user=self.request.user, is_default=False).select_related('user')
 
     def get_form_kwargs(self):
         kwargs = super().get_form_kwargs()
@@ -127,12 +141,15 @@ class CategoryDeleteView(LoginRequiredMixin, DeleteView):
             messages.error(request, f'Não é possível excluir a categoria "{category.name}" porque ela está sendo usada em transações.')
             return redirect('categories:list')
 
+        category_name = category.name
+        response = super().delete(request, *args, **kwargs)
         messages.success(request, 'Categoria excluída com sucesso!')
-        return super().delete(request, *args, **kwargs)
+        logger.info(f"Category '{category_name}' deleted by user '{request.user}'.")
+        return response
 
     def get_queryset(self):
         # Only allow deleting categories that belong to the current user and are not default
-        return Category.objects.filter(user=self.request.user, is_default=False)
+        return Category.objects.filter(user=self.request.user, is_default=False).select_related('user')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

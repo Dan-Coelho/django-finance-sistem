@@ -4,7 +4,13 @@ from django.db import models
 
 
 class CustomUserManager(BaseUserManager):
+    """
+    Manager for the custom user model.
+    """
     def create_user(self, email, password=None, **extra_fields):
+        """
+        Creates and saves a new user.
+        """
         if not email:
             raise ValueError('O email é obrigatório')
         email = self.normalize_email(email)
@@ -14,6 +20,9 @@ class CustomUserManager(BaseUserManager):
         return user
 
     def create_superuser(self, email, password=None, **extra_fields):
+        """
+        Creates and saves a new superuser.
+        """
         extra_fields.setdefault('is_staff', True)
         extra_fields.setdefault('is_superuser', True)
 
@@ -26,6 +35,9 @@ class CustomUserManager(BaseUserManager):
 
 
 class CustomUser(AbstractBaseUser, PermissionsMixin):
+    """
+    Custom user model that uses email as the unique identifier.
+    """
     email = models.EmailField(unique=True)
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)

@@ -8,6 +8,9 @@ from categories.models import Category
 
 
 class Transaction(models.Model):
+    """
+    Represents a financial transaction, which can be either income or an expense.
+    """
     INCOME = 'INCOME'
     EXPENSE = 'EXPENSE'
 
@@ -30,6 +33,9 @@ class Transaction(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
     def clean(self):
+        """
+        Custom validation for the transaction model.
+        """
         super().clean()
 
         # Validate amount > 0
@@ -47,6 +53,9 @@ class Transaction(models.Model):
             })
 
     def save(self, *args, **kwargs):
+        """
+        Overrides the save method to call full_clean before saving.
+        """
         self.full_clean()
         super().save(*args, **kwargs)
 

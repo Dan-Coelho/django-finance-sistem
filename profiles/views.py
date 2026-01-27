@@ -14,7 +14,7 @@ def profile_detail(request):
     """
     View to display the user's profile information
     """
-    profile, created = Profile.objects.get_or_create(user=request.user)
+    profile, created = Profile.objects.select_related('user').get_or_create(user=request.user)
 
     # Calculate statistics
     from accounts.models import Account
@@ -35,13 +35,16 @@ def profile_detail(request):
 
 
 class ProfileUpdateView(LoginRequiredMixin, UpdateView):
+    """
+    View to update the user's profile information.
+    """
     form_class = ProfileForm
     template_name = 'profiles/profile_form.html'
     success_url = reverse_lazy('profiles:detail')
 
     def get_object(self, queryset=None):
         # Get or create the profile for the current user
-        profile, created = Profile.objects.get_or_create(user=self.request.user)
+        profile, created = Profile.objects.select_related('user').get_or_create(user=self.request.user)
         return profile
 
     def form_valid(self, form):

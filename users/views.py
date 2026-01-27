@@ -5,8 +5,11 @@ from decimal import Decimal
 from django.contrib import messages
 from django.contrib.auth import get_user_model, login
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.views import LoginView, LogoutView
-from django.db.models import Sum
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.views import LoginView, LogoutView, PasswordChangeView
+from django.core.cache import cache
+from django.db.models import Case, DecimalField, F, Sum, When
+from django.db.models.functions import TruncMonth
 from django.shortcuts import redirect, render
 from django.urls import reverse_lazy
 from django.utils import timezone
@@ -16,7 +19,7 @@ from accounts.models import Account
 from categories.models import Category
 from transactions.models import Transaction
 
-from .forms import LoginForm, SignUpForm
+from .forms import EmailChangeForm, LoginForm, PasswordChangeForm, SignUpForm
 
 User = get_user_model()
 
@@ -145,140 +148,150 @@ def dashboard(request):
     else:
         start_date = start_date.replace(hour=0, minute=0, second=0, microsecond=0)
 
-    # Calculate total balance from all active accounts
-    total_balance = Account.objects.filter(
-        user=request.user,
-        is_active=True
-    ).aggregate(total=Sum('balance'))['total'] or Decimal('0.00')
+    # Create cache key based on user and period
+    cache_key = f'dashboard_stats_{request.user.id}_{period}_{start_date.strftime("%Y%m%d")}_{end_date.strftime("%Y%m%d")}'
+    cached_data = cache.get(cache_key)
 
-    # Calculate income for selected period
-    period_income = Transaction.objects.filter(
-        account__user=request.user,
-        type='INCOME',
-        date__gte=start_date,
-        date__lte=end_date
-    ).aggregate(total=Sum('amount'))['total'] or Decimal('0.00')
+    if cached_data is None:
+        # Calculate total balance from all active accounts
+        total_balance = Account.objects.filter(
+            user=request.user,
+            is_active=True
+        ).aggregate(total=Sum('balance'))['total'] or Decimal('0.00')
 
-    # Calculate expenses for selected period
-    period_expenses = Transaction.objects.filter(
-        account__user=request.user,
-        type='EXPENSE',
-        date__gte=start_date,
-        date__lte=end_date
-    ).aggregate(total=Sum('amount'))['total'] or Decimal('0.00')
-
-    # Calculate period balance
-    period_balance = period_income - period_expenses
-
-    # Calculate additional metrics for task 9.1.1
-    # Average daily expenses for the current period
-    days_in_period = (end_date.date() - start_date.date()).days + 1
-    avg_daily_expenses = period_expenses / days_in_period if days_in_period > 0 else Decimal('0.00')
-
-    # Category with highest expense in the current period
-    highest_expense_category = Transaction.objects.filter(
-        account__user=request.user,
-        type='EXPENSE',
-        date__gte=start_date,
-        date__lte=end_date
-    ).values('category__name').annotate(
-        total=Sum('amount')
-    ).order_by('-total').first()
-
-    # Monthly evolution data (last 6 months)
-    monthly_evolution = []
-    for i in range(5, -1, -1):  # Last 6 months including current
-        month_start = (today.replace(day=1) - timedelta(days=i*30)).replace(day=1)
-        month_end = (month_start + timedelta(days=32)).replace(day=1) - timedelta(days=1)
-
-        month_income = Transaction.objects.filter(
+        # Calculate income for selected period
+        period_income = Transaction.objects.filter(
             account__user=request.user,
             type='INCOME',
-            date__gte=month_start,
-            date__lte=month_end
+            date__gte=start_date,
+            date__lte=end_date
         ).aggregate(total=Sum('amount'))['total'] or Decimal('0.00')
 
-        month_expense = Transaction.objects.filter(
+        # Calculate expenses for selected period
+        period_expenses = Transaction.objects.filter(
             account__user=request.user,
             type='EXPENSE',
-            date__gte=month_start,
-            date__lte=month_end
+            date__gte=start_date,
+            date__lte=end_date
         ).aggregate(total=Sum('amount'))['total'] or Decimal('0.00')
 
-        monthly_evolution.append({
-            'month': month_start.strftime('%b/%y'),
-            'income': float(month_income),
-            'expense': float(month_expense),
-            'balance': float(month_income - month_expense)
-        })
+        # Calculate period balance
+        period_balance = period_income - period_expenses
 
-    # Get recent transactions for selected period
-    recent_transactions = Transaction.objects.filter(
-        account__user=request.user,
-        date__gte=start_date,
-        date__lte=end_date
-    ).select_related('account', 'category').order_by('-date')[:5]
+        # Calculate additional metrics for task 9.1.1
+        # Average daily expenses for the current period
+        days_in_period = (end_date.date() - start_date.date()).days + 1
+        avg_daily_expenses = period_expenses / days_in_period if days_in_period > 0 else Decimal('0.00')
 
-    # Process data for expense chart for selected period
-    expense_data = Transaction.objects.filter(
-        account__user=request.user,
-        type='EXPENSE',
-        date__gte=start_date,
-        date__lte=end_date
-    ).values('category__name', 'category__color').annotate(
-        total=Sum('amount')
-    ).order_by('-total')[:5]
+        # Category with highest expense in the current period
+        highest_expense_category = Transaction.objects.filter(
+            account__user=request.user,
+            type='EXPENSE',
+            date__gte=start_date,
+            date__lte=end_date
+        ).select_related('category').values('category__name').annotate(
+            total=Sum('amount')
+        ).order_by('-total').first()
 
-    # Prepare data for chart
-    chart_categories = []
-    chart_amounts = []
-    chart_colors = []
+# ...
 
-    for item in expense_data:
-        chart_categories.append(item['category__name'])
-        chart_amounts.append(float(item['total']))
-        # Convert the color from RGB to RGBA format if needed
-        color = item['category__color']
-        if color.startswith('rgb'):
-            # Already in rgb format, just add opacity
-            rgba_color = color.replace('rgb', 'rgba').replace(')', ', 0.8)')
-        else:
-            # Assume it's hex format, convert to rgba
-            hex_color = color.lstrip('#')
-            rgb = tuple(int(hex_color[i:i+2], 16) for i in (0, 2, 4))
-            rgba_color = f'rgba({rgb[0]}, {rgb[1]}, {rgb[2]}, 0.8)'
+        # Monthly evolution data (last 6 months)
+        six_months_ago = (today.replace(day=1) - timedelta(days=5*30)).replace(day=1)
 
-        chart_colors.append(rgba_color)
+        monthly_evolution_data = Transaction.objects.filter(
+            account__user=request.user,
+            date__gte=six_months_ago
+        ).annotate(
+            month=TruncMonth('date')
+        ).values('month').annotate(
+            income=Sum(Case(When(type='INCOME', then=F('amount')), default=Decimal('0.0'), output_field=DecimalField())),
+            expense=Sum(Case(When(type='EXPENSE', then=F('amount')), default=Decimal('0.0'), output_field=DecimalField()))
+        ).order_by('month')
 
-    # Calculate counters for sidebar
-    total_transactions = Transaction.objects.filter(account__user=request.user).count()
-    total_accounts = Account.objects.filter(user=request.user).count()
-    # Count user's custom categories (excluding defaults)
-    total_categories = request.user.categories.filter(is_default=False).count() + 5  # Add default categories
+        monthly_evolution = []
+        for data in monthly_evolution_data:
+            monthly_evolution.append({
+                'month': data['month'].strftime('%b/%y'),
+                'income': float(data['income']),
+                'expense': float(data['expense']),
+                'balance': float(data['income'] - data['expense'])
+            })
 
-    context = {
-        'total_balance': total_balance,
-        'monthly_income': period_income,
-        'monthly_expenses': period_expenses,
-        'monthly_balance': period_balance,
-        'avg_daily_expenses': avg_daily_expenses,
-        'highest_expense_category': highest_expense_category,
-        'monthly_evolution': monthly_evolution,
-        'recent_transactions': recent_transactions,
-        'chart_categories': chart_categories,
-        'chart_amounts': chart_amounts,
-        'chart_colors': chart_colors,
-        'has_expense_data': len(chart_categories) > 0,
+
+        # Get recent transactions for selected period
+        recent_transactions = Transaction.objects.filter(
+            account__user=request.user,
+            date__gte=start_date,
+            date__lte=end_date
+        ).select_related('account', 'category').order_by('-date')[:5]
+
+        # Process data for expense chart for selected period
+        expense_data = Transaction.objects.filter(
+            account__user=request.user,
+            type='EXPENSE',
+            date__gte=start_date,
+            date__lte=end_date
+        ).select_related('category').values('category__name', 'category__color').annotate(
+            total=Sum('amount')
+        ).order_by('-total')[:5]
+
+        # Prepare data for chart
+        chart_categories = []
+        chart_amounts = []
+        chart_colors = []
+
+        for item in expense_data:
+            chart_categories.append(item['category__name'])
+            chart_amounts.append(float(item['total']))
+            # Convert the color from RGB to RGBA format if needed
+            color = item['category__color']
+            if color.startswith('rgb'):
+                # Already in rgb format, just add opacity
+                rgba_color = color.replace('rgb', 'rgba').replace(')', ', 0.8)')
+            else:
+                # Assume it's hex format, convert to rgba
+                hex_color = color.lstrip('#')
+                rgb = tuple(int(hex_color[i:i+2], 16) for i in (0, 2, 4))
+                rgba_color = f'rgba({rgb[0]}, {rgb[1]}, {rgb[2]}, 0.8)'
+
+            chart_colors.append(rgba_color)
+
+        # Calculate counters for sidebar
+        total_transactions = Transaction.objects.filter(account__user=request.user).count()
+        total_accounts = Account.objects.filter(user=request.user).count()
+        # Count user's custom categories (excluding defaults)
+        total_categories = request.user.categories.filter(is_default=False).count() + 5  # Add default categories
+
+        cached_data = {
+            'total_balance': total_balance,
+            'monthly_income': period_income,
+            'monthly_expenses': period_expenses,
+            'monthly_balance': period_balance,
+            'avg_daily_expenses': avg_daily_expenses,
+            'highest_expense_category': highest_expense_category,
+            'monthly_evolution': monthly_evolution,
+            'recent_transactions': recent_transactions,
+            'chart_categories': chart_categories,
+            'chart_amounts': chart_amounts,
+            'chart_colors': chart_colors,
+            'has_expense_data': len(chart_categories) > 0,
+            'total_transactions': total_transactions,
+            'total_accounts': total_accounts,
+            'total_categories': total_categories,
+        }
+
+        # Cache for 5 minutes (300 seconds) for dashboard stats
+        cache.set(cache_key, cached_data, 300)
+
+    context = cached_data
+    context.update({
         'selected_period': period,
         'start_date': start_date_str or start_date.strftime('%Y-%m-%d') if start_date and hasattr(start_date, 'strftime') else '',
         'end_date': end_date_str or end_date.strftime('%Y-%m-%d') if end_date and hasattr(end_date, 'strftime') else '',
         'breadcrumb_items': [
             {'title': 'Dashboard', 'active': True}
-        ],
-        'total_transactions': total_transactions,
-        'total_accounts': total_accounts,
-        'total_categories': total_categories,
-    }
+        ]
+    })
 
     return render(request, 'dashboard.html', context)
 
@@ -295,19 +308,19 @@ def landing_page(request):
 @login_required
 def change_email(request):
     """
-    View for changing user's email address
+    View for changing user's email address.
     """
     if request.method == 'POST':
-        # In a real implementation, you would handle email change here
-        # This would typically involve:
-        # 1. Validating the new email
-        # 2. Sending a confirmation email to the new address
-        # 3. Updating the email after confirmation
-        new_email = request.POST.get('email')
-        messages.success(request, 'Email alterado com sucesso!')
-        return redirect('profiles:detail')
+        form = EmailChangeForm(request.POST, user=request.user)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Seu e-mail foi alterado com sucesso!')
+            return redirect('profiles:detail')
+    else:
+        form = EmailChangeForm(user=request.user)
 
     context = {
+        'form': form,
         'breadcrumb_items': [
             {'title': 'Perfil', 'url': reverse_lazy('profiles:detail')},
             {'title': 'Alterar Email', 'active': True}
@@ -316,27 +329,25 @@ def change_email(request):
     return render(request, 'users/change_email.html', context)
 
 
-@login_required
-def change_password(request):
+class CustomPasswordChangeView(LoginRequiredMixin, PasswordChangeView):
     """
-    View for changing user's password
+    View for changing user's password.
     """
-    if request.method == 'POST':
-        # In a real implementation, you would handle password change here
-        # This would typically involve:
-        # 1. Validating the old password
-        # 2. Checking that the new password meets requirements
-        # 3. Updating the password
-        messages.success(request, 'Senha alterada com sucesso!')
-        return redirect('profiles:detail')
+    form_class = PasswordChangeForm
+    template_name = 'users/change_password.html'
+    success_url = reverse_lazy('profiles:detail')
 
-    context = {
-        'breadcrumb_items': [
+    def form_valid(self, form):
+        messages.success(self.request, 'Sua senha foi alterada com sucesso!')
+        return super().form_valid(form)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['breadcrumb_items'] = [
             {'title': 'Perfil', 'url': reverse_lazy('profiles:detail')},
             {'title': 'Alterar Senha', 'active': True}
         ]
-    }
-    return render(request, 'users/change_password.html', context)
+        return context
 
 
 @login_required

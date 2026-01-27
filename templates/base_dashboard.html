@@ -22,10 +22,13 @@
     </script>
 </head>
 <body class="bg-gray-900 text-white min-h-screen flex">
+    <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:z-50 focus:px-4 focus:py-2 focus:bg-white focus:text-gray-900">
+        Pular para o conteúdo principal
+    </a>
     <!-- Sidebar -->
-    <div class="w-64 bg-gray-800 flex flex-col">
+    <aside class="w-64 bg-gray-800 flex flex-col">
         {% include 'components/sidebar.html' %}
-    </div>
+    </aside>
 
     <!-- Main Content -->
     <div class="flex-1 flex flex-col overflow-hidden">
@@ -35,7 +38,7 @@
         </header>
 
         <!-- Dashboard Content Area -->
-        <main class="flex-1 overflow-y-auto p-6 bg-gradient-to-br from-gray-900 to-black">
+        <main id="main-content" class="flex-1 overflow-y-auto p-6 bg-gradient-to-br from-gray-900 to-black">
             {% include 'components/breadcrumbs.html' %}
             {% block dashboard_content %}
             {% endblock %}

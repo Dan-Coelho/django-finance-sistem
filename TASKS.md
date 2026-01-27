@@ -946,112 +946,112 @@
 ### Sprint 10: Otimizações e Polimento (1 semana)
 
 #### 10.1 Otimizações de Performance
-- [ ] **10.1.1** Otimizar queries
+- [x] **10.1.1** Otimizar queries
   - Revisar todas as views
   - Adicionar select_related onde necessário
   - Adicionar prefetch_related para many-to-many
   - Remover N+1 queries
 
-- [ ] **10.1.2** Adicionar indexes
+- [x] **10.1.2** Adicionar indexes
   - Index em Transaction.date
   - Index em Transaction.account_id
   - Index em Transaction.category_id
   - Index compostos se necessário
   - Criar migration para indexes
 
-- [ ] **10.1.3** Caching (opcional)
+- [x] **10.1.3** Caching (opcional)
   - Cache de dashboard stats
   - Cache de categorias padrão
   - Cache de templates (template fragment)
   - Configurar cache backend
 
 #### 10.2 Validações e Segurança
-- [ ] **10.2.1** Revisar permissões
+- [x] **10.2.1** Revisar permissões
   - Todas as views com login_required
   - Verificar ownership em updates/deletes
   - CSRF protection em todos os forms
   - Validação de dados no backend
 
-- [ ] **10.2.2** Sanitização de inputs
+- [x] **10.2.2** Sanitização de inputs
   - Escape de HTML em outputs
   - Validação de valores numéricos
   - Validação de datas
   - Proteção contra SQL injection (Django já faz)
 
-- [ ] **10.2.3** Rate limiting (opcional)
+- [x] **10.2.3** Rate limiting (opcional)
   - Limitar tentativas de login
   - Limitar criação de transações
   - Django-ratelimit ou similar
 
 #### 10.3 Tratamento de Erros
-- [ ] **10.3.1** Páginas de erro customizadas
+- [x] **10.3.1** Páginas de erro customizadas
   - 404.html - Página não encontrada
   - 500.html - Erro do servidor
   - 403.html - Acesso negado
   - Design consistente com o sistema
 
-- [ ] **10.3.2** Logging estruturado
+- [x] **10.3.2** Logging estruturado
   - Logs de erros em arquivo
   - Logs de ações importantes (criar conta, transação)
   - Formato consistente
   - Rotação de logs
 
-- [ ] **10.3.3** Tratamento de exceções
+- [x] **10.3.3** Tratamento de exceções
   - Try-except em operações críticas
   - Mensagens de erro amigáveis
   - Fallbacks quando possível
 
 #### 10.4 Acessibilidade
-- [ ] **10.4.1** Semântica HTML
+- [x] **10.4.1** Semântica HTML
   - Usar tags apropriadas (header, nav, main, etc)
   - Labels em todos os inputs
   - Alt text em imagens
   - Heading hierarchy correta
 
-- [ ] **10.4.2** Navegação por teclado
+- [x] **10.4.2** Navegação por teclado
   - Tab order lógico
   - Focus visível
   - Atalhos de teclado (opcional)
   - Skip to content link
 
-- [ ] **10.4.3** Contraste e legibilidade
+- [x] **10.4.3** Contraste e legibilidade
   - Verificar contraste de cores (WCAG AA)
   - Tamanhos de fonte adequados
   - Line height confortável
   - Não depender apenas de cor
 
 #### 10.5 Responsividade
-- [ ] **10.5.1** Testar em diferentes devices
+- [x] **10.5.1** Testar em diferentes devices
   - Mobile (320px, 375px, 414px)
   - Tablet (768px, 1024px)
   - Desktop (1280px, 1920px)
   - Landscape e portrait
 
-- [ ] **10.5.2** Ajustes responsivos
+- [x] **10.5.2** Ajustes responsivos
   - Menu hamburger funcional em mobile
   - Tabelas scroll horizontal em mobile
   - Forms em coluna única em mobile
   - Botões com tamanho adequado para toque
 
-- [ ] **10.5.3** Performance mobile
+- [x] **10.5.3** Performance mobile
   - Otimizar imagens
   - Minimizar JavaScript
   - Lazy loading (se aplicável)
 
 #### 10.6 Documentação
-- [ ] **10.6.1** README.md
+- [x] **10.6.1** README.md
   - Descrição do projeto
   - Como instalar (setup com uv)
   - Como rodar
   - Estrutura do projeto
   - Comandos úteis
 
-- [ ] **10.6.2** Docstrings
+- [x] **10.6.2** Docstrings
   - Docstrings em classes importantes
   - Docstrings em métodos complexos
   - Seguir padrão Google ou NumPy
 
-- [ ] **10.6.3** Comentários no código
+- [x] **10.6.3** Comentários no código
   - Comentar lógica complexa
   - Explicar decisões não óbvias
   - TODOs para melhorias futuras
