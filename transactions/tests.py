@@ -700,3 +700,61 @@ class TestTransactionForm:
         assert not form.is_valid()
         assert '__all__' in form.errors
         assert form.errors['__all__'][0] == 'A categoria deve ser do mesmo tipo da transação.'
+
+# --- Integration Tests ---
+@pytest.mark.django_db
+class TestIntegration:
+    def test_create_account_and_transaction_flow(self, client, logged_in_user):
+        """
+        Integration test for creating an account, then a transaction, and verifying the balance.
+        """
+        # 1. Create Account
+        account_data = {
+            'name': 'Conta de Integração',
+            'description': 'Conta para teste de integração',
+            'balance': 1000.00
+        }
+        response = client.post(reverse('accounts:create'), account_data, follow=True)
+        assert response.status_code == 200
+        assert Account.objects.filter(user=logged_in_user, name='Conta de Integração').exists()
+        account = Account.objects.get(user=logged_in_user, name='Conta de Integração')
+        assert account.balance == Decimal('1000.00')
+
+        # 2. Create Transaction
+        category = baker.make(Category, user=logged_in_user, type=Category.EXPENSE)
+        transaction_data = {
+            'account': account.pk,
+            'category': category.pk,
+            'amount': 150.00,
+            'date': timezone.now().date(),
+            'description': 'Compra no supermercado',
+            'type': 'EXPENSE'
+        }
+        response = client.post(reverse('transactions:create_expense'), transaction_data, follow=True)
+        assert response.status_code == 200
+        assert Transaction.objects.filter(account=account, description='Compra no supermercado').exists()
+
+        # 3. Verify balance
+        account.refresh_from_db()
+        assert account.balance == Decimal('850.00')
+
+    def test_transaction_filter_flow(self, client, logged_in_user, user_account, user_income_category, user_expense_category):
+        """
+        Integration test for filtering transactions and verifying the results.
+        """
+        # Create some transactions
+        baker.make(Transaction, account=user_account, category=user_expense_category, amount=100, type=Category.EXPENSE, description="Almoço")
+        baker.make(Transaction, account=user_account, category=user_income_category, amount=2000, type=Category.INCOME, description="Salário")
+        baker.make(Transaction, account=user_account, category=user_expense_category, amount=50, type=Category.EXPENSE, description="Café")
+
+        # Filter by category
+        response = client.get(reverse('transactions:list') + f'?category={user_expense_category.pk}')
+        assert response.status_code == 200
+        assert len(response.context['transactions']) == 2
+        assert response.context['total_filtered'] == -150
+
+        # Filter by type
+        response = client.get(reverse('transactions:list') + '?type=INCOME')
+        assert response.status_code == 200
+        assert len(response.context['transactions']) == 1
+        assert response.context['total_filtered'] == 2000

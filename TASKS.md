@@ -1139,12 +1139,12 @@
   - Validação de category type
 
 #### 11.4 Testes de Integração
-- [ ] **11.4.1** Fluxo completo de usuário
+- [x] **11.4.1** Fluxo completo de usuário
   - Cadastro → Login → Dashboard
   - Criar conta → Criar transação → Ver saldo atualizado
   - Filtrar transações → Ver totais corretos
 
-- [ ] **11.4.2** Testes de signals
+- [x] **11.4.2** Testes de signals
   - Criar transação → Balance atualizado
   - Editar transação → Balance recalculado
   - Deletar transação → Balance ajustado

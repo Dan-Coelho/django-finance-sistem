@@ -477,3 +477,41 @@ class TestSignUpForm:
         })
         assert not form.is_valid()
         assert 'password1' in form.errors
+
+# --- Integration Tests ---
+@pytest.mark.django_db
+class TestIntegration:
+    def test_full_user_flow(self, client):
+        """
+        Integration test for the full user flow: Signup -> Logout -> Login -> Dashboard.
+        """
+        # 1. Signup
+        signup_data = {
+            'email': 'integration_user@example.com',
+            'password': 'StrongPassword123',
+            'password2': 'StrongPassword123'
+        }
+        response = client.post(reverse('users:signup'), signup_data, follow=True)
+        assert response.status_code == 200
+        assert response.redirect_chain[0][0] == reverse('users:dashboard')
+        assert CustomUser.objects.filter(email='integration_user@example.com').exists()
+        user = CustomUser.objects.get(email='integration_user@example.com')
+        assert response.context['user'].is_authenticated
+        assert response.context['user'] == user
+
+        # 2. Logout
+        response = client.post(reverse('users:logout'), follow=True)
+        assert response.status_code == 200
+        assert not response.context['user'].is_authenticated
+        assert response.redirect_chain[0][0] == reverse('users:landing_page')
+
+        # 3. Login
+        login_data = {
+            'email': 'integration_user@example.com',
+            'password': 'StrongPassword123'
+        }
+        response = client.post(reverse('users:login'), login_data, follow=True)
+        assert response.status_code == 200
+        assert response.context['user'].is_authenticated
+        assert response.context['user'] == user
+        assert response.redirect_chain[0][0] == reverse('users:dashboard')
