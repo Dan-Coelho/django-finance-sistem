@@ -9,7 +9,9 @@ from decimal import Decimal
 from users.models import CustomUser
 from accounts.models import Account
 from categories.models import Category
-from transactions.models import Transaction # Needed for testing deletion with related objects
+from transactions.models import Transaction
+
+from .forms import AccountForm
 
 # Fixtures for common test objects
 @pytest.fixture
@@ -52,7 +54,7 @@ def test_account_name_cannot_be_empty():
     Teste de validação: name não pode ser vazio.
     """
     user = baker.make(CustomUser)
-    with pytest.raises(ValidationError, match="Name cannot be empty."):
+    with pytest.raises(ValidationError, match="O nome da conta é obrigatório."):
         account = baker.make(Account, user=user, name=' ')
         account.clean()
 
@@ -327,3 +329,47 @@ def test_account_delete_view_with_transactions(client, logged_in_user):
     assert Account.objects.filter(pk=account.pk).exists() # Account should NOT be deleted
     assert response.redirect_chain[0][0] == reverse('accounts:list')
     assert any(m.level == messages.ERROR for m in response.context['messages'])
+
+# --- Form Tests ---
+
+@pytest.mark.django_db
+class TestAccountForm:
+    def test_account_form_valid_data(self):
+        """
+        Test that the AccountForm is valid with correct data.
+        """
+        form = AccountForm(data={
+            'name': 'Conta Válida',
+            'description': 'Descrição da conta válida',
+            'balance': 100.00,
+            'is_active': True
+        })
+        assert form.is_valid()
+
+    def test_account_form_negative_balance(self):
+        """
+        Test that the AccountForm raises a validation error for a negative balance.
+        """
+        form = AccountForm(data={
+            'name': 'Conta com Saldo Negativo',
+            'description': '',
+            'balance': -100.00,
+            'is_active': True
+        })
+        assert not form.is_valid()
+        assert 'balance' in form.errors
+        assert form.errors['balance'][0] == 'O saldo não pode ser negativo.'
+
+    def test_account_form_empty_name(self):
+        """
+        Test that the AccountForm raises a validation error for an empty name.
+        """
+        form = AccountForm(data={
+            'name': '',
+            'description': '',
+            'balance': 100.00,
+            'is_active': True
+        })
+        assert not form.is_valid()
+        assert 'name' in form.errors
+        assert form.errors['name'][0] == 'O nome da conta é obrigatório.'

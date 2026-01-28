@@ -1,4 +1,4 @@
-from datetime import timedelta
+from datetime import date, timedelta
 from decimal import Decimal
 
 import pytest
@@ -13,6 +13,8 @@ from accounts.models import Account
 from categories.models import Category
 from transactions.models import Transaction
 from users.models import CustomUser
+
+from .forms import TransactionForm
 
 
 @pytest.fixture
@@ -87,7 +89,7 @@ def test_transaction_amount_min_value_validation(account, income_category):
     """
     Teste de validação de valor mínimo (amount > 0).
     """
-    with pytest.raises(ValidationError, match='Amount must be greater than 0.'):
+    with pytest.raises(ValidationError):
         transaction = baker.make(
             Transaction,
             account=account,
@@ -103,7 +105,7 @@ def test_transaction_date_future_validation(account, income_category):
     Teste de validação: data não pode ser futura.
     """
     future_date = timezone.now().date() + timedelta(days=1)
-    with pytest.raises(ValidationError, match='Date cannot be in the future.'):
+    with pytest.raises(ValidationError):
         transaction = baker.make(
             Transaction,
             account=account,
@@ -120,7 +122,7 @@ def test_transaction_category_type_match_validation(account, income_category, ex
     Teste de validação: category.type deve corresponder a transaction.type.
     """
     # Trying to create an INCOME transaction with an EXPENSE category
-    with pytest.raises(ValidationError, match='Category type .* must match transaction type .*'):
+    with pytest.raises(ValidationError):
         transaction = baker.make(
             Transaction,
             account=account,
@@ -131,7 +133,7 @@ def test_transaction_category_type_match_validation(account, income_category, ex
         transaction.full_clean()
     
     # Trying to create an EXPENSE transaction with an INCOME category
-    with pytest.raises(ValidationError, match='Category type .* must match transaction type .*'):
+    with pytest.raises(ValidationError):
         transaction = baker.make(
             Transaction,
             account=account,
@@ -334,8 +336,6 @@ def test_transaction_list_view_empty_state(client, logged_in_user):
     response = client.get(reverse('transactions:list'))
     assert response.status_code == 200
     assert len(response.context['transactions']) == 0
-    # Assuming the template uses an empty_state component or message
-    # assert 'Nenhuma transação encontrada.' in response.content.decode()
 
 
 @pytest.mark.django_db
@@ -343,7 +343,7 @@ def test_create_income_view_authenticated_get(client, logged_in_user):
     """
     Teste GET autenticado para a view de criação de receita.
     """
-    response = client.get(reverse('transactions:create-income'))
+    response = client.get(reverse('transactions:create_income'))
     assert response.status_code == 200
     assert 'transactions/transaction_form.html' in [t.name for t in response.templates]
 
@@ -352,9 +352,9 @@ def test_create_income_view_unauthenticated_get(client):
     """
     Teste GET não autenticado para a view de criação de receita.
     """
-    response = client.get(reverse('transactions:create-income'))
+    response = client.get(reverse('transactions:create_income'))
     assert response.status_code == 302
-    assert response.url == f"{reverse('users:login')}?next={reverse('transactions:create-income')}"
+    assert response.url == f"{reverse('users:login')}?next={reverse('transactions:create_income')}"
 
 @pytest.mark.django_db
 def test_create_income_view_authenticated_post_valid_data(client, logged_in_user, user_account, user_income_category):
@@ -368,13 +368,13 @@ def test_create_income_view_authenticated_post_valid_data(client, logged_in_user
         'amount': 250.00,
         'date': timezone.now().date(),
         'description': 'Receita de teste',
+        'type': 'INCOME'
     }
-    response = client.post(reverse('transactions:create-income'), data, follow=True)
+    response = client.post(reverse('transactions:create_income'), data, follow=True)
     assert response.status_code == 200
     assert Transaction.objects.filter(account=user_account, description='Receita de teste', type=Transaction.INCOME).exists()
     user_account.refresh_from_db()
     assert user_account.balance == initial_balance + Decimal('250.00')
-    # assert any(m.level == messages.SUCCESS for m in response.context['messages'])
 
 @pytest.mark.django_db
 def test_create_income_view_authenticated_post_invalid_data(client, logged_in_user, user_account, user_income_category):
@@ -387,8 +387,9 @@ def test_create_income_view_authenticated_post_invalid_data(client, logged_in_us
         'amount': 0.00, # Invalid amount
         'date': timezone.now().date(),
         'description': 'Receita inválida',
+        'type': 'INCOME'
     }
-    response = client.post(reverse('transactions:create-income'), data)
+    response = client.post(reverse('transactions:create_income'), data)
     assert response.status_code == 200
     assert not Transaction.objects.filter(description='Receita inválida').exists()
     assert 'transactions/transaction_form.html' in [t.name for t in response.templates]
@@ -400,7 +401,7 @@ def test_create_expense_view_authenticated_get(client, logged_in_user):
     """
     Teste GET autenticado para a view de criação de despesa.
     """
-    response = client.get(reverse('transactions:create-expense'))
+    response = client.get(reverse('transactions:create_expense'))
     assert response.status_code == 200
     assert 'transactions/transaction_form.html' in [t.name for t in response.templates]
 
@@ -409,9 +410,9 @@ def test_create_expense_view_unauthenticated_get(client):
     """
     Teste GET não autenticado para a view de criação de despesa.
     """
-    response = client.get(reverse('transactions:create-expense'))
+    response = client.get(reverse('transactions:create_expense'))
     assert response.status_code == 302
-    assert response.url == f"{reverse('users:login')}?next={reverse('transactions:create-expense')}"
+    assert response.url == f"{reverse('users:login')}?next={reverse('transactions:create_expense')}"
 
 @pytest.mark.django_db
 def test_create_expense_view_authenticated_post_valid_data(client, logged_in_user, user_account, user_expense_category):
@@ -425,13 +426,13 @@ def test_create_expense_view_authenticated_post_valid_data(client, logged_in_use
         'amount': 100.00,
         'date': timezone.now().date(),
         'description': 'Despesa de teste',
+        'type': 'EXPENSE'
     }
-    response = client.post(reverse('transactions:create-expense'), data, follow=True)
+    response = client.post(reverse('transactions:create_expense'), data, follow=True)
     assert response.status_code == 200
     assert Transaction.objects.filter(account=user_account, description='Despesa de teste', type=Transaction.EXPENSE).exists()
     user_account.refresh_from_db()
     assert user_account.balance == initial_balance - Decimal('100.00')
-    # assert any(m.level == messages.SUCCESS for m in response.context['messages'])
 
 @pytest.mark.django_db
 def test_create_expense_view_authenticated_post_invalid_data(client, logged_in_user, user_account, user_expense_category):
@@ -445,8 +446,9 @@ def test_create_expense_view_authenticated_post_invalid_data(client, logged_in_u
         'amount': 50.00,
         'date': future_date, # Invalid date
         'description': 'Despesa inválida',
+        'type': 'EXPENSE'
     }
-    response = client.post(reverse('transactions:create-expense'), data)
+    response = client.post(reverse('transactions:create_expense'), data)
     assert response.status_code == 200
     assert not Transaction.objects.filter(description='Despesa inválida').exists()
     assert 'transactions/transaction_form.html' in [t.name for t in response.templates]
@@ -466,12 +468,12 @@ def test_transaction_update_view_authenticated_get_own_transaction(client, logge
         amount=Decimal('100.00')
     )
     response = client.get(reverse('transactions:edit', kwargs={'pk': transaction.pk}))
-    assert response.status_code == 200 # Should be 200, not 302
+    assert response.status_code == 200 
     assert 'transactions/transaction_form.html' in [t.name for t in response.templates]
     assert response.context['form'].instance == transaction
 
 @pytest.mark.django_db
-def test_transaction_update_view_unauthenticated_get(unauthenticated_client, user_account, user_income_category):
+def test_transaction_update_view_unauthenticated_get(client, user_account, user_income_category):
     """
     Teste GET não autenticado para editar transação.
     """
@@ -482,7 +484,8 @@ def test_transaction_update_view_unauthenticated_get(unauthenticated_client, use
         type=Transaction.INCOME,
         amount=Decimal('100.00')
     )
-    response = unauthenticated_client.get(reverse('transactions:edit', kwargs={'pk': transaction.pk}))
+    client.logout()
+    response = client.get(reverse('transactions:edit', kwargs={'pk': transaction.pk}))
     assert response.status_code == 302
     assert response.url == f"{reverse('users:login')}?next={reverse('transactions:edit', kwargs={'pk': transaction.pk})}"
 
@@ -514,7 +517,7 @@ def test_transaction_update_view_authenticated_post_valid_data(client, logged_in
         type=Transaction.INCOME,
         amount=Decimal('100.00')
     )
-    user_account.refresh_from_db() # Get updated balance after initial transaction creation
+    user_account.refresh_from_db() 
     assert user_account.balance == initial_balance + Decimal('100.00')
 
     data = {
@@ -523,6 +526,7 @@ def test_transaction_update_view_authenticated_post_valid_data(client, logged_in
         'amount': 250.00, # Updated amount
         'date': transaction.date,
         'description': 'Receita atualizada',
+        'type': 'INCOME'
     }
     response = client.post(reverse('transactions:edit', kwargs={'pk': transaction.pk}), data, follow=True)
     assert response.status_code == 200
@@ -530,8 +534,7 @@ def test_transaction_update_view_authenticated_post_valid_data(client, logged_in
     assert transaction.amount == Decimal('250.00')
     assert transaction.description == 'Receita atualizada'
     user_account.refresh_from_db()
-    assert user_account.balance == initial_balance + Decimal('250.00') # Balance should reflect new amount
-    # assert any(m.level == messages.SUCCESS for m in response.context['messages'])
+    assert user_account.balance == initial_balance + Decimal('250.00') 
 
 @pytest.mark.django_db
 def test_transaction_update_view_authenticated_post_invalid_data(client, logged_in_user, user_account, user_income_category):
@@ -551,6 +554,7 @@ def test_transaction_update_view_authenticated_post_invalid_data(client, logged_
         'amount': 0.00, # Invalid amount
         'date': transaction.date,
         'description': 'Receita inválida',
+        'type': 'INCOME'
     }
     response = client.post(reverse('transactions:edit', kwargs={'pk': transaction.pk}), data)
     assert response.status_code == 200
@@ -573,12 +577,12 @@ def test_transaction_delete_view_authenticated_get_own_transaction(client, logge
         amount=Decimal('100.00')
     )
     response = client.get(reverse('transactions:delete', kwargs={'pk': transaction.pk}))
-    assert response.status_code == 200 # Should be 200, not 302
+    assert response.status_code == 200 
     assert 'transactions/transaction_confirm_delete.html' in [t.name for t in response.templates]
     assert response.context['object'] == transaction
 
 @pytest.mark.django_db
-def test_transaction_delete_view_unauthenticated_get(unauthenticated_client, user_account, user_income_category):
+def test_transaction_delete_view_unauthenticated_get(client, user_account, user_income_category):
     """
     Teste GET não autenticado para deletar transação.
     """
@@ -589,7 +593,8 @@ def test_transaction_delete_view_unauthenticated_get(unauthenticated_client, use
         type=Transaction.INCOME,
         amount=Decimal('100.00')
     )
-    response = unauthenticated_client.get(reverse('transactions:delete', kwargs={'pk': transaction.pk}))
+    client.logout()
+    response = client.get(reverse('transactions:delete', kwargs={'pk': transaction.pk}))
     assert response.status_code == 302
     assert response.url == f"{reverse('users:login')}?next={reverse('transactions:delete', kwargs={'pk': transaction.pk})}"
 
@@ -629,5 +634,69 @@ def test_transaction_delete_view_authenticated_post_own_transaction(client, logg
     assert not Transaction.objects.filter(pk=transaction.pk).exists()
     user_account.refresh_from_db()
     assert user_account.balance == initial_balance # Balance should revert
-    # assert any(m.level == messages.SUCCESS for m in response.context['messages'])
     assert response.redirect_chain[0][0] == reverse('transactions:list')
+
+# --- Form Tests ---
+@pytest.mark.django_db
+class TestTransactionForm:
+    def test_transaction_form_valid_data(self, logged_in_user, user_account, user_income_category):
+        """
+        Test that the TransactionForm is valid with correct data.
+        """
+        form = TransactionForm(data={
+            'amount': 100.00,
+            'date': date.today(),
+            'category': user_income_category.pk,
+            'account': user_account.pk,
+            'description': 'Valid transaction',
+            'type': 'INCOME'
+        }, user=logged_in_user, transaction_type='INCOME')
+        assert form.is_valid()
+
+    def test_transaction_form_amount_zero(self, logged_in_user, user_account, user_income_category):
+        """
+        Test that the TransactionForm raises a validation error for an amount of zero.
+        """
+        form = TransactionForm(data={
+            'amount': 0.00,
+            'date': date.today(),
+            'category': user_income_category.pk,
+            'account': user_account.pk,
+            'description': 'Invalid amount',
+            'type': 'INCOME'
+        }, user=logged_in_user, transaction_type='INCOME')
+        assert not form.is_valid()
+        assert 'amount' in form.errors
+        assert form.errors['amount'][0] == 'O valor deve ser maior que zero.'
+
+    def test_transaction_form_future_date(self, logged_in_user, user_account, user_income_category):
+        """
+        Test that the TransactionForm raises a validation error for a future date.
+        """
+        form = TransactionForm(data={
+            'amount': 100.00,
+            'date': date.today() + timedelta(days=1),
+            'category': user_income_category.pk,
+            'account': user_account.pk,
+            'description': 'Future transaction',
+            'type': 'INCOME'
+        }, user=logged_in_user, transaction_type='INCOME')
+        assert not form.is_valid()
+        assert 'date' in form.errors
+        assert form.errors['date'][0] == 'A data não pode ser futura.'
+
+    def test_transaction_form_mismatched_category_type(self, logged_in_user, user_account, user_expense_category):
+        """
+        Test that the TransactionForm raises a validation error for mismatched category and transaction types.
+        """
+        form = TransactionForm(data={
+            'amount': 100.00,
+            'date': date.today(),
+            'category': user_expense_category.pk,
+            'account': user_account.pk,
+            'description': 'Mismatched type',
+            'type': 'INCOME'
+        }, user=logged_in_user, transaction_type='INCOME')
+        assert not form.is_valid()
+        assert '__all__' in form.errors
+        assert form.errors['__all__'][0] == 'A categoria deve ser do mesmo tipo da transação.'

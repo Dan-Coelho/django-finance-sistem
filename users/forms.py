@@ -17,7 +17,7 @@ class SignUpForm(UserCreationForm):
     email = forms.EmailField(
         max_length=254,
         widget=forms.EmailInput(attrs={
-            'class': 'w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500',
+            'class': 'w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 text-gray-800',
             'placeholder': 'email@exemplo.com'
         }),
         help_text='Digite seu endereço de e-mail.'
@@ -26,7 +26,7 @@ class SignUpForm(UserCreationForm):
         label="Senha",
         strip=False,
         widget=forms.PasswordInput(attrs={
-            'class': 'w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500',
+            'class': 'w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 text-gray-800',
             'placeholder': 'Digite sua senha'
         }),
         help_text='Sua senha deve conter pelo menos 8 caracteres e não pode ser muito comum.'
@@ -34,7 +34,7 @@ class SignUpForm(UserCreationForm):
     password2 = forms.CharField(
         label="Confirmação de senha",
         widget=forms.PasswordInput(attrs={
-            'class': 'w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500',
+            'class': 'w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 text-gray-800',
             'placeholder': 'Confirme sua senha'
         }),
         strip=False,

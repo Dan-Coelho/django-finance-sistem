@@ -1120,20 +1120,20 @@
   - Teste de filtros de período
 
 #### 11.3 Testes de Forms
-- [ ] **11.3.1** Testar SignUpForm
+- [x] **11.3.1** Testar SignUpForm
   - Validação de email único
   - Validação de senhas coincidentes
   - Validação de força de senha
 
-- [ ] **11.3.2** Testar AccountForm
+- [x] **11.3.2** Testar AccountForm
   - Validação de campos obrigatórios
   - Validação de balance >= 0
 
-- [ ] **11.3.3** Testar CategoryForm
+- [x] **11.3.3** Testar CategoryForm
   - Validação de nome único por tipo
   - Validação de campos
 
-- [ ] **11.3.4** Testar TransactionForm
+- [x] **11.3.4** Testar TransactionForm
   - Validação de amount > 0
   - Validação de data não futura
   - Validação de category type

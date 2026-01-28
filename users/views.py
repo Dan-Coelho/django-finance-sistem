@@ -8,7 +8,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import LoginView, LogoutView, PasswordChangeView
 from django.core.cache import cache
-from django.db.models import Case, DecimalField, F, Sum, When
+from django.db.models import Case, DecimalField, F, Q, Sum, When
 from django.db.models.functions import TruncMonth
 from django.shortcuts import redirect, render
 from django.urls import reverse_lazy
@@ -37,7 +37,7 @@ class SignUpView(CreateView):
         Override form_valid to log the user in automatically after successful registration.
         """
         user = form.save()
-        login(self.request, user)  # Log the user in automatically after signup
+        login(self.request, user, backend='users.backends.EmailAuthBackend')  # Log the user in automatically after signup
         messages.success(self.request, 'Conta criada com sucesso! Bem-vindo ao nosso sistema.')
         return redirect(self.success_url)
 
@@ -430,7 +430,7 @@ def reports(request):
     balance = total_income - total_expense
 
     # Get all categories and accounts for the filter dropdowns
-    all_categories = Category.objects.filter(user=request.user)
+    all_categories = Category.objects.filter(Q(user=request.user) | Q(is_default=True))
     all_accounts = Account.objects.filter(user=request.user)
 
     # Prepare data based on report type

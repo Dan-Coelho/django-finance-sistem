@@ -14,6 +14,8 @@ from accounts.models import Account
 from categories.models import Category
 from transactions.models import Transaction
 
+from .forms import SignUpForm
+
 
 # Existing fixtures (from model tests)
 @pytest.fixture
@@ -340,17 +342,9 @@ def test_dashboard_card_calculations_current_month(mock_cache, client, dashboard
     user_account = Account.objects.get(user=dashboard_data_user, is_active=True)
     
     # Expected values for current month (based on dashboard_data_user fixture)
-    expected_total_balance = user_account.balance # Initial 5000 + 2000 income - 300 food - 150 transport = 6550
     # Recalculate based on current setup. initial is 5000.00
     # +2000.00 (income) -300.00 (food) -150.00 (transport) = 6550.00
-    # last month: +1500.00 (income) -200.00 (food) = 1300.00
-    # so total is 6550.00 - 1300.00 = 5250
     
-    # No, model bakery's baker.make creates and saves.
-    # The balance on the account fixture is the *initial* balance
-    # The transactions made in dashboard_data_user fixture for current month will update the account's balance
-    # 5000 (initial) + 2000 (income) - 300 (food) - 150 (transport) = 6550.00 (current balance)
-
     user_account.refresh_from_db() # Refresh to get actual balance after all transactions
     assert context['total_balance'] == user_account.balance
 
@@ -370,7 +364,7 @@ def test_dashboard_card_calculations_current_month(mock_cache, client, dashboard
         expected_avg_daily_expenses = Decimal('450.00') / days_in_period
     else:
         expected_avg_daily_expenses = Decimal('0.00')
-    assert context['avg_daily_expenses'] == expected_avg_daily_expenses.quantize(Decimal('0.01')) # Quantize for comparison
+    assert context['avg_daily_expenses'] == expected_avg_daily_expenses.quantize(Decimal('0.01'))
 
     # Highest expense category (Food: 300.00, Transport: 150.00)
     assert context['highest_expense_category']['category__name'] == 'Alimentação'
@@ -382,8 +376,8 @@ def test_dashboard_card_calculations_current_month(mock_cache, client, dashboard
     # Chart data
     assert 'Alimentação' in context['chart_categories']
     assert 'Transporte' in context['chart_categories']
-    assert Decimal('300.00') in context['chart_amounts']
-    assert Decimal('150.00') in context['chart_amounts']
+    assert float(300) in context['chart_amounts']
+    assert float(150) in context['chart_amounts']
 
 @pytest.mark.django_db
 @patch('users.views.cache')
@@ -428,3 +422,58 @@ def test_dashboard_card_calculations_custom_period(mock_cache, client, dashboard
     assert context['monthly_income'] == Decimal('0.00')
     assert context['monthly_expenses'] == Decimal('0.00')
     assert context['monthly_balance'] == Decimal('0.00')
+
+# --- Form Tests ---
+
+@pytest.mark.django_db
+class TestSignUpForm:
+    def test_signup_form_valid_data(self):
+        """
+        Test that the SignUpForm is valid with correct data.
+        """
+        form = SignUpForm(data={
+            'email': 'test@example.com',
+            'password1': 'StrongPassword123',
+            'password2': 'StrongPassword123'
+        })
+        assert form.is_valid()
+
+    def test_signup_form_mismatched_passwords(self):
+        """
+        Test that the SignUpForm raises a validation error for mismatched passwords.
+        """
+        form = SignUpForm(data={
+            'email': 'test@example.com',
+            'password1': 'StrongPassword123',
+            'password2': 'DifferentPassword123'
+        })
+        assert not form.is_valid()
+        assert 'password2' in form.errors
+        assert form.errors['password2'][0] == "As senhas não coincidem."
+
+    def test_signup_form_existing_email(self):
+        """
+        Test that the SignUpForm raises a validation error for an existing email.
+        """
+        baker.make(CustomUser, email='existing@example.com')
+        form = SignUpForm(data={
+            'email': 'existing@example.com',
+            'password1': 'StrongPassword123',
+            'password2': 'StrongPassword123'
+        })
+        assert not form.is_valid()
+        assert 'email' in form.errors
+        assert form.errors['email'][0] == "Este e-mail já está sendo utilizado."
+
+    @pytest.mark.parametrize("password", ["12345", "password", "12345678"])
+    def test_signup_form_weak_password(self, password):
+        """
+        Test that the SignUpForm raises a validation error for weak passwords.
+        """
+        form = SignUpForm(data={
+            'email': 'test@example.com',
+            'password1': password,
+            'password2': password
+        })
+        assert not form.is_valid()
+        assert 'password1' in form.errors
