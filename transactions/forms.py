@@ -57,7 +57,7 @@ class TransactionForm(forms.ModelForm):
 
     def clean_amount(self):
         amount = self.cleaned_data.get('amount')
-        if amount <= 0:
+        if amount is not None and amount <= 0:
             raise ValidationError('O valor deve ser maior que zero.')
         return amount
 

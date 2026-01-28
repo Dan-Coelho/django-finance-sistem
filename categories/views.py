@@ -130,22 +130,22 @@ class CategoryDeleteView(LoginRequiredMixin, DeleteView):
     template_name = 'categories/category_confirm_delete.html'
     success_url = reverse_lazy('categories:list')
 
-    def delete(self, request, *args, **kwargs):
-        category = self.get_object()
+    def post(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        category = self.object
+
         if category.user != request.user or category.is_default:
             messages.error(request, 'Você não pode excluir esta categoria.')
             return redirect('categories:list')
 
-        # Check if there are transactions using this category
-        if category.transaction_set.exists():
+        if category.transactions.exists():
             messages.error(request, f'Não é possível excluir a categoria "{category.name}" porque ela está sendo usada em transações.')
             return redirect('categories:list')
 
         category_name = category.name
-        response = super().delete(request, *args, **kwargs)
         messages.success(request, 'Categoria excluída com sucesso!')
         logger.info(f"Category '{category_name}' deleted by user '{request.user}'.")
-        return response
+        return super().post(request, *args, **kwargs)
 
     def get_queryset(self):
         # Only allow deleting categories that belong to the current user and are not default

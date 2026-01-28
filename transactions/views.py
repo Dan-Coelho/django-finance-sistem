@@ -96,6 +96,7 @@ class CreateIncomeView(LoginRequiredMixin, CreateView):
     template_name = 'transactions/transaction_form.html'
 
     def form_valid(self, form):
+        form.instance.type = Transaction.INCOME # Explicitly set the type
         response = super().form_valid(form)
         messages.success(self.request, 'Receita criada com sucesso!')
         logger.info(f"Income transaction '{form.instance.description}' created by user '{self.request.user}'.")
@@ -133,6 +134,7 @@ class CreateExpenseView(LoginRequiredMixin, CreateView):
     template_name = 'transactions/transaction_form.html'
 
     def form_valid(self, form):
+        form.instance.type = Transaction.EXPENSE # Explicitly set the type
         response = super().form_valid(form)
         messages.success(self.request, 'Despesa criada com sucesso!')
         logger.info(f"Expense transaction '{form.instance.description}' created by user '{self.request.user}'.")
@@ -169,6 +171,10 @@ class TransactionUpdateView(LoginRequiredMixin, UpdateView):
     form_class = TransactionForm
     template_name = 'transactions/transaction_form.html'
     success_url = reverse_lazy('transactions:list')
+
+    def dispatch(self, request, *args, **kwargs):
+        logger.debug(f"TransactionUpdateView: User authenticated: {request.user.is_authenticated}")
+        return super().dispatch(request, *args, **kwargs)
 
     def form_valid(self, form):
         # Ensure the transaction belongs to the current user
@@ -217,8 +223,14 @@ class TransactionDeleteView(LoginRequiredMixin, DeleteView):
     template_name = 'transactions/transaction_confirm_delete.html'
     success_url = reverse_lazy('transactions:list')
 
-    def delete(self, request, *args, **kwargs):
-        transaction = self.get_object()
+    def dispatch(self, request, *args, **kwargs):
+        logger.debug(f"TransactionDeleteView: User authenticated: {request.user.is_authenticated}")
+        return super().dispatch(request, *args, **kwargs)
+
+    def post(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        transaction = self.object
+
         if transaction.account.user != request.user:
             messages.error(request, 'Você não pode excluir esta transação.')
             return redirect('transactions:list')
@@ -228,19 +240,10 @@ class TransactionDeleteView(LoginRequiredMixin, DeleteView):
         balance_before = account_before.balance
         
         transaction_description = transaction.description
-        response = super().delete(request, *args, **kwargs)
-
-        # Get the account balance after deletion
-        try:
-            account_after = Account.objects.get(pk=account_before.pk)
-            balance_after = account_after.balance
-            messages.success(request, f'Transação excluída com sucesso! Saldo alterado de R${balance_before:.2f} para R${balance_after:.2f}.')
-            logger.info(f"Transaction '{transaction_description}' deleted by user '{request.user}'.")
-        except Account.DoesNotExist:
-            messages.success(request, 'Transação excluída com sucesso!')
-            logger.info(f"Transaction '{transaction_description}' deleted by user '{request.user}'.")
-
-        return response
+        
+        messages.success(request, f'Transação excluída com sucesso! Saldo alterado de R${balance_before:.2f} para R${transaction.account.balance + (transaction.amount if transaction.type == Transaction.EXPENSE else -transaction.amount):.2f}.')
+        logger.info(f"Transaction '{transaction_description}' deleted by user '{request.user}'.")
+        return super().post(request, *args, **kwargs)
 
     def get_queryset(self):
         # Only allow deleting transactions that belong to the current user

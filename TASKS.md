@@ -1088,33 +1088,33 @@
   - Teste de relacionamentos
 
 #### 11.2 Testes de Views
-- [ ] **11.2.1** Testar autenticação
+- [x] **11.2.1** Testar autenticação
   - Teste de signup
   - Teste de login
   - Teste de logout
   - Teste de recuperação de senha
 
-- [ ] **11.2.2** Testar CRUD de contas
+- [x] **11.2.2** Testar CRUD de contas
   - Teste de listagem
   - Teste de criação
   - Teste de edição
   - Teste de exclusão
   - Teste de permissões
 
-- [ ] **11.2.3** Testar CRUD de categorias
+- [x] **11.2.3** Testar CRUD de categorias
   - Teste de listagem
   - Teste de criação
   - Teste de edição (apenas personalizadas)
   - Teste de exclusão (apenas personalizadas)
 
-- [ ] **11.2.4** Testar CRUD de transações
+- [x] **11.2.4** Testar CRUD de transações
   - Teste de listagem
   - Teste de criação (receita e despesa)
   - Teste de edição
   - Teste de exclusão
   - Teste de filtros
 
-- [ ] **11.2.5** Testar dashboard
+- [x] **11.2.5** Testar dashboard
   - Teste de acesso autenticado
   - Teste de cálculos de cards
   - Teste de filtros de período

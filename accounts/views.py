@@ -8,6 +8,8 @@ from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, DeleteView, ListView, UpdateView
 
+from transactions.models import Transaction
+
 from .forms import AccountForm
 from .models import Account
 
@@ -106,18 +108,18 @@ class AccountDeleteView(LoginRequiredMixin, DeleteView):
     def get_queryset(self):
         return Account.objects.filter(user=self.request.user)
 
-    def delete(self, request, *args, **kwargs):
-        account = self.get_object()
-        from transactions.models import Transaction
+    def post(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        account = self.object
+        
         if Transaction.objects.filter(account=account).exists():
             messages.error(request, 'Não é possível excluir esta conta porque ela tem transações associadas. Considere desativar a conta em vez de excluí-la.')
             return redirect('accounts:list')
         
         account_name = account.name
-        response = super().delete(request, *args, **kwargs)
         messages.success(request, 'Conta excluída com sucesso!')
         logger.info(f"Account '{account_name}' deleted by user '{request.user}'.")
-        return response
+        return super().post(request, *args, **kwargs)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

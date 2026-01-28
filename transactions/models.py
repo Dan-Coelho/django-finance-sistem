@@ -27,7 +27,7 @@ class Transaction(models.Model):
         decimal_places=2,
         validators=[MinValueValidator(0.01)]  # amount > 0
     )
-    date = models.DateField(default=timezone.now)
+    date = models.DateField(default=timezone.localdate)
     description = models.TextField(blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -39,11 +39,11 @@ class Transaction(models.Model):
         super().clean()
 
         # Validate amount > 0
-        if self.amount <= 0:
+        if self.amount is not None and self.amount <= 0:
             raise ValidationError({'amount': 'Amount must be greater than 0.'})
 
         # Validate date is not in the future
-        if self.date and self.date > timezone.now().date():
+        if self.date and self.date > timezone.now().date(): # self.date is already a date object. If it were datetime, convert to date.
             raise ValidationError({'date': 'Date cannot be in the future.'})
 
         # Validate category.type matches transaction.type

@@ -1,6 +1,6 @@
 <div class="flex items-center justify-between px-6 py-4">
     <div class="flex items-center">
-        <a href="/" class="text-xl font-bold text-blue-600 mr-4">FinanPy</a>
+        <a href="/" class="text-5xl font-['Archivo_Black'] font-bold text-blue-600 mr-4">FinanPy</a>
         <button id="sidebar-toggle" class="md:hidden mr-4 text-gray-400 hover:text-white">
             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
@@ -30,11 +30,14 @@
         </div>
         
         <div class="relative">
-            <a href="{% url 'users:logout' %}" class="text-gray-400 hover:text-white">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path>
-                </svg>
-            </a>
+            <form id="logout-form" action="{% url 'users:logout' %}" method="post" class="inline">
+                {% csrf_token %}
+                <button type="submit" class="text-gray-400 hover:text-white p-1 rounded-full focus:outline-none">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path>
+                    </svg>
+                </button>
+            </form>
         </div>
     </div>
 </div>

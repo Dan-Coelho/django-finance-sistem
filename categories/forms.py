@@ -6,7 +6,7 @@ from .models import Category
 class CategoryForm(forms.ModelForm):
     class Meta:
         model = Category
-        fields = ['name', 'type', 'color']
+        fields = ['name', 'type', 'color', 'is_active']
         widgets = {
             'name': forms.TextInput(attrs={
                 'class': 'w-full px-3 py-2 border border-gray-500 rounded-md shadow-sm bg-gray-300 text-gray-800 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm'

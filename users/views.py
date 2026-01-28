@@ -82,7 +82,7 @@ class LogoutView(LogoutView):
     """
     View for user logout that handles the logout process.
     """
-    next_page = reverse_lazy('landing_page')  # Redirect to landing page after logout
+    next_page = reverse_lazy('users:landing_page')  # Redirect to landing page after logout
 
     def dispatch(self, request, *args, **kwargs):
         """
