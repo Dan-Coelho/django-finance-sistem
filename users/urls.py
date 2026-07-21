@@ -17,9 +17,16 @@ urlpatterns = [
     path('reset/<uidb64>/<token>/', auth_views.PasswordResetConfirmView.as_view(), name='password_reset_confirm'),
     path('reset/done/', auth_views.PasswordResetCompleteView.as_view(), name='password_reset_complete'),
 
+    # Change email and password URLs
+    path('change_email/', views.change_email, name='change_email'),
+    path('change_password/', views.CustomPasswordChangeView.as_view(), name='change_password'),
+
     # Landing page
     path('', views.landing_page, name='landing_page'),
 
     # Dashboard
     path('dashboard/', views.dashboard, name='dashboard'),
+
+    # Reports
+    path('reports/', views.reports, name='reports'),
 ]

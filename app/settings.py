@@ -37,7 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'django.contrib.humanize',
+    'django.contrib.humanize',  # Required for intcomma filter
 
     'accounts',
     'categories',
@@ -131,6 +131,7 @@ LANGUAGE_CODE = 'pt-br'
 TIME_ZONE = 'America/Fortaleza'
 
 USE_I18N = True
+USE_L10N = True
 
 USE_TZ = True
 
@@ -140,6 +141,9 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
+STATICFILES_DIRS = [
+    BASE_DIR / 'static',
+]
 
 
 # Media files (uploads)
@@ -156,6 +160,17 @@ EMAIL_USE_TLS = True
 EMAIL_HOST_USER = ''
 EMAIL_HOST_PASSWORD = ''
 
+
+# Cache configuration
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+        'LOCATION': 'unique-snowflake',
+        'OPTIONS': {
+            'MAX_ENTRIES': 1000,
+        }
+    }
+}
 
 # Logging configuration
 LOGGING = {
@@ -203,7 +218,7 @@ LOGGING = {
         },
         'app': {
             'handlers': ['console', 'file'],
-            'level': 'INFO',
+            'level': 'DEBUG',
             'propagate': False,
         },
     },

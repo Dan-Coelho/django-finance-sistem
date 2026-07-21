@@ -6,11 +6,17 @@ readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
     "django>=6.0.1",
+    "requests>=2.34.2",
+    "weasyprint>=61.0",
 ]
 
 [tool.uv]
 dev-dependencies = [
     "ruff>=0.9.10",
+    "pytest",
+    "pytest-django",
+    "model_bakery",
+    "pytest-cov",
 ]
 
 [tool.ruff]

@@ -1,5 +1,7 @@
 {% extends 'base_dashboard.html' %}
 
+{% load humanize %}
+
 {% block dashboard_title %}Excluir Conta{% endblock %}
 {% block page_header %}Excluir Conta{% endblock %}
 
@@ -38,7 +40,7 @@
         <div class="bg-gray-700 rounded-lg p-4 mb-6">
             <p class="text-white"><strong>Nome:</strong> {{ object.name }}</p>
             <p class="text-white"><strong>Descrição:</strong> {{ object.description|default:"-" }}</p>
-            <p class="text-white"><strong>Saldo:</strong> R$ {{ object.balance|floatformat:2|intcomma }}</p>
+            <p class="text-white"><strong>Saldo:</strong> R$ {{ object.balance|floatformat:2 }}</p>
             <p class="text-white"><strong>Status:</strong>
                 <span class="{% if object.is_active %}text-green-400{% else %}text-red-400{% endif %}">
                     {% if object.is_active %}Ativa{% else %}Inativa{% endif %}

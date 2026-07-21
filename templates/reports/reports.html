@@ -1,0 +1,194 @@
+{% extends 'base_dashboard.html' %}
+
+{% load humanize %}
+
+{% block dashboard_title %}Relatórios{% endblock %}
+{% block page_header %}Relatórios{% endblock %}
+
+{% block dashboard_content %}
+<div class="max-w-7xl mx-auto">
+    <!-- Filters Section -->
+    <div class="mb-8 bg-gray-800 rounded-xl p-6 shadow-lg">
+        <form method="GET" id="report-filters">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                <div>
+                    <label class="block text-sm font-medium text-gray-300 mb-1">Período</label>
+                    <select name="period" id="period-select" class="w-full bg-gray-700 text-white rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                        <option value="current_month" {% if selected_period == 'current_month' %}selected{% endif %}>Este mês</option>
+                        <option value="current_week" {% if selected_period == 'current_week' %}selected{% endif %}>Esta semana</option>
+                        <option value="last_month" {% if selected_period == 'last_month' %}selected{% endif %}>Mês passado</option>
+                        <option value="current_year" {% if selected_period == 'current_year' %}selected{% endif %}>Este ano</option>
+                        <option value="custom" {% if selected_period == 'custom' %}selected{% endif %}>Personalizado</option>
+                    </select>
+                </div>
+
+                <div id="custom-dates" class="grid grid-cols-2 gap-2 {% if selected_period != 'custom' %}hidden{% endif %}">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-300 mb-1">Data Início</label>
+                        <input type="date" name="start_date" value="{{ start_date }}" class="w-full bg-gray-700 text-white rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-300 mb-1">Data Fim</label>
+                        <input type="date" name="end_date" value="{{ end_date }}" class="w-full bg-gray-700 text-white rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-medium text-gray-300 mb-1">Categorias</label>
+                    <select name="categories" multiple class="w-full bg-gray-700 text-white rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500 h-32">
+                        {% for category in all_categories %}
+                        <option value="{{ category.id }}" {% if category.id in selected_categories %}selected{% endif %}>
+                            {{ category.name }}
+                        </option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-medium text-gray-300 mb-1">Contas</label>
+                    <select name="accounts" multiple class="w-full bg-gray-700 text-white rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500 h-32">
+                        {% for account in all_accounts %}
+                        <option value="{{ account.id }}" {% if account.id in selected_accounts %}selected{% endif %}>
+                            {{ account.name }}
+                        </option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+
+            <div class="mt-4 flex justify-between">
+                <div class="flex space-x-3">
+                    <button type="submit" class="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-lg transition-colors duration-200">
+                        Aplicar Filtros
+                    </button>
+                    <a href="{% url 'transactions:export-pdf' %}?{% for key, value in request.GET.items %}{{ key }}={{ value }}{% if not forloop.last %}&{% endif %}{% endfor %}" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">
+                        Exportar PDF
+                    </a>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <!-- Summary Cards -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+        <!-- Total Income Card -->
+        <div class="bg-gray-800 rounded-xl p-6 shadow-lg">
+            <div class="flex items-center justify-around">
+                <div class="p-3 rounded-lg bg-green-900/30">
+                    <svg class="w-10 md:w-8 h-10 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 11l3-3m0 0l3 3m-3-3v8m0-13a9 9 0 110 18 9 9 0 010-18z"></path>
+                    </svg>
+                </div>
+                <div class="ml-4">
+                    <h3 class="text-sm md:text-md font-medium text-gray-400">Receitas</h3>
+                    <p class="text-xl md:text-2xl font-semibold text-white">R$ {{ monthly_summary.total_income|floatformat:2 }}</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Total Expenses Card -->
+        <div class="bg-gray-800 rounded-xl p-6 shadow-lg">
+            <div class="flex items-center justify-around">
+                <div class="p-3 rounded-lg bg-red-900/30">
+                    <svg class="w-10 md:w-8 h-10 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 13l-3-3m0 0l-3 3m3-3v8m0-13a9 9 0 110 18 9 9 0 010-18z"></path>
+                    </svg>
+                </div>
+                <div class="ml-4">
+                    <h3 class="text-sm md:text-md font-medium text-gray-400">Despesas</h3>
+                    <p class="text-xl md:text-2xl font-semibold text-white">R$ {{ monthly_summary.total_expense|floatformat:2 }}</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Balance Card -->
+        <div class="bg-gray-800 rounded-xl p-6 shadow-lg">
+            <div class="flex items-center justify-around">
+                <div class="p-3 rounded-lg {% if monthly_summary.balance >= 0 %}bg-blue-900/30{% else %}bg-red-900/30{% endif %}">
+                    <svg class="w-10 md:w-8 h-10 {% if monthly_summary.balance >= 0 %}text-blue-400{% else %}text-red-400{% endif %}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+                    </svg>
+                </div>
+                <div class="ml-4">
+                    <h3 class="text-sm md:text-md font-medium text-gray-400">Balanço</h3>
+                    <p class="text-xl md:text-2xl font-semibold {% if monthly_summary.balance >= 0 %}text-white{% else %}text-red-400{% endif %}">R$ {{ monthly_summary.balance|floatformat:2 }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Transactions Table -->
+    <div class="bg-gray-800 rounded-xl p-6 shadow-lg">
+        <div class="flex items-center justify-between mb-6">
+            <h2 class="text-xl font-bold text-white">Transações</h2>
+            <div class="text-sm text-gray-400">
+                Exibindo {{ monthly_summary.transactions|length }} de {{ monthly_summary.transactions|length }} transações
+            </div>
+        </div>
+
+        {% if monthly_summary.transactions %}
+        <div class="overflow-x-auto">
+            <table class="min-w-full divide-y divide-gray-700">
+                <thead>
+                    <tr>
+                        <th class="px-4 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">Data</th>
+                        <th class="px-4 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">Descrição</th>
+                        <th class="px-4 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">Categoria</th>
+                        <th class="px-4 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">Conta</th>
+                        <th class="px-4 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">Tipo</th>
+                        <th class="px-4 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">Valor</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-gray-700">
+                    {% for transaction in monthly_summary.transactions %}
+                    <tr>
+                        <td class="px-4 py-3 whitespace-nowrap text-sm text-gray-300">{{ transaction.date|date:"d/m/Y" }}</td>
+                        <td class="px-4 py-3 text-sm text-gray-300">{{ transaction.description|truncatechars:30 }}</td>
+                        <td class="px-4 py-3 text-sm">
+                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium"
+                                  style="background-color: {{ transaction.category.color }}20; color: {{ transaction.category.color }};">
+                                {{ transaction.category.name }}
+                            </span>
+                        </td>
+                        <td class="px-4 py-3 text-sm text-gray-300">{{ transaction.account.name }}</td>
+                        <td class="px-4 py-3 text-sm">
+                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium
+                                {% if transaction.type == 'INCOME' %}bg-green-900/30 text-green-400{% else %}bg-red-900/30 text-red-400{% endif %}">
+                                {% if transaction.type == 'INCOME' %}Receita{% else %}Despesa{% endif %}
+                            </span>
+                        </td>
+                        <td class="px-4 py-3 text-sm font-medium {% if transaction.type == 'INCOME' %}text-green-400{% else %}text-red-400{% endif %}">
+                            {% if transaction.type == 'INCOME' %}+{% endif %}R$ {{ transaction.amount|floatformat:2 }}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% else %}
+        <div class="text-center py-8">
+            <svg class="mx-auto h-12 w-12 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+            </svg>
+            <h3 class="mt-2 text-sm font-medium text-gray-400">Nenhuma transação encontrada</h3>
+            <p class="mt-1 text-sm text-gray-500">Tente ajustar os filtros para ver mais resultados.</p>
+        </div>
+        {% endif %}
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const periodSelect = document.getElementById('period-select');
+    const customDatesDiv = document.getElementById('custom-dates');
+
+    periodSelect.addEventListener('change', function() {
+        if (this.value === 'custom') {
+            customDatesDiv.classList.remove('hidden');
+        } else {
+            customDatesDiv.classList.add('hidden');
+        }
+    });
+});
+</script>
+{% endblock %}

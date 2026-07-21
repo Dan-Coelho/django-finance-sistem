@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block title %}Acesso Negado{% endblock title %}
+
+{% block content %}
+<div class="flex flex-col items-center justify-center min-h-screen bg-gray-900 text-white">
+    <div class="text-center">
+        <h1 class="text-6xl font-bold text-red-500">403</h1>
+        <p class="mt-4 text-2xl font-light">Acesso Negado</p>
+        <p class="mt-2 text-gray-400">Você não tem permissão para acessar esta página.</p>
+        <div class="mt-6">
+            <a href="{% url 'users:dashboard' %}" class="px-4 py-2 text-sm font-medium text-white bg-indigo-600 border border-transparent rounded-md hover:bg-indigo-700">
+                Voltar para o Dashboard
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock content %}

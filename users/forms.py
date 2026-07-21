@@ -1,5 +1,9 @@
 from django import forms
-from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
+from django.contrib.auth.forms import (
+    AuthenticationForm,
+    PasswordChangeForm as DjangoPasswordChangeForm,
+    UserCreationForm,
+)
 from django.contrib.auth.password_validation import validate_password
 from django.core.exceptions import ValidationError
 
@@ -13,7 +17,7 @@ class SignUpForm(UserCreationForm):
     email = forms.EmailField(
         max_length=254,
         widget=forms.EmailInput(attrs={
-            'class': 'w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500',
+            'class': 'w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 text-gray-800',
             'placeholder': 'email@exemplo.com'
         }),
         help_text='Digite seu endereço de e-mail.'
@@ -22,7 +26,7 @@ class SignUpForm(UserCreationForm):
         label="Senha",
         strip=False,
         widget=forms.PasswordInput(attrs={
-            'class': 'w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500',
+            'class': 'w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 text-gray-800',
             'placeholder': 'Digite sua senha'
         }),
         help_text='Sua senha deve conter pelo menos 8 caracteres e não pode ser muito comum.'
@@ -30,7 +34,7 @@ class SignUpForm(UserCreationForm):
     password2 = forms.CharField(
         label="Confirmação de senha",
         widget=forms.PasswordInput(attrs={
-            'class': 'w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500',
+            'class': 'w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 text-gray-800',
             'placeholder': 'Confirme sua senha'
         }),
         strip=False,
@@ -123,3 +127,73 @@ class LoginForm(AuthenticationForm):
         """
         super().__init__(*args, **kwargs)
         self.fields['username'].label = "Email"
+
+
+class EmailChangeForm(forms.ModelForm):
+    """
+    A form for changing a user's email address.
+    """
+    email = forms.EmailField(
+        label="Novo email",
+        widget=forms.EmailInput(attrs={
+            'class': 'w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500',
+            'placeholder': 'novoemail@exemplo.com'
+        })
+    )
+    password = forms.CharField(
+        label="Senha atual",
+        widget=forms.PasswordInput(attrs={
+            'class': 'w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500',
+            'placeholder': 'Digite sua senha atual para confirmar'
+        })
+    )
+
+    class Meta:
+        model = CustomUser
+        fields = ('email',)
+
+    def __init__(self, *args, **kwargs):
+        self.user = kwargs.pop('user')
+        super().__init__(*args, **kwargs)
+
+    def clean_email(self):
+        email = self.cleaned_data.get('email')
+        if CustomUser.objects.filter(email__iexact=email).exists():
+            raise ValidationError("Este e-mail já está sendo utilizado por outra conta.")
+        return email
+
+    def clean_password(self):
+        password = self.cleaned_data.get('password')
+        if not self.user.check_password(password):
+            raise ValidationError("A senha atual está incorreta.")
+        return password
+
+    def save(self, commit=True):
+        self.user.email = self.cleaned_data['email']
+        if commit:
+            self.user.save()
+        return self.user
+
+
+class PasswordChangeForm(DjangoPasswordChangeForm):
+    """
+    A password change form with updated styling.
+    """
+    old_password = forms.CharField(
+        label="Senha antiga",
+        widget=forms.PasswordInput(attrs={
+            'class': 'w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500'
+        })
+    )
+    new_password1 = forms.CharField(
+        label="Nova senha",
+        widget=forms.PasswordInput(attrs={
+            'class': 'w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500'
+        })
+    )
+    new_password2 = forms.CharField(
+        label="Confirmação da nova senha",
+        widget=forms.PasswordInput(attrs={
+            'class': 'w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500'
+        })
+    )

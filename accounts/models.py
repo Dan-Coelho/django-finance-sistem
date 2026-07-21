@@ -1,4 +1,5 @@
 from django.contrib.auth import get_user_model
+from django.core.exceptions import ValidationError
 from django.core.validators import MinValueValidator
 from django.db import models
 
@@ -22,9 +23,9 @@ class Account(models.Model):
     def clean(self):
         super().clean()
         if self.balance < 0:
-            raise ValueError("Balance cannot be negative.")
+            raise ValidationError({"balance": "Balance cannot be negative."})
         if not self.name.strip():
-            raise ValueError("Name cannot be empty.")
+            raise ValidationError({"name": "Name cannot be empty."})
 
     def __str__(self):
         return f"{self.name} ({self.user.email})"

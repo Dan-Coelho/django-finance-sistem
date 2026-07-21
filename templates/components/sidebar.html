@@ -1,14 +1,16 @@
 
-<nav class="bg-gray-800 text-white w-64 min-h-screen flex flex-col">
-    <div class="p-4 border-b border-gray-700">
-        <h2 class="text-lg font-semibold">Navegação</h2>
-    </div>
-
+<nav class="bg-gray-900 text-white w-64 min-h-screen hidden sm:flex sm:flex-col">
     <ul class="flex-1 py-4">
         <li>
             <a href="{% url 'users:dashboard' %}" class="flex items-center p-3 rounded-lg text-gray-300 hover:bg-gray-700 hover:text-white transition-colors duration-200 {% if request.resolver_match.app_name == 'users' and request.resolver_match.url_name == 'dashboard' %}bg-gray-700 text-white{% endif %}">
                 <span class="mr-3">📊</span>
                 <span>Dashboard</span>
+            </a>
+        </li>
+        <li>
+            <a href="{% url 'users:reports' %}" class="flex items-center p-3 rounded-lg text-gray-300 hover:bg-gray-700 hover:text-white transition-colors duration-200 {% if request.resolver_match.app_name == 'users' and request.resolver_match.url_name == 'reports' %}bg-gray-700 text-white{% endif %}">
+                <span class="mr-3">📈</span>
+                <span>Relatórios</span>
             </a>
         </li>
         <li>
